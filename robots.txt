@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ctrlaltdefeatam.github.io/sitemap.xml
