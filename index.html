@@ -56,6 +56,12 @@
       padding: 60px 24px 80px;
     }
 
+    /* Added a breathing glow to the hero panel */
+    @keyframes panelGlow {
+      0% { box-shadow: 0 24px 50px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.05), 0 0 15px rgba(214, 169, 74, 0.05); }
+      100% { box-shadow: 0 24px 50px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.05), 0 0 30px rgba(214, 169, 74, 0.15); }
+    }
+
     .hero {
       position: relative;
       padding: 60px 30px;
@@ -64,7 +70,7 @@
       background: var(--bg-panel);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 24px 50px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.05);
+      animation: panelGlow 4s ease-in-out infinite alternate;
       overflow: hidden;
       margin-bottom: 60px;
     }
@@ -72,6 +78,12 @@
     .hero-content {
       position: relative;
       z-index: 1;
+    }
+
+    /* Added breathing text glow animation */
+    @keyframes titleGlow {
+      0% { filter: drop-shadow(0 0 8px rgba(214, 169, 74, 0.4)) drop-shadow(0 0 2px rgba(255, 211, 106, 0.3)); }
+      100% { filter: drop-shadow(0 0 16px rgba(214, 169, 74, 0.8)) drop-shadow(0 0 6px rgba(255, 211, 106, 0.6)); }
     }
 
     h1 {
@@ -82,7 +94,7 @@
       background: linear-gradient(to bottom, #fff8e1, var(--gold-primary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 2px 8px rgba(214, 169, 74, 0.3));
+      animation: titleGlow 3s ease-in-out infinite alternate;
     }
 
     h2 {
@@ -161,9 +173,9 @@
     }
 
     .button:hover {
-      transform: translateY(-3px);
+      transform: translateY(-4px) scale(1.02); /* Added slight scale for tactile feel */
       background: linear-gradient(145deg, var(--gold-bright), var(--gold-primary));
-      box-shadow: 0 10px 25px var(--gold-glow);
+      box-shadow: 0 12px 25px var(--gold-glow);
     }
 
     .section-intro {
@@ -224,33 +236,6 @@
       border-bottom-color: var(--gold-bright);
     }
 
-    /* Polished Placeholders */
-    .media-placeholder {
-      margin: 0 0 20px;
-      height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(214, 169, 74, 0.6);
-      background: linear-gradient(45deg, rgba(20,20,20,1) 0%, rgba(35,30,20,1) 100%);
-      border: 1px solid rgba(214, 169, 74, 0.1);
-      box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
-      animation: pulse 4s infinite alternate;
-    }
-
-    @keyframes pulse {
-      0% { opacity: 0.8; }
-      100% { opacity: 1; box-shadow: inset 0 0 30px rgba(214, 169, 74, 0.1); }
-    }
-
-    /* Image Styling & Hover Zoom */
     .card-img-wrapper {
       width: 100%;
       height: 200px;
@@ -314,7 +299,7 @@
       .link-row.primary,
       .link-row.secondary { grid-template-columns: 1fr; }
       .cards { grid-template-columns: 1fr; }
-      .card-img-wrapper, .media-placeholder { height: 180px; }
+      .card-img-wrapper { height: 180px; }
     }
   </style>
 </head>
@@ -358,7 +343,9 @@
 
     <section class="cards two">
       <div class="card">
-        <div class="media-placeholder">Preview Coming Soon</div>
+        <div class="card-img-wrapper">
+          <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTV0bmxpYjFxc3A2YmYwd2l0bXF3azZ4bGxpbDMzbTA4bDdhaXpubiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bSLg3ev3owFDM10WtX/giphy.gif" alt="Gold Manager D&D 5e Preview">
+        </div>
         <h3>Gold Manager D&D 5e</h3>
         <p>
           A free Foundry VTT module for managing currency, exchanges, gold rewards,
@@ -462,7 +449,9 @@
       </div>
 
       <div class="card">
-        <div class="media-placeholder">Preview Coming Soon</div>
+        <div class="card-img-wrapper">
+          <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmZ2dTNtdmswazRlM21waDZyc2N6aW1samxkYm9xYWM4d2VmNzhrYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Fn9GZjqvYv0sXjXP19/giphy.gif" alt="Scene Transition Cinematic Toolkit Preview">
+        </div>
         <h3>Scene Transition Cinematic Toolkit</h3>
         <p>
           A cinematic Foundry VTT toolkit for scene transitions, music swaps,
