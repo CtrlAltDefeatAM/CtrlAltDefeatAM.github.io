@@ -64,7 +64,7 @@ Current Patreon module projects include tools such as Bruiser UI, Devil Fruit Co
 - **StartPlaying:** https://startplaying.games/gm/ctrl-alt-defeat
 - **YouTube:** https://www.youtube.com/@Ctrl_Alt_Defeat-GM
 - **Homebrewery:** https://homebrewery.naturalcrit.com/share/LtF88dEE8z1S
-- **GitHub:** https://github.com/CtrlAltDefeatAM
+- **GitHub:** https://ctrlaltdefeatam.github.io/
 - **Discord:** https://discord.gg/fB7xw2bmB
 
 ---
