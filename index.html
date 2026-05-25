@@ -12,177 +12,340 @@
   />
 
   <style>
+    :root {
+      --bg: #070707;
+      --panel: #121212;
+      --panel-soft: #191919;
+      --gold: #d6a94a;
+      --gold-bright: #ffd36a;
+      --gold-dark: #8f6720;
+      --text: #f4efe4;
+      --muted: #c8bda7;
+      --line: rgba(255, 211, 106, 0.28);
+      --shadow: rgba(0, 0, 0, 0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Georgia, "Times New Roman", serif;
-      background: #b9f1ff;
-      color: #111;
+      background:
+        radial-gradient(circle at top left, rgba(214, 169, 74, 0.18), transparent 32rem),
+        radial-gradient(circle at top right, rgba(125, 75, 16, 0.22), transparent 34rem),
+        linear-gradient(180deg, #090909 0%, #050505 100%);
+      color: var(--text);
       line-height: 1.6;
       text-align: center;
     }
 
     main {
-      max-width: 1100px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 40px 20px 70px;
+      padding: 44px 22px 76px;
+    }
+
+    .hero {
+      position: relative;
+      padding: 44px 22px 34px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255, 211, 106, 0.08), rgba(255, 211, 106, 0.02)),
+        rgba(18, 18, 18, 0.92);
+      box-shadow: 0 24px 70px var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(255, 211, 106, 0.16), transparent 18rem),
+        radial-gradient(circle at 82% 16%, rgba(214, 169, 74, 0.12), transparent 20rem);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
       margin: 0 0 10px;
-      font-size: clamp(2rem, 5vw, 4rem);
+      font-size: clamp(2.5rem, 6vw, 5rem);
       letter-spacing: 0.22em;
       text-transform: uppercase;
+      color: var(--gold-bright);
+      text-shadow:
+        0 0 16px rgba(255, 211, 106, 0.35),
+        0 3px 0 rgba(0, 0, 0, 0.5);
     }
 
     h2 {
-      margin-top: 50px;
-      font-size: 1.6rem;
-      letter-spacing: 0.12em;
+      margin: 64px 0 24px;
+      font-size: clamp(1.35rem, 2.6vw, 2rem);
+      letter-spacing: 0.16em;
       text-transform: uppercase;
+      color: var(--gold-bright);
+      text-shadow: 0 0 14px rgba(255, 211, 106, 0.24);
     }
 
     h3 {
-      margin-top: 0;
+      margin: 0 0 12px;
       font-size: 1.25rem;
+      color: var(--gold-bright);
     }
 
     p {
-      font-size: 1.05rem;
+      font-size: 1.02rem;
     }
 
     .tagline {
-      max-width: 900px;
+      max-width: 920px;
       margin: 0 auto 28px;
       font-weight: bold;
       letter-spacing: 0.14em;
       text-transform: uppercase;
+      color: var(--muted);
     }
 
     .intro {
       max-width: 900px;
-      margin: 0 auto 30px;
-      font-size: 1.15rem;
+      margin: 0 auto 32px;
+      font-size: 1.12rem;
+      color: var(--text);
     }
 
-    .button-grid {
+    .link-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 14px;
-      max-width: 900px;
-      margin: 35px auto 20px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .link-row.primary {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 34px;
+    }
+
+    .link-row.secondary {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 14px;
+      max-width: 740px;
     }
 
     .button {
       display: block;
       padding: 14px 18px;
       border-radius: 999px;
-      background: #b3c4ff;
+      background:
+        linear-gradient(180deg, rgba(255, 211, 106, 0.98), rgba(177, 126, 38, 0.98));
       color: #111;
       text-decoration: none;
       font-weight: bold;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      border: 1px solid rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(255, 239, 177, 0.75);
+      box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
     }
 
     .button:hover {
-      background: #9fb4ff;
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+      box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.45),
+        0 0 18px rgba(255, 211, 106, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.38);
+    }
+
+    .section-intro {
+      max-width: 860px;
+      margin: -8px auto 26px;
+      color: var(--muted);
     }
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+      gap: 22px;
       margin-top: 24px;
       text-align: left;
     }
 
+    .cards.two {
+      max-width: 820px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     .card {
-      background: rgba(255, 255, 255, 0.38);
-      border: 1px solid rgba(0, 0, 0, 0.14);
-      border-radius: 18px;
-      padding: 22px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      background:
+        linear-gradient(180deg, rgba(255, 211, 106, 0.075), rgba(255, 211, 106, 0.025)),
+        var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.36);
+      overflow: hidden;
+    }
+
+    .card p {
+      color: var(--text);
+      margin-bottom: 14px;
     }
 
     .card a {
-      color: #111;
+      color: var(--gold-bright);
       font-weight: bold;
+      text-decoration-color: rgba(255, 211, 106, 0.45);
+      text-underline-offset: 3px;
+    }
+
+    .card a:hover {
+      color: #fff0b0;
     }
 
     .media-placeholder {
       margin: 0 0 16px;
+      height: 230px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 18px;
-      border: 2px dashed rgba(0, 0, 0, 0.22);
-      border-radius: 14px;
+      border: 2px dashed rgba(255, 211, 106, 0.35);
+      border-radius: 16px;
       text-align: center;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: bold;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      opacity: 0.72;
+      color: var(--muted);
+      background: rgba(255, 211, 106, 0.04);
     }
 
     .card img {
       width: 100%;
-      height: 260px;
+      height: 230px;
       object-fit: cover;
-      border-radius: 14px;
+      border-radius: 16px;
       margin-bottom: 16px;
-      border: 1px solid rgba(0, 0, 0, 0.14);
-      background: rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(255, 211, 106, 0.28);
+      background: rgba(0, 0, 0, 0.35);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.32);
     }
 
     .card img.contain {
       object-fit: contain;
-      padding: 8px;
-      box-sizing: border-box;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.28);
     }
 
     .note {
       max-width: 850px;
-      margin: 30px auto 0;
+      margin: 42px auto 0;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 211, 106, 0.05);
+      color: var(--muted);
       font-size: 0.98rem;
-      opacity: 0.85;
     }
 
     footer {
-      max-width: 900px;
-      margin: 55px auto 0;
+      max-width: 920px;
+      margin: 42px auto 0;
+      color: var(--muted);
       font-size: 0.9rem;
-      opacity: 0.78;
+      opacity: 0.86;
+    }
+
+    @media (max-width: 850px) {
+      .link-row.primary,
+      .link-row.secondary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 620px;
+      }
+
+      h1 {
+        letter-spacing: 0.12em;
+      }
+
+      .tagline {
+        letter-spacing: 0.08em;
+      }
+    }
+
+    @media (max-width: 560px) {
+      main {
+        padding: 24px 14px 54px;
+      }
+
+      .hero {
+        padding: 34px 16px 28px;
+      }
+
+      .link-row.primary,
+      .link-row.secondary {
+        grid-template-columns: 1fr;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .card img,
+      .media-placeholder {
+        height: 210px;
+      }
     }
   </style>
 </head>
 
 <body>
   <main>
-    <h1>CtrlAltDefeat</h1>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>CtrlAltDefeat</h1>
 
-    <div class="tagline">
-      Foundry VTT Modules • D&D 5e Tools • Maps • VTT Assets • Professional GM Games
-    </div>
+        <div class="tagline">
+          Foundry VTT Modules • D&D 5e Tools • Maps • VTT Assets • Professional GM Games
+        </div>
 
-    <p class="intro">
-      CtrlAltDefeat creates Foundry VTT modules, D&D 5e tools, anime-inspired TTRPG assets,
-      maps, tokens, animated WebM VTT assets, Homebrewery resources, and professional GM games.
-      This public GitHub index collects my free modules, public repositories, Patreon content,
-      YouTube showcases, StartPlaying games, and tabletop resources.
-    </p>
+        <p class="intro">
+          CtrlAltDefeat creates Foundry VTT modules, D&D 5e tools, anime-inspired TTRPG assets,
+          maps, tokens, animated WebM VTT assets, Homebrewery resources, and professional GM games.
+          This public index collects my free modules, Patreon content, YouTube showcases,
+          StartPlaying games, and tabletop resources.
+        </p>
 
-    <div class="button-grid">
-      <a class="button" href="https://ctrlaltdefeat.carrd.co/">Main Hub</a>
-      <a class="button" href="https://www.patreon.com/Ctrl_Alt_Defeat">Patreon Vault</a>
-      <a class="button" href="https://startplaying.games/gm/ctrl-alt-defeat">StartPlaying Games</a>
-      <a class="button" href="https://www.youtube.com/@Ctrl_Alt_Defeat-GM">YouTube Showcases</a>
-      <a class="button" href="https://homebrewery.naturalcrit.com/share/LtF88dEE8z1S">Homebrewery Books</a>
-      <a class="button" href="https://github.com/CtrlAltDefeatAM">GitHub Profile</a>
-      <a class="button" href="https://discord.gg/fBf7xw2bmB">Discord Community</a>
-    </div>
+        <div class="link-row primary">
+          <a class="button" href="https://ctrlaltdefeat.carrd.co/">Main Hub</a>
+          <a class="button" href="https://startplaying.games/gm/ctrl-alt-defeat">StartPlaying Games</a>
+          <a class="button" href="https://www.patreon.com/Ctrl_Alt_Defeat">Patreon</a>
+          <a class="button" href="https://discord.gg/fBf7xw2bmB">Discord</a>
+        </div>
+
+        <div class="link-row secondary">
+          <a class="button" href="https://www.youtube.com/@Ctrl_Alt_Defeat-GM">YouTube Showcase</a>
+          <a class="button" href="https://homebrewery.naturalcrit.com/share/LtF88dEE8z1S">Homebrew Books</a>
+          <a class="button" href="https://github.com/CtrlAltDefeatAM">GitHub Profile</a>
+        </div>
+      </div>
+    </section>
 
     <h2>Free Public Foundry VTT Modules</h2>
+    <p class="section-intro">
+      Free Foundry VTT tools released through Patreon and supported by public module pages.
+    </p>
 
-    <section class="cards">
+    <section class="cards two">
       <div class="card">
         <div class="media-placeholder">IMAGE SLOT: Gold Manager preview image or short GIF</div>
 
@@ -211,6 +374,9 @@
     </section>
 
     <h2>Books, Games, and Community</h2>
+    <p class="section-intro">
+      Player resources, live campaigns, community links, and showcase material.
+    </p>
 
     <section class="cards">
       <div class="card">
@@ -264,6 +430,9 @@
     </section>
 
     <h2>Patreon Modules and Foundry Tools</h2>
+    <p class="section-intro">
+      Larger Foundry VTT tools, automation systems, and campaign utilities available through Patreon.
+    </p>
 
     <section class="cards">
       <div class="card">
@@ -304,6 +473,9 @@
     </section>
 
     <h2>Patreon Maps, Assets, and Visual Content</h2>
+    <p class="section-intro">
+      Maps, animated VTT assets, visual packs, and campaign-ready resources released through Patreon.
+    </p>
 
     <section class="cards">
       <div class="card">
