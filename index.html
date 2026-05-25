@@ -56,7 +56,6 @@
       padding: 60px 24px 80px;
     }
 
-    /* Added a breathing glow to the hero panel */
     @keyframes panelGlow {
       0% { box-shadow: 0 24px 50px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.05), 0 0 15px rgba(214, 169, 74, 0.05); }
       100% { box-shadow: 0 24px 50px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.05), 0 0 30px rgba(214, 169, 74, 0.15); }
@@ -80,7 +79,6 @@
       z-index: 1;
     }
 
-    /* Added breathing text glow animation */
     @keyframes titleGlow {
       0% { filter: drop-shadow(0 0 8px rgba(214, 169, 74, 0.4)) drop-shadow(0 0 2px rgba(255, 211, 106, 0.3)); }
       100% { filter: drop-shadow(0 0 16px rgba(214, 169, 74, 0.8)) drop-shadow(0 0 6px rgba(255, 211, 106, 0.6)); }
@@ -155,6 +153,7 @@
     }
 
     .button {
+      position: relative; /* Essential for tooltip positioning */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -173,9 +172,56 @@
     }
 
     .button:hover {
-      transform: translateY(-4px) scale(1.02); /* Added slight scale for tactile feel */
+      transform: translateY(-4px) scale(1.02);
       background: linear-gradient(145deg, var(--gold-bright), var(--gold-primary));
       box-shadow: 0 12px 25px var(--gold-glow);
+    }
+
+    /* Hover Preview Window Tooltip */
+    .button::after {
+      content: attr(data-preview);
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: rgba(12, 12, 12, 0.95);
+      color: var(--text-main);
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      text-transform: none;
+      border: 1px solid rgba(214, 169, 74, 0.4);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.8), 0 0 15px rgba(214, 169, 74, 0.1);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Small arrow for tooltip */
+    .button::before {
+      content: '';
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      border-width: 6px;
+      border-style: solid;
+      border-color: rgba(214, 169, 74, 0.4) transparent transparent transparent;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      pointer-events: none;
+      z-index: 11;
+    }
+
+    .button:hover::after, .button:hover::before {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
     }
 
     .section-intro {
@@ -300,6 +346,9 @@
       .link-row.secondary { grid-template-columns: 1fr; }
       .cards { grid-template-columns: 1fr; }
       .card-img-wrapper { height: 180px; }
+      
+      /* Disable tooltips on mobile to prevent clipping */
+      .button::after, .button::before { display: none; }
     }
   </style>
 </head>
@@ -321,17 +370,18 @@
           StartPlaying games, and tabletop resources.
         </p>
 
+        <!-- Reordered buttons and added data-preview tags for hover effects -->
         <div class="link-row primary">
-          <a class="button" href="https://ctrlaltdefeat.carrd.co/">Main Hub</a>
-          <a class="button" href="https://startplaying.games/gm/ctrl-alt-defeat">StartPlaying Games</a>
-          <a class="button" href="https://www.patreon.com/Ctrl_Alt_Defeat">Patreon</a>
-          <a class="button" href="https://discord.gg/fBf7xw2bmB">Discord</a>
+          <a class="button" href="https://startplaying.games/gm/ctrl-alt-defeat" data-preview="View StartPlaying Campaign Schedule">StartPlaying Games</a>
+          <a class="button" href="https://www.patreon.com/Ctrl_Alt_Defeat" data-preview="Access Patreon Exclusive Content">Patreon</a>
+          <a class="button" href="https://discord.gg/fBf7xw2bmB" data-preview="Join the Discord Community">Discord</a>
+          <a class="button" href="https://ctrlaltdefeat.carrd.co/" data-preview="Go to the Main Visual Hub">Main Hub</a>
         </div>
 
         <div class="link-row secondary">
-          <a class="button" href="https://www.youtube.com/@Ctrl_Alt_Defeat-GM">YouTube Showcase</a>
-          <a class="button" href="https://homebrewery.naturalcrit.com/share/LtF88dEE8z1S">Homebrew Books</a>
-          <a class="button" href="https://github.com/CtrlAltDefeatAM">GitHub Profile</a>
+          <a class="button" href="https://www.youtube.com/@Ctrl_Alt_Defeat-GM" data-preview="Watch YouTube Showcases">YouTube Showcase</a>
+          <a class="button" href="https://homebrewery.naturalcrit.com/share/LtF88dEE8z1S" data-preview="Read Homebrewery Books">Homebrew Books</a>
+          <a class="button" href="https://github.com/CtrlAltDefeatAM" data-preview="View GitHub Repositories">GitHub Profile</a>
         </div>
       </div>
     </section>
@@ -360,7 +410,8 @@
         <div class="card-img-wrapper">
           <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzdkczBlNjBnNDlyanVnMGZ1Mm8zMmZtMHNpb200emV3OXV2aXM5eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/B5Kr8YpBodbbN4GPsl/giphy.gif" alt="Prestige & Inspiration UI Preview">
         </div>
-        <h3>Prestige & Inspiration UI</h3>
+        <!-- Title Updated Below -->
+        <h3>Prestige Inspiration Wanted Tracker UI | CtrlAltDefeat</h3>
         <p>
           A free Foundry VTT module for tracking Inspiration, Prestige, Crew Reputation,
           bounties, and anime-inspired campaign progression.
@@ -377,20 +428,7 @@
     </p>
 
     <section class="cards">
-      <div class="card">
-        <div class="card-img-wrapper">
-          <img src="https://i.postimg.cc/Xvm5kkY3/e8f3c4b3-b814-48ee-a2d7-6cbec90b6022.jpg" alt="Homebrewery D&D 5e resource preview">
-        </div>
-        <h3>Homebrewery Resources</h3>
-        <p>
-          D&D 5e and anime-inspired tabletop content, player-facing material,
-          campaign resources, and One Piece-inspired Homebrewery books.
-        </p>
-        <p>
-          <a href="https://homebrewery.naturalcrit.com/share/LtF88dEE8z1S">Read Resources →</a>
-        </p>
-      </div>
-
+      <!-- Card 1: Professional GM Games -->
       <div class="card">
         <div class="card-img-wrapper">
           <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWJmbng0eWM4aThwZzljbmN2eW5qZ2Z3amJnemlvdjlxdGcweGJrMSZlcD12MV9pbnRlcmFsfGdpZl9ieV9pZCZjdD1n/O3ZoZCvPHgPSZUKK0Q/giphy.gif" alt="Professional GM games and campaign preview">
@@ -405,6 +443,7 @@
         </p>
       </div>
 
+      <!-- Card 2: Discord Community -->
       <div class="card">
         <div class="card-img-wrapper">
           <img class="contain" src="https://i.postimg.cc/9ft42H2b/b98d0ffc-0386-4421-b3b7-c2fe97f4ab63-removebg-preview-(1).png" alt="CtrlAltDefeat Discord community preview">
@@ -416,6 +455,21 @@
         </p>
         <p>
           <a href="https://discord.gg/fBf7xw2bmB">Join Discord →</a>
+        </p>
+      </div>
+
+      <!-- Card 3: Homebrewery Resources -->
+      <div class="card">
+        <div class="card-img-wrapper">
+          <img src="https://i.postimg.cc/Xvm5kkY3/e8f3c4b3-b814-48ee-a2d7-6cbec90b6022.jpg" alt="Homebrewery D&D 5e resource preview">
+        </div>
+        <h3>Homebrewery Resources</h3>
+        <p>
+          D&D 5e and anime-inspired tabletop content, player-facing material,
+          campaign resources, and One Piece-inspired Homebrewery books.
+        </p>
+        <p>
+          <a href="https://homebrewery.naturalcrit.com/share/LtF88dEE8z1S">Read Resources →</a>
         </p>
       </div>
     </section>
