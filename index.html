@@ -22,7 +22,7 @@
       --gold-primary: #d6a94a;
       --gold-bright: #ffd36a;
       --gold-dark: #8f6720;
-      --gold-glow: rgba(214, 169, 74, 0.15);
+      --gold-glow: rgba(214, 169, 74, 0.25);
       --text-main: #f4efe4;
       --text-muted: #a8a08f;
       --border-subtle: rgba(214, 169, 74, 0.2);
@@ -34,7 +34,6 @@
 
     body {
       margin: 0;
-      /* Inter for clean, modern readability */
       font-family: 'Inter', sans-serif;
       background-color: var(--bg-base);
       background-image: 
@@ -46,7 +45,6 @@
       text-align: center;
     }
 
-    /* Cinzel for cinematic, tabletop-style headings */
     h1, h2, h3 {
       font-family: 'Cinzel', serif;
       font-weight: 700;
@@ -65,6 +63,7 @@
       border-radius: 24px;
       background: var(--bg-panel);
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       box-shadow: 0 24px 50px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.05);
       overflow: hidden;
       margin-bottom: 60px;
@@ -152,7 +151,6 @@
       background: linear-gradient(145deg, var(--gold-primary), var(--gold-dark));
       color: #000;
       text-decoration: none;
-      font-family: 'Inter', sans-serif;
       font-weight: 600;
       font-size: 0.9rem;
       letter-spacing: 0.1em;
@@ -165,7 +163,7 @@
     .button:hover {
       transform: translateY(-3px);
       background: linear-gradient(145deg, var(--gold-bright), var(--gold-primary));
-      box-shadow: 0 10px 25px rgba(214, 169, 74, 0.3);
+      box-shadow: 0 10px 25px var(--gold-glow);
     }
 
     .section-intro {
@@ -196,12 +194,13 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
       backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
 
     .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 15px var(--gold-glow);
-      border-color: rgba(214, 169, 74, 0.5);
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px var(--gold-glow);
+      border-color: rgba(214, 169, 74, 0.6);
     }
 
     .card p {
@@ -214,7 +213,7 @@
       font-weight: 600;
       text-decoration: none;
       display: inline-block;
-      transition: color 0.2s ease;
+      transition: color 0.2s ease, transform 0.2s ease;
       font-size: 0.95rem;
       border-bottom: 1px solid transparent;
       padding-bottom: 2px;
@@ -251,15 +250,30 @@
       100% { opacity: 1; box-shadow: inset 0 0 30px rgba(214, 169, 74, 0.1); }
     }
 
-    .card img {
+    /* Image Styling & Hover Zoom */
+    .card-img-wrapper {
       width: 100%;
       height: 200px;
-      object-fit: cover;
-      border-radius: 12px;
       margin-bottom: 20px;
+      border-radius: 12px;
+      overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.05);
-      background: #000;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      background: #000;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease, filter 0.3s ease;
+      filter: brightness(0.9);
+    }
+
+    .card:hover img {
+      transform: scale(1.05);
+      filter: brightness(1.1);
     }
 
     .card img.contain {
@@ -286,7 +300,6 @@
       font-size: 0.85rem;
     }
 
-    /* Responsiveness */
     @media (max-width: 900px) {
       .link-row.primary,
       .link-row.secondary {
@@ -301,7 +314,7 @@
       .link-row.primary,
       .link-row.secondary { grid-template-columns: 1fr; }
       .cards { grid-template-columns: 1fr; }
-      .card img, .media-placeholder { height: 180px; }
+      .card-img-wrapper, .media-placeholder { height: 180px; }
     }
   </style>
 </head>
@@ -357,7 +370,9 @@
       </div>
 
       <div class="card">
-        <div class="media-placeholder">Preview Coming Soon</div>
+        <div class="card-img-wrapper">
+          <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzdkczBlNjBnNDlyanVnMGZ1Mm8zMmZtMHNpb200emV3OXV2aXM5eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/B5Kr8YpBodbbN4GPsl/giphy.gif" alt="Prestige & Inspiration UI Preview">
+        </div>
         <h3>Prestige & Inspiration UI</h3>
         <p>
           A free Foundry VTT module for tracking Inspiration, Prestige, Crew Reputation,
@@ -376,7 +391,9 @@
 
     <section class="cards">
       <div class="card">
-        <img src="https://i.postimg.cc/Xvm5kkY3/e8f3c4b3-b814-48ee-a2d7-6cbec90b6022.jpg" alt="Homebrewery D&D 5e resource preview">
+        <div class="card-img-wrapper">
+          <img src="https://i.postimg.cc/Xvm5kkY3/e8f3c4b3-b814-48ee-a2d7-6cbec90b6022.jpg" alt="Homebrewery D&D 5e resource preview">
+        </div>
         <h3>Homebrewery Resources</h3>
         <p>
           D&D 5e and anime-inspired tabletop content, player-facing material,
@@ -388,7 +405,9 @@
       </div>
 
       <div class="card">
-        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWJmbng0eWM4aThwZzljbmN2eW5qZ2Z3amJnemlvdjlxdGcweGJrMSZlcD12MV9pbnRlcmFsfGdpZl9ieV9pZCZjdD1n/O3ZoZCvPHgPSZUKK0Q/giphy.gif" alt="Professional GM games and campaign preview">
+        <div class="card-img-wrapper">
+          <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWJmbng0eWM4aThwZzljbmN2eW5qZ2Z3amJnemlvdjlxdGcweGJrMSZlcD12MV9pbnRlcmFsfGdpZl9ieV9pZCZjdD1n/O3ZoZCvPHgPSZUKK0Q/giphy.gif" alt="Professional GM games and campaign preview">
+        </div>
         <h3>Professional GM Games</h3>
         <p>
           Live D&D 5e and One Piece-inspired campaigns run through StartPlaying
@@ -400,7 +419,9 @@
       </div>
 
       <div class="card">
-        <img class="contain" src="https://i.postimg.cc/9ft42H2b/b98d0ffc-0386-4421-b3b7-c2fe97f4ab63-removebg-preview-(1).png" alt="CtrlAltDefeat Discord community preview">
+        <div class="card-img-wrapper">
+          <img class="contain" src="https://i.postimg.cc/9ft42H2b/b98d0ffc-0386-4421-b3b7-c2fe97f4ab63-removebg-preview-(1).png" alt="CtrlAltDefeat Discord community preview">
+        </div>
         <h3>Discord Community</h3>
         <p>
           Join the CtrlAltDefeat Discord for updates, player resources, module news,
@@ -419,7 +440,9 @@
 
     <section class="cards">
       <div class="card">
-        <img src="https://media.giphy.com/media/KOfsSNhyg5d0cnkkYU/giphy.gif" alt="Bruiser UI Foundry VTT module preview">
+        <div class="card-img-wrapper">
+          <img src="https://media.giphy.com/media/KOfsSNhyg5d0cnkkYU/giphy.gif" alt="Bruiser UI Foundry VTT module preview">
+        </div>
         <h3>Bruiser UI</h3>
         <p>
           A Foundry VTT module built to support Bruiser class gameplay, class automation,
@@ -428,7 +451,9 @@
       </div>
 
       <div class="card">
-        <img src="https://media.giphy.com/media/kBuJK8DsGHu7VHottg/giphy.gif" alt="Devil Fruit Control Foundry VTT module preview">
+        <div class="card-img-wrapper">
+          <img src="https://media.giphy.com/media/kBuJK8DsGHu7VHottg/giphy.gif" alt="Devil Fruit Control Foundry VTT module preview">
+        </div>
         <h3>Devil Fruit Control</h3>
         <p>
           A Foundry VTT tool for Devil Fruit-style powers, Zoan weapon users,
@@ -453,7 +478,9 @@
 
     <section class="cards">
       <div class="card">
-        <img src="https://i.postimg.cc/BQkLWyv8/Highway-Add-Page.jpg" alt="CtrlAltDefeat map collection preview">
+        <div class="card-img-wrapper">
+          <img src="https://i.postimg.cc/BQkLWyv8/Highway-Add-Page.jpg" alt="CtrlAltDefeat map collection preview">
+        </div>
         <h3>Map Collections</h3>
         <p>
           Battle maps, scene maps, VTT-ready layouts, and campaign locations released
@@ -465,7 +492,9 @@
       </div>
 
       <div class="card">
-        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExemE3ZTY5endzMXhocGEzOGplODE2bW5lZjBleGdicnNzempoNWYwayZlcD12MV9pbnRlcmFsfGdpZl9ieV9pZCZjdD1n/iTBsJvom3aXbzE6Qei/giphy.gif" alt="Animated VTT WebM asset preview">
+        <div class="card-img-wrapper">
+          <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExemE3ZTY5endzMXhocGEzOGplODE2bW5lZjBleGdicnNzempoNWYwayZlcD12MV9pbnRlcmFsfGdpZl9ieV9pZCZjdD1n/iTBsJvom3aXbzE6Qei/giphy.gif" alt="Animated VTT WebM asset preview">
+        </div>
         <h3>Animated VTT Assets</h3>
         <p>
           Animated WebM assets, visual effects, portals, tokens, overlays, and other
@@ -477,7 +506,9 @@
       </div>
 
       <div class="card">
-        <img src="https://i.postimg.cc/YCQS5CZp/add2.png" alt="CtrlAltDefeat campaign resource vault preview">
+        <div class="card-img-wrapper">
+          <img src="https://i.postimg.cc/YCQS5CZp/add2.png" alt="CtrlAltDefeat campaign resource vault preview">
+        </div>
         <h3>Campaign Resource Vault</h3>
         <p>
           Homebrew resources, table tools, asset packs, campaign support material,
