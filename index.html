@@ -108,6 +108,27 @@
       z-index: 1;
     }
 
+    .hero-banner {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto 28px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      line-height: 0;
+      background: #000;
+    }
+
+    .hero-banner img {
+      width: 100%;
+      height: auto;
+      max-height: 280px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
     @keyframes titleGlow {
       0% { filter: drop-shadow(0 0 8px rgba(214, 169, 74, 0.4)) drop-shadow(0 0 2px rgba(255, 211, 106, 0.3)); }
       100% { filter: drop-shadow(0 0 16px rgba(214, 169, 74, 0.8)) drop-shadow(0 0 6px rgba(255, 211, 106, 0.6)); }
@@ -375,7 +396,8 @@
       .link-row.secondary { grid-template-columns: 1fr; }
       .cards { grid-template-columns: 1fr; }
       .card-img-wrapper { height: 180px; }
-      
+      .hero-banner img { max-height: 200px; }
+
       /* Disable tooltips on mobile to prevent clipping */
       .button::after, .button::before { display: none; }
     }
@@ -386,6 +408,10 @@
   <main>
     <section class="hero">
       <div class="hero-content">
+        <div class="hero-banner">
+          <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExazdrdzB4bTBxZXQ1bzhtOThubXZvYmppbmIxMHdwZ2Nnc2J5c3pnNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/O3ZoZCvPHgPSZUKK0Q/giphy.gif" alt="CtrlAltDefeat banner">
+        </div>
+
         <h1>CtrlAltDefeat</h1>
 
         <div class="tagline">
