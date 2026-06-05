@@ -155,7 +155,7 @@
       min-width: 180px;
       max-width: 300px;
       pointer-events: none;
-      opacity: 0.34;
+      opacity: 0.38;
       background-repeat: repeat-y;
       background-size: 100% 520px;
     }
@@ -188,7 +188,7 @@
         radial-gradient(circle at 70% 58%, rgba(95, 150, 255, 0.68) 0 1px, transparent 2px),
         radial-gradient(circle at 34% 74%, rgba(180, 225, 255, 0.85) 0 1px, transparent 2px),
         radial-gradient(circle at 58% 88%, rgba(110, 175, 255, 0.72) 0 1.5px, transparent 2.5px);
-      animation: sideStarDrift 28s linear infinite, starTwinkleA 5.5s ease-in-out infinite;
+      animation: sideStarDrift 28s linear infinite, starTwinkleA 5.2s ease-in-out infinite;
     }
 
     .side-stars-left::after {
@@ -197,7 +197,7 @@
         radial-gradient(circle at 20% 38%, rgba(120, 185, 255, 0.74) 0 1px, transparent 2px),
         radial-gradient(circle at 66% 62%, rgba(225, 245, 255, 0.82) 0 1.5px, transparent 2.5px),
         radial-gradient(circle at 42% 84%, rgba(105, 165, 255, 0.7) 0 1px, transparent 2px);
-      animation: sideStarDrift 36s linear infinite, starTwinkleB 7s ease-in-out infinite;
+      animation: sideStarDrift 36s linear infinite, starTwinkleB 6.8s ease-in-out infinite;
     }
 
     .side-stars-right::before {
@@ -208,7 +208,7 @@
         radial-gradient(circle at 30% 58%, rgba(95, 150, 255, 0.68) 0 1px, transparent 2px),
         radial-gradient(circle at 66% 74%, rgba(180, 225, 255, 0.85) 0 1px, transparent 2px),
         radial-gradient(circle at 42% 88%, rgba(110, 175, 255, 0.72) 0 1.5px, transparent 2.5px);
-      animation: sideStarDrift 28s linear infinite, starTwinkleA 6s ease-in-out infinite;
+      animation: sideStarDrift 30s linear infinite, starTwinkleA 5.9s ease-in-out infinite;
     }
 
     .side-stars-right::after {
@@ -217,7 +217,41 @@
         radial-gradient(circle at 72% 36%, rgba(120, 185, 255, 0.74) 0 1px, transparent 2px),
         radial-gradient(circle at 34% 64%, rgba(225, 245, 255, 0.82) 0 1.5px, transparent 2.5px),
         radial-gradient(circle at 58% 82%, rgba(105, 165, 255, 0.7) 0 1px, transparent 2px);
-      animation: sideStarDrift 36s linear infinite, starTwinkleB 8s ease-in-out infinite;
+      animation: sideStarDrift 38s linear infinite, starTwinkleB 7.4s ease-in-out infinite;
+    }
+
+    .sparkle-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-repeat: repeat-y;
+      background-size: 100% 620px;
+      opacity: 0.0;
+      animation:
+        sideStarDrift 34s linear infinite,
+        starSparklePop 4.6s ease-in-out infinite;
+    }
+
+    .sparkle-left {
+      background-image:
+        radial-gradient(circle at 32% 10%, rgba(232, 247, 255, 0.95) 0 1px, transparent 2px),
+        radial-gradient(circle at 54% 22%, rgba(159, 220, 255, 0.85) 0 1.4px, transparent 2.6px),
+        radial-gradient(circle at 26% 41%, rgba(232, 247, 255, 0.90) 0 1.2px, transparent 2.4px),
+        radial-gradient(circle at 68% 57%, rgba(159, 220, 255, 0.78) 0 1px, transparent 2px),
+        radial-gradient(circle at 42% 73%, rgba(232, 247, 255, 0.82) 0 1.5px, transparent 2.8px),
+        radial-gradient(circle at 60% 91%, rgba(93, 184, 255, 0.70) 0 1px, transparent 2px);
+      animation-delay: -1.2s, -0.4s;
+    }
+
+    .sparkle-right {
+      background-image:
+        radial-gradient(circle at 68% 10%, rgba(232, 247, 255, 0.95) 0 1px, transparent 2px),
+        radial-gradient(circle at 46% 22%, rgba(159, 220, 255, 0.85) 0 1.4px, transparent 2.6px),
+        radial-gradient(circle at 74% 41%, rgba(232, 247, 255, 0.90) 0 1.2px, transparent 2.4px),
+        radial-gradient(circle at 32% 57%, rgba(159, 220, 255, 0.78) 0 1px, transparent 2px),
+        radial-gradient(circle at 58% 73%, rgba(232, 247, 255, 0.82) 0 1.5px, transparent 2.8px),
+        radial-gradient(circle at 40% 91%, rgba(93, 184, 255, 0.70) 0 1px, transparent 2px);
+      animation-delay: -2.6s, -1.8s;
     }
 
     @keyframes sideStarDrift {
@@ -226,18 +260,126 @@
     }
 
     @keyframes starTwinkleA {
-      0%, 100% { opacity: 0.18; }
-      25% { opacity: 0.52; }
-      50% { opacity: 0.28; }
-      75% { opacity: 0.62; }
+      0%, 100% {
+        opacity: 0.16;
+        filter: brightness(0.85) blur(0px);
+      }
+
+      12% {
+        opacity: 0.34;
+        filter: brightness(1.15) blur(0px);
+      }
+
+      24% {
+        opacity: 0.18;
+        filter: brightness(0.9) blur(0px);
+      }
+
+      38% {
+        opacity: 0.62;
+        filter:
+          brightness(1.65)
+          drop-shadow(0 0 4px rgba(170, 220, 255, 0.42))
+          drop-shadow(0 0 8px rgba(93, 184, 255, 0.20));
+      }
+
+      52% {
+        opacity: 0.22;
+        filter: brightness(0.95) blur(0px);
+      }
+
+      70% {
+        opacity: 0.48;
+        filter:
+          brightness(1.35)
+          drop-shadow(0 0 3px rgba(170, 220, 255, 0.30));
+      }
+
+      84% {
+        opacity: 0.20;
+        filter: brightness(0.9) blur(0px);
+      }
     }
 
     @keyframes starTwinkleB {
-      0%, 100% { opacity: 0.14; }
-      20% { opacity: 0.36; }
-      45% { opacity: 0.58; }
-      70% { opacity: 0.22; }
-      90% { opacity: 0.48; }
+      0%, 100% {
+        opacity: 0.12;
+        filter: brightness(0.8) blur(0px);
+      }
+
+      16% {
+        opacity: 0.28;
+        filter: brightness(1.08) blur(0px);
+      }
+
+      30% {
+        opacity: 0.58;
+        filter:
+          brightness(1.55)
+          drop-shadow(0 0 4px rgba(190, 230, 255, 0.38))
+          drop-shadow(0 0 8px rgba(93, 184, 255, 0.18));
+      }
+
+      44% {
+        opacity: 0.16;
+        filter: brightness(0.85) blur(0px);
+      }
+
+      61% {
+        opacity: 0.42;
+        filter:
+          brightness(1.28)
+          drop-shadow(0 0 3px rgba(170, 220, 255, 0.26));
+      }
+
+      76% {
+        opacity: 0.14;
+        filter: brightness(0.82) blur(0px);
+      }
+
+      90% {
+        opacity: 0.50;
+        filter:
+          brightness(1.42)
+          drop-shadow(0 0 4px rgba(190, 230, 255, 0.32));
+      }
+    }
+
+    @keyframes starSparklePop {
+      0%, 100% {
+        opacity: 0;
+        filter: brightness(0.8);
+      }
+
+      18% {
+        opacity: 0.10;
+        filter: brightness(1);
+      }
+
+      28% {
+        opacity: 0.42;
+        filter:
+          brightness(1.7)
+          drop-shadow(0 0 4px rgba(232, 247, 255, 0.35))
+          drop-shadow(0 0 8px rgba(93, 184, 255, 0.18));
+      }
+
+      34% {
+        opacity: 0.08;
+        filter: brightness(0.9);
+      }
+
+      62% {
+        opacity: 0.30;
+        filter:
+          brightness(1.45)
+          drop-shadow(0 0 3px rgba(232, 247, 255, 0.28));
+      }
+
+      72% {
+        opacity: 0.04;
+        filter: brightness(0.85);
+      }
     }
 
     .float-column {
@@ -275,8 +417,8 @@
         drop-shadow(0 0 18px rgba(110, 175, 255, 0.10));
       will-change: transform, opacity, filter;
       animation:
-        riseBobble 46s linear infinite,
-        floatGlowPulse 8s ease-in-out infinite;
+        riseBobble 56s linear infinite,
+        floatGlowPulse 9s ease-in-out infinite;
     }
 
     .lane-small {
@@ -380,17 +522,17 @@
 
     .float-column-left .flow-b,
     .float-column-right .flow-b {
-      animation-delay: -11.5s, -2s;
+      animation-delay: -14s, -2s;
     }
 
     .float-column-left .flow-c,
     .float-column-right .flow-c {
-      animation-delay: -23s, -4s;
+      animation-delay: -28s, -4s;
     }
 
     .float-column-left .flow-d,
     .float-column-right .flow-d {
-      animation-delay: -34.5s, -6s;
+      animation-delay: -42s, -6s;
     }
 
     .hero,
@@ -477,51 +619,45 @@
     }
 
     @keyframes buttonBluePulse {
-      0%, 42%, 100% {
+      0%, 46%, 100% {
         box-shadow:
           0 8px 18px rgba(0, 0, 0, 0.55),
-          0 0 10px rgba(214, 169, 74, 0.22),
-          0 0 8px rgba(93, 184, 255, 0.08),
-          inset 0 1px 1px rgba(255, 238, 160, 0.48),
+          0 0 10px rgba(214, 169, 74, 0.18),
+          0 0 8px rgba(93, 184, 255, 0.06),
+          inset 0 1px 1px rgba(255, 238, 160, 0.42),
           inset 0 -2px 6px rgba(0, 0, 0, 0.35);
       }
 
-      56% {
+      60% {
         box-shadow:
-          0 10px 24px rgba(0, 0, 0, 0.65),
-          0 0 14px rgba(214, 169, 74, 0.25),
-          0 0 30px rgba(93, 184, 255, 0.38),
-          0 0 52px rgba(93, 184, 255, 0.16),
-          inset 0 1px 2px rgba(232, 247, 255, 0.58),
-          inset 0 -2px 8px rgba(0, 0, 0, 0.42);
+          0 10px 22px rgba(0, 0, 0, 0.62),
+          0 0 12px rgba(214, 169, 74, 0.20),
+          0 0 20px rgba(93, 184, 255, 0.22),
+          0 0 34px rgba(93, 184, 255, 0.10),
+          inset 0 1px 2px rgba(232, 247, 255, 0.40),
+          inset 0 -2px 7px rgba(0, 0, 0, 0.40);
       }
 
-      68% {
+      72% {
         box-shadow:
-          0 9px 21px rgba(0, 0, 0, 0.60),
-          0 0 12px rgba(214, 169, 74, 0.22),
-          0 0 16px rgba(93, 184, 255, 0.16),
-          inset 0 1px 1px rgba(255, 238, 160, 0.50),
-          inset 0 -2px 7px rgba(0, 0, 0, 0.38);
+          0 9px 20px rgba(0, 0, 0, 0.58),
+          0 0 10px rgba(214, 169, 74, 0.18),
+          0 0 12px rgba(93, 184, 255, 0.10),
+          inset 0 1px 1px rgba(255, 238, 160, 0.44),
+          inset 0 -2px 6px rgba(0, 0, 0, 0.36);
       }
     }
 
     @keyframes buttonMoonlightSweep {
-      0% {
+      0%,
+      48% {
         background-position:
           -220% center,
           center,
           center;
       }
 
-      45% {
-        background-position:
-          -220% center,
-          center,
-          center;
-      }
-
-      68% {
+      72% {
         background-position:
           220% center,
           center,
@@ -537,33 +673,23 @@
     }
 
     @keyframes buttonTextMoonlightSweep {
-      0% {
+      0%, 48% {
         background-position: -220% center;
         filter: none;
       }
 
-      45% {
-        background-position: -220% center;
-        filter: none;
+      60% {
+        filter: drop-shadow(0 0 3px rgba(159, 220, 255, 0.18));
       }
 
-      56% {
-        filter:
-          drop-shadow(0 0 4px rgba(159, 220, 255, 0.36));
-      }
-
-      68% {
+      72% {
         background-position: 220% center;
         filter:
-          drop-shadow(0 0 5px rgba(159, 220, 255, 0.42))
-          drop-shadow(0 0 10px rgba(93, 184, 255, 0.20));
+          drop-shadow(0 0 4px rgba(159, 220, 255, 0.28))
+          drop-shadow(0 0 8px rgba(93, 184, 255, 0.12));
       }
 
-      78% {
-        filter: none;
-      }
-
-      100% {
+      82%, 100% {
         background-position: 220% center;
         filter: none;
       }
@@ -652,7 +778,7 @@
     }
 
     .button {
-      --button-cycle: 5.6s;
+      --button-cycle: 6.6s;
       position: relative;
       display: flex;
       align-items: center;
@@ -664,12 +790,12 @@
         linear-gradient(
           110deg,
           rgba(93, 184, 255, 0) 0%,
-          rgba(93, 184, 255, 0) 38%,
-          rgba(93, 184, 255, 0.18) 45%,
-          rgba(159, 220, 255, 0.60) 50%,
-          rgba(232, 247, 255, 0.28) 54%,
-          rgba(93, 184, 255, 0.10) 62%,
-          rgba(93, 184, 255, 0) 72%,
+          rgba(93, 184, 255, 0) 40%,
+          rgba(93, 184, 255, 0.10) 46%,
+          rgba(159, 220, 255, 0.32) 50%,
+          rgba(232, 247, 255, 0.16) 53%,
+          rgba(93, 184, 255, 0.08) 58%,
+          rgba(93, 184, 255, 0) 66%,
           rgba(93, 184, 255, 0) 100%
         ),
         linear-gradient(
@@ -725,24 +851,20 @@
         linear-gradient(
           110deg,
           #050505 0%,
-          #050505 40%,
-          var(--blue-primary) 47%,
-          var(--blue-white) 50%,
-          var(--blue-bright) 54%,
-          #050505 62%,
+          #050505 44%,
+          rgba(93, 184, 255, 0.85) 49%,
+          rgba(232, 247, 255, 0.98) 51%,
+          rgba(159, 220, 255, 0.90) 54%,
+          #050505 60%,
           #050505 100%
         );
       background-size: 260% 100%;
       background-position: -220% center;
       -webkit-background-clip: text;
       background-clip: text;
-      text-shadow:
-        0 1px 0 rgba(255, 235, 170, 0.28);
+      text-shadow: 0 1px 0 rgba(255, 235, 170, 0.22);
       filter: none;
       animation: buttonTextMoonlightSweep var(--button-cycle) linear infinite;
-    }
-
-    .button .button-label {
       animation-delay: var(--button-delay, 0s);
     }
 
@@ -755,30 +877,53 @@
     }
 
     .link-row.primary .button:nth-child(1) { --button-delay: 0s; }
-    .link-row.primary .button:nth-child(2) { --button-delay: 0.4s; }
-    .link-row.primary .button:nth-child(3) { --button-delay: 0.8s; }
-    .link-row.primary .button:nth-child(4) { --button-delay: 1.2s; }
+    .link-row.primary .button:nth-child(2) { --button-delay: 0.5s; }
+    .link-row.primary .button:nth-child(3) { --button-delay: 1s; }
+    .link-row.primary .button:nth-child(4) { --button-delay: 1.5s; }
 
-    .link-row.secondary .button:nth-child(1) { --button-delay: 1.6s; }
-    .link-row.secondary .button:nth-child(2) { --button-delay: 2s; }
-    .link-row.secondary .button:nth-child(3) { --button-delay: 2.4s; }
-    .link-row.secondary .button:nth-child(4) { --button-delay: 2.8s; }
+    .link-row.secondary .button:nth-child(1) { --button-delay: 2s; }
+    .link-row.secondary .button:nth-child(2) { --button-delay: 2.5s; }
+    .link-row.secondary .button:nth-child(3) { --button-delay: 3s; }
+    .link-row.secondary .button:nth-child(4) { --button-delay: 3.5s; }
 
     .button:hover {
       transform: translateY(-6px) scale(1.04);
-      filter: brightness(1.18) saturate(1.16) contrast(1.04);
+      background-image:
+        linear-gradient(
+          110deg,
+          rgba(93, 184, 255, 0) 0%,
+          rgba(93, 184, 255, 0) 28%,
+          rgba(159, 220, 255, 0.18) 40%,
+          rgba(232, 247, 255, 0.55) 50%,
+          rgba(159, 220, 255, 0.20) 58%,
+          rgba(93, 184, 255, 0) 70%,
+          rgba(93, 184, 255, 0) 100%
+        ),
+        linear-gradient(
+          rgba(255, 211, 106, 0.22),
+          rgba(143, 103, 32, 0.18)
+        ),
+        url("https://i.postimg.cc/FmzxjHgP/task-01kn5h3e3zfsxt9b2c47wt8ngg-1775080976-img-1.webp");
+      background-size:
+        220% 100%,
+        100% 100%,
+        100% 100%;
+      background-position:
+        180% center,
+        center,
+        center;
+      filter: brightness(1.14) saturate(1.12) contrast(1.03);
       box-shadow:
         0 16px 34px rgba(0, 0, 0, 0.75),
-        0 0 24px rgba(255, 211, 106, 0.42),
-        0 0 32px rgba(93, 184, 255, 0.36),
-        0 0 54px rgba(93, 184, 255, 0.16),
-        inset 0 1px 2px rgba(232, 247, 255, 0.58),
+        0 0 20px rgba(255, 211, 106, 0.30),
+        0 0 24px rgba(93, 184, 255, 0.26),
+        0 0 40px rgba(93, 184, 255, 0.10),
+        inset 0 1px 2px rgba(232, 247, 255, 0.46),
         inset 0 -3px 10px rgba(0, 0, 0, 0.50);
     }
 
     .button:hover .button-label {
-      filter:
-        drop-shadow(0 0 4px rgba(159, 220, 255, 0.32));
+      filter: drop-shadow(0 0 3px rgba(159, 220, 255, 0.24));
     }
 
     .button:focus-visible {
@@ -1344,7 +1489,8 @@
     @media (prefers-reduced-motion: reduce) {
       .float-node,
       .side-stars::before,
-      .side-stars::after {
+      .side-stars::after,
+      .sparkle-layer {
         animation: none !important;
       }
 
@@ -1360,8 +1506,12 @@
     <div class="side-aura side-aura-left"></div>
     <div class="side-aura side-aura-right"></div>
 
-    <div class="side-stars side-stars-left"></div>
-    <div class="side-stars side-stars-right"></div>
+    <div class="side-stars side-stars-left">
+      <span class="sparkle-layer sparkle-left"></span>
+    </div>
+    <div class="side-stars side-stars-right">
+      <span class="sparkle-layer sparkle-right"></span>
+    </div>
 
     <div class="float-column float-column-left">
       <img class="float-node lane-small flow-a" data-pool="fruit" data-side="left" alt="">
@@ -1783,7 +1933,6 @@
   <script>
     const musicConfig = {
       videoId: "yVVMUPx2vlQ",
-      playlistId: "PLW_omwEM1aifT0HUCwxZzKoUa2aq-d5CO",
       volume: 20
     };
 
@@ -1810,15 +1959,13 @@
         width: "1",
         videoId: musicConfig.videoId,
         playerVars: {
-          listType: "playlist",
-          list: musicConfig.playlistId,
-          index: 4,
-          loop: 1,
           autoplay: 0,
           controls: 0,
           modestbranding: 1,
           rel: 0,
-          playsinline: 1
+          playsinline: 1,
+          loop: 1,
+          playlist: "yVVMUPx2vlQ"
         },
         events: {
           onReady: function (event) {
