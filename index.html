@@ -102,37 +102,44 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to right, rgba(5, 5, 5, 0.18), transparent 12%, transparent 88%, rgba(5, 5, 5, 0.18)),
-        linear-gradient(to bottom, rgba(5, 5, 5, 0.08), transparent 18%, transparent 82%, rgba(5, 5, 5, 0.10));
+        linear-gradient(to right, rgba(5, 5, 5, 0.10), transparent 14%, transparent 86%, rgba(5, 5, 5, 0.10)),
+        linear-gradient(to bottom, rgba(5, 5, 5, 0.05), transparent 18%, transparent 82%, rgba(5, 5, 5, 0.06));
       z-index: 1;
       pointer-events: none;
     }
 
     .float-asset {
+      --asset-opacity: 0.22;
       position: absolute;
       display: block;
+      width: auto;
       height: auto;
       object-fit: contain;
-      opacity: 0.14;
+      opacity: var(--asset-opacity);
       filter:
-        drop-shadow(0 0 10px rgba(255, 211, 106, 0.10))
-        drop-shadow(0 0 24px rgba(214, 169, 74, 0.08));
+        brightness(1.08)
+        saturate(1.08)
+        drop-shadow(0 0 14px rgba(255, 211, 106, 0.14))
+        drop-shadow(0 0 28px rgba(214, 169, 74, 0.10));
       transform-origin: center center;
-      will-change: transform, opacity;
+      will-change: transform, opacity, filter;
+      transition:
+        opacity 0.55s ease,
+        filter 0.55s ease;
       z-index: 0;
     }
 
-    .float-asset:hover {
-      opacity: 0.14;
+    .ship-slot {
+      --asset-opacity: 0.16;
+      filter:
+        brightness(1.05)
+        saturate(1.05)
+        drop-shadow(0 0 18px rgba(255, 211, 106, 0.10))
+        drop-shadow(0 0 36px rgba(214, 169, 74, 0.08));
     }
 
-    .ship-1,
-    .ship-2,
-    .ship-3 {
-      opacity: 0.10;
-      filter:
-        drop-shadow(0 0 14px rgba(255, 211, 106, 0.08))
-        drop-shadow(0 0 28px rgba(214, 169, 74, 0.06));
+    .float-asset.is-swapping {
+      opacity: 0;
     }
 
     @keyframes floatDriftA {
@@ -171,94 +178,78 @@
       }
     }
 
-    .drift-a {
+    .slot-1,
+    .slot-4,
+    .slot-7 {
       animation: floatDriftA 22s ease-in-out infinite alternate;
     }
 
-    .drift-b {
+    .slot-2,
+    .slot-5,
+    .slot-8 {
       animation: floatDriftB 26s ease-in-out infinite alternate;
     }
 
-    .drift-c {
+    .slot-3,
+    .slot-6 {
       animation: floatDriftC 30s ease-in-out infinite alternate;
     }
 
-    .asset-1 { animation-delay: -2s; }
-    .asset-2 { animation-delay: -7s; }
-    .asset-3 { animation-delay: -11s; }
-    .asset-4 { animation-delay: -4s; }
-    .asset-5 { animation-delay: -9s; }
-    .asset-6 { animation-delay: -14s; }
-    .asset-7 { animation-delay: -6s; }
-    .asset-8 { animation-delay: -12s; }
-    .ship-1  { animation-delay: -5s; }
-    .ship-2  { animation-delay: -10s; }
-    .ship-3  { animation-delay: -15s; }
+    .slot-1 { animation-delay: -2s; }
+    .slot-2 { animation-delay: -6s; }
+    .slot-3 { animation-delay: -10s; }
+    .slot-4 { animation-delay: -4s; }
+    .slot-5 { animation-delay: -8s; }
+    .slot-6 { animation-delay: -12s; }
+    .slot-7 { animation-delay: -5s; }
+    .slot-8 { animation-delay: -11s; }
 
-    .asset-1 {
-      width: 92px;
-      left: 2.5%;
-      top: 11%;
+    .slot-1 {
+      width: 98px;
+      left: 5.5%;
+      top: 10%;
     }
 
-    .asset-2 {
-      width: 108px;
-      right: 3%;
+    .slot-2 {
+      width: 102px;
+      right: 5.5%;
       top: 13%;
     }
 
-    .asset-3 {
-      width: 88px;
-      left: 4%;
-      top: 36%;
+    .slot-3 {
+      width: 94px;
+      left: 7%;
+      top: 30%;
     }
 
-    .asset-4 {
-      width: 96px;
-      right: 4%;
-      top: 39%;
+    .slot-4 {
+      width: 98px;
+      right: 7%;
+      top: 35%;
     }
 
-    .asset-5 {
-      width: 114px;
-      left: 2%;
+    .slot-5 {
+      width: 118px;
+      left: 5.5%;
+      top: 53%;
+    }
+
+    .slot-6 {
+      width: 118px;
+      right: 5.5%;
       top: 58%;
     }
 
-    .asset-6 {
-      width: 120px;
-      right: 2.5%;
-      top: 60%;
-    }
-
-    .asset-7 {
-      width: 110px;
-      left: 5%;
-      bottom: 11%;
-    }
-
-    .asset-8 {
-      width: 112px;
-      right: 5%;
-      bottom: 13%;
-    }
-
-    .ship-1 {
+    .slot-7 {
       width: 210px;
-      left: -1%;
-      bottom: 2%;
+      left: 4%;
+      bottom: 6%;
     }
 
-    .ship-2 {
-      width: 180px;
-      right: -1%;
-      bottom: 4%;
-    }
-
-    .ship-3 {
-      width: 180px;
-      left: -1%;
-      top: 77%;
+    .slot-8 {
+      width: 205px;
+      right: 4%;
+      bottom: 8%;
     }
 
     .hero,
@@ -637,7 +628,7 @@
 
     .cards.free-modules {
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 22px;
+      gap: 20px;
       max-width: 100%;
       margin: 0 auto;
       align-items: stretch;
@@ -645,32 +636,40 @@
 
     .cards.free-modules .card {
       padding: 20px;
-      min-height: 620px;
+      min-height: 540px;
+      display: grid;
+      grid-template-rows: 170px auto 1fr auto;
+      gap: 14px;
     }
 
     .cards.free-modules .card-img-wrapper {
       height: 170px;
-      margin-bottom: 18px;
+      margin-bottom: 0;
     }
 
     .cards.free-modules .card h3 {
-      min-height: 92px;
-      margin-bottom: 14px;
-      font-size: 1.18rem;
-      line-height: 1.35;
-      letter-spacing: 0.04em;
+      min-height: 0;
+      margin: 0;
+      font-size: 1.14rem;
+      line-height: 1.28;
+      letter-spacing: 0.035em;
     }
 
     .cards.free-modules .card p {
+      margin: 0;
+      flex-grow: 0;
       font-size: 0.98rem;
-      line-height: 1.62;
-      margin-bottom: 18px;
+      line-height: 1.58;
+      letter-spacing: 0.003em;
     }
 
     .cards.free-modules .card p:last-child {
-      flex-grow: 0;
-      margin-top: auto;
-      margin-bottom: 0;
+      margin-top: 4px;
+      align-self: end;
+    }
+
+    .cards.free-modules .card a {
+      align-self: end;
     }
 
     .cards.free-modules .card img {
@@ -689,14 +688,11 @@
       .cards.free-modules {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         max-width: 860px;
+        gap: 20px;
       }
 
       .cards.free-modules .card {
-        min-height: 560px;
-      }
-
-      .cards.free-modules .card h3 {
-        min-height: auto;
+        min-height: 500px;
       }
     }
 
@@ -704,6 +700,7 @@
       .cards.free-modules {
         grid-template-columns: 1fr;
         max-width: 420px;
+        gap: 18px;
       }
 
       .cards.free-modules .card {
@@ -712,10 +709,6 @@
 
       .cards.free-modules .card-img-wrapper {
         height: 180px;
-      }
-
-      .cards.free-modules .card h3 {
-        min-height: auto;
       }
     }
 
@@ -871,16 +864,17 @@
     }
 
     @media (max-width: 1100px) {
-      .ship-1,
-      .ship-2,
-      .ship-3,
-      .asset-7,
-      .asset-8 {
+      .slot-7,
+      .slot-8 {
         display: none;
       }
 
       .float-asset {
-        opacity: 0.10;
+        --asset-opacity: 0.16;
+      }
+
+      .ship-slot {
+        --asset-opacity: 0.12;
       }
     }
 
@@ -893,7 +887,6 @@
     @media (prefers-reduced-motion: reduce) {
       .float-asset {
         animation: none !important;
-        transform: none !important;
       }
     }
   </style>
@@ -901,19 +894,16 @@
 
 <body>
   <div class="floating-assets" aria-hidden="true">
-    <img class="float-asset drift-a asset-1" src="https://i.postimg.cc/wBdx7gFj/Devil-Fruit-(5).webp" alt="">
-    <img class="float-asset drift-b asset-2" src="https://i.postimg.cc/3JVxQgvp/6a1d11ef-aae8-445e-8b11-5f91c44c75e9.png" alt="">
-    <img class="float-asset drift-c asset-3" src="https://i.postimg.cc/nLvzkCM2/Devil-Fruit-(4).png" alt="">
-    <img class="float-asset drift-a asset-4" src="https://i.postimg.cc/YSc0Y12Q/Devil-Fruit-(3).png" alt="">
+    <img class="float-asset slot slot-1" data-type="fruit" alt="">
+    <img class="float-asset slot slot-2" data-type="fruit" alt="">
+    <img class="float-asset slot slot-3" data-type="fruit" alt="">
+    <img class="float-asset slot slot-4" data-type="fruit" alt="">
 
-    <img class="float-asset drift-b asset-5" src="https://i.postimg.cc/kXXbgFD4/ZDino-Weapon-(4).png" alt="">
-    <img class="float-asset drift-c asset-6" src="https://i.postimg.cc/bYRnPFyC/ZDino-Weapon-(7).png" alt="">
-    <img class="float-asset drift-a asset-7" src="https://i.postimg.cc/Y07Q35ph/ZAnimal-Weapon-(6).png" alt="">
-    <img class="float-asset drift-b asset-8" src="https://i.postimg.cc/k5kQVVz6/ZAnimal-Weapon-(13).png" alt="">
+    <img class="float-asset slot slot-5" data-type="item" alt="">
+    <img class="float-asset slot slot-6" data-type="item" alt="">
 
-    <img class="float-asset drift-c ship-1" src="https://i.postimg.cc/yx9sVG9f/Bat-Eaters-Ship.png" alt="">
-    <img class="float-asset drift-a ship-2" src="https://i.postimg.cc/s2XzBx79/Frog-Ship.webp" alt="">
-    <img class="float-asset drift-b ship-3" src="https://i.postimg.cc/15QZGJDR/Rhino-Ship.webp" alt="">
+    <img class="float-asset slot ship-slot slot-7" data-type="ship" alt="">
+    <img class="float-asset slot ship-slot slot-8" data-type="ship" alt="">
   </div>
 
   <main>
@@ -1200,5 +1190,89 @@
       One Piece rights holders.
     </footer>
   </main>
+
+  <script>
+    const floatingPools = {
+      fruit: [
+        "https://i.postimg.cc/wBdx7gFj/Devil-Fruit-(5).webp",
+        "https://i.postimg.cc/3JVxQgvp/6a1d11ef-aae8-445e-8b11-5f91c44c75e9.png",
+        "https://i.postimg.cc/j5cSpmH2/Devil-Fruit-(5).png",
+        "https://i.postimg.cc/nLvzkCM2/Devil-Fruit-(4).png",
+        "https://i.postimg.cc/YSc0Y12Q/Devil-Fruit-(3).png",
+        "https://i.postimg.cc/qv6gNmrv/Devil-Fruit-(2).png"
+      ],
+      item: [
+        "https://i.postimg.cc/kXXbgFD4/ZDino-Weapon-(4).png",
+        "https://i.postimg.cc/bYRnPFyC/ZDino-Weapon-(7).png",
+        "https://i.postimg.cc/J0KHQt66/ZDino-Weapon-(3).png",
+        "https://i.postimg.cc/Y07Q35ph/ZAnimal-Weapon-(6).png",
+        "https://i.postimg.cc/k5kQVVz6/ZAnimal-Weapon-(13).png",
+        "https://i.postimg.cc/25qd8dcm/ZAnimal-Weapon-(10).png",
+        "https://i.postimg.cc/137cQ7Kb/ZAnimal-Weapon-(8).png",
+        "https://i.postimg.cc/6qVfx9Hd/ZAnimal-Weapon-(1).png"
+      ],
+      ship: [
+        "https://i.postimg.cc/yx9sVG9f/Bat-Eaters-Ship.png",
+        "https://i.postimg.cc/s2XzBx79/Frog-Ship.webp",
+        "https://i.postimg.cc/15QZGJDR/Rhino-Ship.webp",
+        "https://i.postimg.cc/HLVGYK1b/Yarn-Ship.webp"
+      ]
+    };
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function assignAssetsToSlots(initial = false) {
+      const slotsByType = {
+        fruit: [...document.querySelectorAll('.slot[data-type="fruit"]')],
+        item: [...document.querySelectorAll('.slot[data-type="item"]')],
+        ship: [...document.querySelectorAll('.slot[data-type="ship"]')]
+      };
+
+      Object.entries(slotsByType).forEach(([type, slots]) => {
+        const pool = shuffleArray(floatingPools[type]);
+        const used = new Set();
+
+        slots.forEach((slot, index) => {
+          let nextSrc = pool[index % pool.length];
+
+          if (slot.dataset.currentSrc && pool.length > 1) {
+            let attempts = 0;
+            while ((nextSrc === slot.dataset.currentSrc || used.has(nextSrc)) && attempts < 20) {
+              nextSrc = pool[Math.floor(Math.random() * pool.length)];
+              attempts++;
+            }
+          }
+
+          used.add(nextSrc);
+
+          if (initial) {
+            slot.src = nextSrc;
+            slot.dataset.currentSrc = nextSrc;
+          } else {
+            slot.classList.add('is-swapping');
+            setTimeout(() => {
+              slot.src = nextSrc;
+              slot.dataset.currentSrc = nextSrc;
+              slot.classList.remove('is-swapping');
+            }, 260);
+          }
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      assignAssetsToSlots(true);
+      setInterval(() => {
+        assignAssetsToSlots(false);
+      }, 14000);
+    });
+  </script>
 </body>
 </html>
