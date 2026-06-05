@@ -102,155 +102,305 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to right, rgba(5, 5, 5, 0.10), transparent 14%, transparent 86%, rgba(5, 5, 5, 0.10)),
-        linear-gradient(to bottom, rgba(5, 5, 5, 0.05), transparent 18%, transparent 82%, rgba(5, 5, 5, 0.06));
+        linear-gradient(to right, rgba(24, 40, 100, 0.08), transparent 12%, transparent 88%, rgba(24, 40, 100, 0.08)),
+        linear-gradient(to bottom, rgba(5, 5, 5, 0.03), transparent 16%, transparent 84%, rgba(5, 5, 5, 0.05));
+      pointer-events: none;
       z-index: 1;
+    }
+
+    .side-aura {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 22vw;
+      min-width: 180px;
+      max-width: 300px;
+      pointer-events: none;
+      filter: blur(26px);
+      opacity: 0.34;
+    }
+
+    .side-aura-left {
+      left: 0;
+      background:
+        radial-gradient(circle at 35% 18%, rgba(70, 145, 255, 0.18), transparent 28%),
+        radial-gradient(circle at 50% 42%, rgba(76, 120, 255, 0.12), transparent 34%),
+        radial-gradient(circle at 44% 76%, rgba(40, 85, 205, 0.12), transparent 30%);
+    }
+
+    .side-aura-right {
+      right: 0;
+      background:
+        radial-gradient(circle at 60% 18%, rgba(70, 145, 255, 0.18), transparent 28%),
+        radial-gradient(circle at 48% 42%, rgba(76, 120, 255, 0.12), transparent 34%),
+        radial-gradient(circle at 54% 76%, rgba(40, 85, 205, 0.12), transparent 30%);
+    }
+
+    .side-stars {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 22vw;
+      min-width: 180px;
+      max-width: 300px;
+      pointer-events: none;
+      opacity: 0.42;
+      background-repeat: repeat-y;
+      background-size: 100% 540px;
+      animation: sideStarDrift 24s linear infinite;
+    }
+
+    .side-stars-left {
+      left: 0;
+      background-image:
+        radial-gradient(circle at 24% 12%, rgba(170, 220, 255, 0.95) 0 1px, transparent 2px),
+        radial-gradient(circle at 62% 26%, rgba(110, 175, 255, 0.75) 0 1px, transparent 2px),
+        radial-gradient(circle at 38% 44%, rgba(210, 240, 255, 0.85) 0 1.5px, transparent 2.5px),
+        radial-gradient(circle at 70% 58%, rgba(95, 150, 255, 0.68) 0 1px, transparent 2px),
+        radial-gradient(circle at 34% 74%, rgba(180, 225, 255, 0.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 58% 88%, rgba(110, 175, 255, 0.72) 0 1.5px, transparent 2.5px);
+    }
+
+    .side-stars-right {
+      right: 0;
+      background-image:
+        radial-gradient(circle at 74% 12%, rgba(170, 220, 255, 0.95) 0 1px, transparent 2px),
+        radial-gradient(circle at 38% 26%, rgba(110, 175, 255, 0.75) 0 1px, transparent 2px),
+        radial-gradient(circle at 62% 44%, rgba(210, 240, 255, 0.85) 0 1.5px, transparent 2.5px),
+        radial-gradient(circle at 30% 58%, rgba(95, 150, 255, 0.68) 0 1px, transparent 2px),
+        radial-gradient(circle at 66% 74%, rgba(180, 225, 255, 0.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 42% 88%, rgba(110, 175, 255, 0.72) 0 1.5px, transparent 2.5px);
+    }
+
+    @keyframes sideStarDrift {
+      0% {
+        transform: translateY(0);
+        opacity: 0.34;
+      }
+      50% {
+        opacity: 0.46;
+      }
+      100% {
+        transform: translateY(-120px);
+        opacity: 0.34;
+      }
+    }
+
+    .float-column {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 18vw;
+      min-width: 150px;
+      max-width: 240px;
       pointer-events: none;
     }
 
-    .float-asset {
-      --asset-opacity: 0.22;
-      position: absolute;
-      display: block;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      opacity: var(--asset-opacity);
-      filter:
-        brightness(1.08)
-        saturate(1.08)
-        drop-shadow(0 0 14px rgba(255, 211, 106, 0.14))
-        drop-shadow(0 0 28px rgba(214, 169, 74, 0.10));
-      transform-origin: center center;
-      will-change: transform, opacity, filter;
-      transition:
-        opacity 0.55s ease,
-        filter 0.55s ease;
-      z-index: 0;
+    .float-column-left {
+      left: 3.8%;
     }
 
-    .ship-slot {
+    .float-column-right {
+      right: 3.8%;
+    }
+
+    .float-node {
+      --asset-opacity: 0.24;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: block;
+      object-fit: contain;
+      opacity: 0;
+      filter:
+        brightness(1.08)
+        saturate(1.10)
+        drop-shadow(0 0 10px rgba(255, 211, 106, 0.16))
+        drop-shadow(0 0 18px rgba(110, 175, 255, 0.10));
+      will-change: transform, opacity, filter;
+    }
+
+    .lane-small {
+      width: 88px;
+    }
+
+    .lane-medium {
+      width: 116px;
+    }
+
+    .lane-large {
+      width: 196px;
+    }
+
+    .ship-node {
       --asset-opacity: 0.16;
       filter:
         brightness(1.05)
-        saturate(1.05)
-        drop-shadow(0 0 18px rgba(255, 211, 106, 0.10))
-        drop-shadow(0 0 36px rgba(214, 169, 74, 0.08));
+        saturate(1.04)
+        drop-shadow(0 0 12px rgba(255, 211, 106, 0.10))
+        drop-shadow(0 0 22px rgba(110, 175, 255, 0.08));
     }
 
-    .float-asset.is-swapping {
-      opacity: 0;
+    .node-left-1,
+    .node-right-1 {
+      top: 78%;
     }
 
-    @keyframes floatDriftA {
-      0% {
-        transform: translate3d(0, 0, 0) rotate(-4deg) scale(1);
-      }
-      50% {
-        transform: translate3d(12px, -18px, 0) rotate(-1deg) scale(1.03);
-      }
-      100% {
-        transform: translate3d(-8px, -34px, 0) rotate(3deg) scale(0.98);
-      }
+    .node-left-2,
+    .node-right-2 {
+      top: 54%;
     }
 
-    @keyframes floatDriftB {
-      0% {
-        transform: translate3d(0, 0, 0) rotate(5deg) scale(1);
-      }
-      50% {
-        transform: translate3d(-14px, 14px, 0) rotate(2deg) scale(1.02);
-      }
-      100% {
-        transform: translate3d(10px, -20px, 0) rotate(-3deg) scale(0.99);
-      }
-    }
-
-    @keyframes floatDriftC {
-      0% {
-        transform: translate3d(0, 0, 0) rotate(-2deg) scale(1);
-      }
-      50% {
-        transform: translate3d(16px, -10px, 0) rotate(2deg) scale(1.01);
-      }
-      100% {
-        transform: translate3d(-10px, -26px, 0) rotate(5deg) scale(0.97);
-      }
-    }
-
-    .slot-1,
-    .slot-4,
-    .slot-7 {
-      animation: floatDriftA 22s ease-in-out infinite alternate;
-    }
-
-    .slot-2,
-    .slot-5,
-    .slot-8 {
-      animation: floatDriftB 26s ease-in-out infinite alternate;
-    }
-
-    .slot-3,
-    .slot-6 {
-      animation: floatDriftC 30s ease-in-out infinite alternate;
-    }
-
-    .slot-1 { animation-delay: -2s; }
-    .slot-2 { animation-delay: -6s; }
-    .slot-3 { animation-delay: -10s; }
-    .slot-4 { animation-delay: -4s; }
-    .slot-5 { animation-delay: -8s; }
-    .slot-6 { animation-delay: -12s; }
-    .slot-7 { animation-delay: -5s; }
-    .slot-8 { animation-delay: -11s; }
-
-    .slot-1 {
-      width: 98px;
-      left: 5.5%;
-      top: 10%;
-    }
-
-    .slot-2 {
-      width: 102px;
-      right: 5.5%;
-      top: 13%;
-    }
-
-    .slot-3 {
-      width: 94px;
-      left: 7%;
+    .node-left-3,
+    .node-right-3 {
       top: 30%;
     }
 
-    .slot-4 {
-      width: 98px;
-      right: 7%;
-      top: 35%;
+    .node-left-4,
+    .node-right-4 {
+      top: 88%;
     }
 
-    .slot-5 {
-      width: 118px;
-      left: 5.5%;
-      top: 53%;
+    @keyframes riseFloatA {
+      0% {
+        transform: translateX(-50%) translateY(0) rotate(-4deg) scale(0.98);
+        opacity: 0;
+      }
+      8% {
+        opacity: var(--asset-opacity);
+      }
+      32% {
+        transform: translateX(calc(-50% + 7px)) translateY(-18vh) rotate(1deg) scale(1.02);
+        opacity: var(--asset-opacity);
+      }
+      58% {
+        transform: translateX(calc(-50% - 6px)) translateY(-40vh) rotate(-2deg) scale(1);
+        opacity: calc(var(--asset-opacity) * 0.96);
+      }
+      82% {
+        transform: translateX(calc(-50% + 5px)) translateY(-65vh) rotate(2deg) scale(0.98);
+        opacity: calc(var(--asset-opacity) * 0.82);
+      }
+      94% {
+        opacity: 0.06;
+      }
+      100% {
+        transform: translateX(calc(-50% - 4px)) translateY(-82vh) rotate(4deg) scale(0.96);
+        opacity: 0;
+      }
     }
 
-    .slot-6 {
-      width: 118px;
-      right: 5.5%;
-      top: 58%;
+    @keyframes riseFloatB {
+      0% {
+        transform: translateX(-50%) translateY(0) rotate(4deg) scale(1);
+        opacity: 0;
+      }
+      8% {
+        opacity: var(--asset-opacity);
+      }
+      34% {
+        transform: translateX(calc(-50% - 8px)) translateY(-20vh) rotate(2deg) scale(1.02);
+        opacity: var(--asset-opacity);
+      }
+      60% {
+        transform: translateX(calc(-50% + 6px)) translateY(-42vh) rotate(-2deg) scale(1);
+        opacity: calc(var(--asset-opacity) * 0.96);
+      }
+      84% {
+        transform: translateX(calc(-50% - 5px)) translateY(-68vh) rotate(1deg) scale(0.98);
+        opacity: calc(var(--asset-opacity) * 0.82);
+      }
+      94% {
+        opacity: 0.06;
+      }
+      100% {
+        transform: translateX(calc(-50% + 3px)) translateY(-84vh) rotate(-4deg) scale(0.96);
+        opacity: 0;
+      }
     }
 
-    .slot-7 {
-      width: 210px;
-      left: 4%;
-      bottom: 6%;
+    @keyframes riseFloatC {
+      0% {
+        transform: translateX(-50%) translateY(0) rotate(-2deg) scale(0.99);
+        opacity: 0;
+      }
+      8% {
+        opacity: var(--asset-opacity);
+      }
+      35% {
+        transform: translateX(calc(-50% + 6px)) translateY(-22vh) rotate(2deg) scale(1.01);
+        opacity: var(--asset-opacity);
+      }
+      62% {
+        transform: translateX(calc(-50% - 4px)) translateY(-44vh) rotate(-1deg) scale(1);
+        opacity: calc(var(--asset-opacity) * 0.95);
+      }
+      86% {
+        transform: translateX(calc(-50% + 4px)) translateY(-70vh) rotate(3deg) scale(0.98);
+        opacity: calc(var(--asset-opacity) * 0.80);
+      }
+      94% {
+        opacity: 0.05;
+      }
+      100% {
+        transform: translateX(calc(-50% - 3px)) translateY(-86vh) rotate(-3deg) scale(0.96);
+        opacity: 0;
+      }
     }
 
-    .slot-8 {
-      width: 205px;
-      right: 4%;
-      bottom: 8%;
+    @keyframes floatGlowPulse {
+      0% {
+        filter:
+          brightness(1.04)
+          saturate(1.06)
+          drop-shadow(0 0 10px rgba(255, 211, 106, 0.14))
+          drop-shadow(0 0 18px rgba(110, 175, 255, 0.08));
+      }
+      50% {
+        filter:
+          brightness(1.10)
+          saturate(1.10)
+          drop-shadow(0 0 14px rgba(255, 211, 106, 0.18))
+          drop-shadow(0 0 24px rgba(110, 175, 255, 0.12));
+      }
+      100% {
+        filter:
+          brightness(1.04)
+          saturate(1.06)
+          drop-shadow(0 0 10px rgba(255, 211, 106, 0.14))
+          drop-shadow(0 0 18px rgba(110, 175, 255, 0.08));
+      }
     }
+
+    .node-left-1,
+    .node-right-2 {
+      animation: riseFloatA 36s linear infinite, floatGlowPulse 7s ease-in-out infinite;
+    }
+
+    .node-left-2,
+    .node-right-1 {
+      animation: riseFloatB 40s linear infinite, floatGlowPulse 7s ease-in-out infinite;
+    }
+
+    .node-left-3,
+    .node-right-4 {
+      animation: riseFloatC 44s linear infinite, floatGlowPulse 7s ease-in-out infinite;
+    }
+
+    .node-left-4,
+    .node-right-3 {
+      animation: riseFloatA 48s linear infinite, floatGlowPulse 7s ease-in-out infinite;
+    }
+
+    .node-left-1 { animation-delay: -4s, 0s; }
+    .node-left-2 { animation-delay: -15s, -1s; }
+    .node-left-3 { animation-delay: -24s, -2s; }
+    .node-left-4 { animation-delay: -9s, -3s; }
+
+    .node-right-1 { animation-delay: -11s, -0.5s; }
+    .node-right-2 { animation-delay: -20s, -1.5s; }
+    .node-right-3 { animation-delay: -6s, -2.5s; }
+    .node-right-4 { animation-delay: -28s, -3.5s; }
 
     .hero,
     .card,
@@ -863,18 +1013,39 @@
       .site-preview { display: none; }
     }
 
-    @media (max-width: 1100px) {
-      .slot-7,
-      .slot-8 {
+    @media (max-width: 1200px) {
+      .float-column {
+        width: 15vw;
+        min-width: 120px;
+      }
+
+      .lane-large {
+        width: 165px;
+      }
+
+      .side-aura,
+      .side-stars {
+        opacity: 0.26;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .node-left-4,
+      .node-right-4 {
         display: none;
       }
 
-      .float-asset {
-        --asset-opacity: 0.16;
+      .side-aura,
+      .side-stars {
+        opacity: 0.18;
       }
 
-      .ship-slot {
-        --asset-opacity: 0.12;
+      .lane-small {
+        width: 74px;
+      }
+
+      .lane-medium {
+        width: 96px;
       }
     }
 
@@ -885,7 +1056,8 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .float-asset {
+      .float-node,
+      .side-stars {
         animation: none !important;
       }
     }
@@ -894,16 +1066,25 @@
 
 <body>
   <div class="floating-assets" aria-hidden="true">
-    <img class="float-asset slot slot-1" data-type="fruit" alt="">
-    <img class="float-asset slot slot-2" data-type="fruit" alt="">
-    <img class="float-asset slot slot-3" data-type="fruit" alt="">
-    <img class="float-asset slot slot-4" data-type="fruit" alt="">
+    <div class="side-aura side-aura-left"></div>
+    <div class="side-aura side-aura-right"></div>
 
-    <img class="float-asset slot slot-5" data-type="item" alt="">
-    <img class="float-asset slot slot-6" data-type="item" alt="">
+    <div class="side-stars side-stars-left"></div>
+    <div class="side-stars side-stars-right"></div>
 
-    <img class="float-asset slot ship-slot slot-7" data-type="ship" alt="">
-    <img class="float-asset slot ship-slot slot-8" data-type="ship" alt="">
+    <div class="float-column float-column-left">
+      <img class="float-node node-left-1 lane-small" data-pool="fruit" alt="">
+      <img class="float-node node-left-2 lane-small" data-pool="fruit" alt="">
+      <img class="float-node node-left-3 lane-medium" data-pool="item" alt="">
+      <img class="float-node node-left-4 lane-large ship-node" data-pool="ship" alt="">
+    </div>
+
+    <div class="float-column float-column-right">
+      <img class="float-node node-right-1 lane-small" data-pool="fruit" alt="">
+      <img class="float-node node-right-2 lane-small" data-pool="fruit" alt="">
+      <img class="float-node node-right-3 lane-medium" data-pool="item" alt="">
+      <img class="float-node node-right-4 lane-large ship-node" data-pool="ship" alt="">
+    </div>
   </div>
 
   <main>
@@ -1192,7 +1373,7 @@
   </main>
 
   <script>
-    const floatingPools = {
+    const assetPools = {
       fruit: [
         "https://i.postimg.cc/wBdx7gFj/Devil-Fruit-(5).webp",
         "https://i.postimg.cc/3JVxQgvp/6a1d11ef-aae8-445e-8b11-5f91c44c75e9.png",
@@ -1219,59 +1400,52 @@
       ]
     };
 
-    function shuffleArray(arr) {
-      const copy = [...arr];
-      for (let i = copy.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [copy[i], copy[j]] = [copy[j], copy[i]];
+    function randomFromPool(pool, previous) {
+      if (!pool || pool.length === 0) return "";
+      if (pool.length === 1) return pool[0];
+
+      let next = pool[Math.floor(Math.random() * pool.length)];
+      let attempts = 0;
+
+      while (next === previous && attempts < 20) {
+        next = pool[Math.floor(Math.random() * pool.length)];
+        attempts++;
       }
-      return copy;
+
+      return next;
     }
 
-    function assignAssetsToSlots(initial = false) {
-      const slotsByType = {
-        fruit: [...document.querySelectorAll('.slot[data-type="fruit"]')],
-        item: [...document.querySelectorAll('.slot[data-type="item"]')],
-        ship: [...document.querySelectorAll('.slot[data-type="ship"]')]
-      };
+    function assignInitialFloatingAssets() {
+      const nodes = document.querySelectorAll(".float-node");
 
-      Object.entries(slotsByType).forEach(([type, slots]) => {
-        const pool = shuffleArray(floatingPools[type]);
-        const used = new Set();
+      nodes.forEach((node) => {
+        const type = node.dataset.pool;
+        const pool = assetPools[type] || [];
+        const next = randomFromPool(pool, "");
+        node.src = next;
+        node.dataset.currentSrc = next;
+      });
+    }
 
-        slots.forEach((slot, index) => {
-          let nextSrc = pool[index % pool.length];
+    function setupFloatingRotation() {
+      const nodes = document.querySelectorAll(".float-node");
 
-          if (slot.dataset.currentSrc && pool.length > 1) {
-            let attempts = 0;
-            while ((nextSrc === slot.dataset.currentSrc || used.has(nextSrc)) && attempts < 20) {
-              nextSrc = pool[Math.floor(Math.random() * pool.length)];
-              attempts++;
-            }
-          }
+      nodes.forEach((node) => {
+        node.addEventListener("animationiteration", (event) => {
+          if (!/^riseFloat/.test(event.animationName)) return;
 
-          used.add(nextSrc);
-
-          if (initial) {
-            slot.src = nextSrc;
-            slot.dataset.currentSrc = nextSrc;
-          } else {
-            slot.classList.add('is-swapping');
-            setTimeout(() => {
-              slot.src = nextSrc;
-              slot.dataset.currentSrc = nextSrc;
-              slot.classList.remove('is-swapping');
-            }, 260);
-          }
+          const type = node.dataset.pool;
+          const pool = assetPools[type] || [];
+          const next = randomFromPool(pool, node.dataset.currentSrc || "");
+          node.src = next;
+          node.dataset.currentSrc = next;
         });
       });
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      assignAssetsToSlots(true);
-      setInterval(() => {
-        assignAssetsToSlots(false);
-      }, 14000);
+    document.addEventListener("DOMContentLoaded", () => {
+      assignInitialFloatingAssets();
+      setupFloatingRotation();
     });
   </script>
 </body>
