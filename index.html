@@ -63,6 +63,7 @@
     }
 
     body {
+      position: relative;
       margin: 0;
       font-family: 'Inter', sans-serif;
       background-color: var(--bg-base);
@@ -81,9 +82,191 @@
     }
 
     main {
+      position: relative;
+      z-index: 2;
       max-width: 1180px;
       margin: 0 auto;
       padding: 60px 24px 80px;
+    }
+
+    .floating-assets {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .floating-assets::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right, rgba(5, 5, 5, 0.18), transparent 12%, transparent 88%, rgba(5, 5, 5, 0.18)),
+        linear-gradient(to bottom, rgba(5, 5, 5, 0.08), transparent 18%, transparent 82%, rgba(5, 5, 5, 0.10));
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .float-asset {
+      position: absolute;
+      display: block;
+      height: auto;
+      object-fit: contain;
+      opacity: 0.14;
+      filter:
+        drop-shadow(0 0 10px rgba(255, 211, 106, 0.10))
+        drop-shadow(0 0 24px rgba(214, 169, 74, 0.08));
+      transform-origin: center center;
+      will-change: transform, opacity;
+      z-index: 0;
+    }
+
+    .float-asset:hover {
+      opacity: 0.14;
+    }
+
+    .ship-1,
+    .ship-2,
+    .ship-3 {
+      opacity: 0.10;
+      filter:
+        drop-shadow(0 0 14px rgba(255, 211, 106, 0.08))
+        drop-shadow(0 0 28px rgba(214, 169, 74, 0.06));
+    }
+
+    @keyframes floatDriftA {
+      0% {
+        transform: translate3d(0, 0, 0) rotate(-4deg) scale(1);
+      }
+      50% {
+        transform: translate3d(12px, -18px, 0) rotate(-1deg) scale(1.03);
+      }
+      100% {
+        transform: translate3d(-8px, -34px, 0) rotate(3deg) scale(0.98);
+      }
+    }
+
+    @keyframes floatDriftB {
+      0% {
+        transform: translate3d(0, 0, 0) rotate(5deg) scale(1);
+      }
+      50% {
+        transform: translate3d(-14px, 14px, 0) rotate(2deg) scale(1.02);
+      }
+      100% {
+        transform: translate3d(10px, -20px, 0) rotate(-3deg) scale(0.99);
+      }
+    }
+
+    @keyframes floatDriftC {
+      0% {
+        transform: translate3d(0, 0, 0) rotate(-2deg) scale(1);
+      }
+      50% {
+        transform: translate3d(16px, -10px, 0) rotate(2deg) scale(1.01);
+      }
+      100% {
+        transform: translate3d(-10px, -26px, 0) rotate(5deg) scale(0.97);
+      }
+    }
+
+    .drift-a {
+      animation: floatDriftA 22s ease-in-out infinite alternate;
+    }
+
+    .drift-b {
+      animation: floatDriftB 26s ease-in-out infinite alternate;
+    }
+
+    .drift-c {
+      animation: floatDriftC 30s ease-in-out infinite alternate;
+    }
+
+    .asset-1 { animation-delay: -2s; }
+    .asset-2 { animation-delay: -7s; }
+    .asset-3 { animation-delay: -11s; }
+    .asset-4 { animation-delay: -4s; }
+    .asset-5 { animation-delay: -9s; }
+    .asset-6 { animation-delay: -14s; }
+    .asset-7 { animation-delay: -6s; }
+    .asset-8 { animation-delay: -12s; }
+    .ship-1  { animation-delay: -5s; }
+    .ship-2  { animation-delay: -10s; }
+    .ship-3  { animation-delay: -15s; }
+
+    .asset-1 {
+      width: 92px;
+      left: 2.5%;
+      top: 11%;
+    }
+
+    .asset-2 {
+      width: 108px;
+      right: 3%;
+      top: 13%;
+    }
+
+    .asset-3 {
+      width: 88px;
+      left: 4%;
+      top: 36%;
+    }
+
+    .asset-4 {
+      width: 96px;
+      right: 4%;
+      top: 39%;
+    }
+
+    .asset-5 {
+      width: 114px;
+      left: 2%;
+      top: 58%;
+    }
+
+    .asset-6 {
+      width: 120px;
+      right: 2.5%;
+      top: 60%;
+    }
+
+    .asset-7 {
+      width: 110px;
+      left: 5%;
+      bottom: 11%;
+    }
+
+    .asset-8 {
+      width: 112px;
+      right: 5%;
+      bottom: 13%;
+    }
+
+    .ship-1 {
+      width: 210px;
+      left: -1%;
+      bottom: 2%;
+    }
+
+    .ship-2 {
+      width: 180px;
+      right: -1%;
+      bottom: 4%;
+    }
+
+    .ship-3 {
+      width: 180px;
+      left: -1%;
+      top: 77%;
+    }
+
+    .hero,
+    .card,
+    .note,
+    footer {
+      position: relative;
+      z-index: 2;
     }
 
     @keyframes panelGlow {
@@ -686,10 +869,53 @@
       .button::after, .button::before { display: none; }
       .site-preview { display: none; }
     }
+
+    @media (max-width: 1100px) {
+      .ship-1,
+      .ship-2,
+      .ship-3,
+      .asset-7,
+      .asset-8 {
+        display: none;
+      }
+
+      .float-asset {
+        opacity: 0.10;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .floating-assets {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .float-asset {
+        animation: none !important;
+        transform: none !important;
+      }
+    }
   </style>
 </head>
 
 <body>
+  <div class="floating-assets" aria-hidden="true">
+    <img class="float-asset drift-a asset-1" src="https://i.postimg.cc/wBdx7gFj/Devil-Fruit-(5).webp" alt="">
+    <img class="float-asset drift-b asset-2" src="https://i.postimg.cc/3JVxQgvp/6a1d11ef-aae8-445e-8b11-5f91c44c75e9.png" alt="">
+    <img class="float-asset drift-c asset-3" src="https://i.postimg.cc/nLvzkCM2/Devil-Fruit-(4).png" alt="">
+    <img class="float-asset drift-a asset-4" src="https://i.postimg.cc/YSc0Y12Q/Devil-Fruit-(3).png" alt="">
+
+    <img class="float-asset drift-b asset-5" src="https://i.postimg.cc/kXXbgFD4/ZDino-Weapon-(4).png" alt="">
+    <img class="float-asset drift-c asset-6" src="https://i.postimg.cc/bYRnPFyC/ZDino-Weapon-(7).png" alt="">
+    <img class="float-asset drift-a asset-7" src="https://i.postimg.cc/Y07Q35ph/ZAnimal-Weapon-(6).png" alt="">
+    <img class="float-asset drift-b asset-8" src="https://i.postimg.cc/k5kQVVz6/ZAnimal-Weapon-(13).png" alt="">
+
+    <img class="float-asset drift-c ship-1" src="https://i.postimg.cc/yx9sVG9f/Bat-Eaters-Ship.png" alt="">
+    <img class="float-asset drift-a ship-2" src="https://i.postimg.cc/s2XzBx79/Frog-Ship.webp" alt="">
+    <img class="float-asset drift-b ship-3" src="https://i.postimg.cc/15QZGJDR/Rhino-Ship.webp" alt="">
+  </div>
+
   <main>
     <section class="hero">
       <div class="hero-content">
