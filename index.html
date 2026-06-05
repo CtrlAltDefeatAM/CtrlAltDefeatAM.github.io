@@ -55,9 +55,10 @@
       --gold-glow: rgba(214, 169, 74, 0.25);
       --blue-primary: #5db8ff;
       --blue-bright: #9fdcff;
+      --blue-white: #e8f7ff;
       --blue-deep: #123f73;
-      --blue-glow: rgba(93, 184, 255, 0.28);
-      --blue-glow-soft: rgba(93, 184, 255, 0.14);
+      --blue-glow: rgba(93, 184, 255, 0.32);
+      --blue-glow-soft: rgba(93, 184, 255, 0.16);
       --border-blue: rgba(93, 184, 255, 0.32);
       --border-blue-strong: rgba(159, 220, 255, 0.58);
       --text-main: #f4efe4;
@@ -225,18 +226,18 @@
     }
 
     @keyframes starTwinkleA {
-      0%, 100% { opacity: 0.22; }
-      25% { opacity: 0.48; }
-      50% { opacity: 0.30; }
-      75% { opacity: 0.58; }
+      0%, 100% { opacity: 0.18; }
+      25% { opacity: 0.52; }
+      50% { opacity: 0.28; }
+      75% { opacity: 0.62; }
     }
 
     @keyframes starTwinkleB {
-      0%, 100% { opacity: 0.18; }
-      20% { opacity: 0.34; }
-      45% { opacity: 0.56; }
-      70% { opacity: 0.24; }
-      90% { opacity: 0.46; }
+      0%, 100% { opacity: 0.14; }
+      20% { opacity: 0.36; }
+      45% { opacity: 0.58; }
+      70% { opacity: 0.22; }
+      90% { opacity: 0.48; }
     }
 
     .float-column {
@@ -301,37 +302,46 @@
 
     @keyframes riseBobble {
       0% {
-        transform: translateX(-50%) translateY(0) rotate(-3deg) scale(0.98);
+        transform: translateX(-50%) translateY(0) rotate(-4deg) scale(0.98);
         opacity: 0;
       }
-      8% {
+      6% {
         opacity: var(--asset-opacity);
       }
-      20% {
-        transform: translateX(calc(-50% + 5px)) translateY(-12vh) rotate(1deg) scale(1.01);
+      16% {
+        transform: translateX(calc(-50% + 10px)) translateY(-10vh) rotate(2deg) scale(1.01);
         opacity: var(--asset-opacity);
       }
-      36% {
-        transform: translateX(calc(-50% - 6px)) translateY(-26vh) rotate(-2deg) scale(1.02);
+      28% {
+        transform: translateX(calc(-50% - 12px)) translateY(-23vh) rotate(-3deg) scale(1.025);
+        opacity: var(--asset-opacity);
+      }
+      40% {
+        transform: translateX(calc(-50% + 14px)) translateY(-36vh) rotate(4deg) scale(1.01);
         opacity: var(--asset-opacity);
       }
       52% {
-        transform: translateX(calc(-50% + 7px)) translateY(-42vh) rotate(2deg) scale(1.00);
+        transform: translateX(calc(-50% - 11px)) translateY(-49vh) rotate(-4deg) scale(1.02);
+        opacity: var(--asset-opacity);
+      }
+      64% {
+        transform: translateX(calc(-50% + 9px)) translateY(-62vh) rotate(3deg) scale(1);
         opacity: calc(var(--asset-opacity) * 0.98);
       }
-      68% {
-        transform: translateX(calc(-50% - 5px)) translateY(-58vh) rotate(-1deg) scale(0.99);
-        opacity: calc(var(--asset-opacity) * 0.90);
+      76% {
+        transform: translateX(calc(-50% - 8px)) translateY(-76vh) rotate(-2deg) scale(0.99);
+        opacity: calc(var(--asset-opacity) * 0.94);
       }
-      84% {
-        transform: translateX(calc(-50% + 4px)) translateY(-74vh) rotate(2deg) scale(0.97);
-        opacity: calc(var(--asset-opacity) * 0.72);
+      88% {
+        transform: translateX(calc(-50% + 7px)) translateY(-91vh) rotate(3deg) scale(0.98);
+        opacity: calc(var(--asset-opacity) * 0.82);
       }
       94% {
-        opacity: 0.08;
+        transform: translateX(calc(-50% - 5px)) translateY(-101vh) rotate(-2deg) scale(0.96);
+        opacity: calc(var(--asset-opacity) * 0.38);
       }
       100% {
-        transform: translateX(calc(-50% - 3px)) translateY(-90vh) rotate(-2deg) scale(0.95);
+        transform: translateX(calc(-50% + 4px)) translateY(-112vh) rotate(2deg) scale(0.94);
         opacity: 0;
       }
     }
@@ -346,10 +356,10 @@
       }
       50% {
         filter:
-          brightness(1.10)
-          saturate(1.10)
-          drop-shadow(0 0 14px rgba(255, 211, 106, 0.18))
-          drop-shadow(0 0 24px rgba(110, 175, 255, 0.12));
+          brightness(1.12)
+          saturate(1.12)
+          drop-shadow(0 0 15px rgba(255, 211, 106, 0.18))
+          drop-shadow(0 0 25px rgba(110, 175, 255, 0.14));
       }
     }
 
@@ -456,31 +466,85 @@
       100% { filter: drop-shadow(0 0 16px rgba(214, 169, 74, 0.8)) drop-shadow(0 0 6px rgba(255, 211, 106, 0.6)); }
     }
 
-    @keyframes buttonGoldPulse {
-      0% {
+    @keyframes buttonBluePulse {
+      0%, 100% {
         box-shadow:
           0 8px 18px rgba(0, 0, 0, 0.55),
-          0 0 10px rgba(214, 169, 74, 0.28),
-          0 0 16px rgba(93, 184, 255, 0.08),
-          inset 0 1px 1px rgba(255, 238, 160, 0.55),
+          0 0 10px rgba(214, 169, 74, 0.22),
+          0 0 8px rgba(93, 184, 255, 0.08),
+          inset 0 1px 1px rgba(255, 238, 160, 0.50),
           inset 0 -2px 6px rgba(0, 0, 0, 0.35);
       }
-      50% {
+      42% {
         box-shadow:
-          0 10px 24px rgba(0, 0, 0, 0.65),
-          0 0 22px rgba(255, 211, 106, 0.48),
-          0 0 24px rgba(93, 184, 255, 0.14),
-          0 0 42px rgba(214, 169, 74, 0.22),
-          inset 0 1px 2px rgba(255, 244, 195, 0.75),
-          inset 0 -2px 8px rgba(0, 0, 0, 0.45);
+          0 9px 20px rgba(0, 0, 0, 0.60),
+          0 0 12px rgba(214, 169, 74, 0.24),
+          0 0 14px rgba(93, 184, 255, 0.14),
+          inset 0 1px 1px rgba(255, 238, 160, 0.55),
+          inset 0 -2px 6px rgba(0, 0, 0, 0.36);
+      }
+      55% {
+        box-shadow:
+          0 12px 26px rgba(0, 0, 0, 0.68),
+          0 0 18px rgba(255, 211, 106, 0.30),
+          0 0 34px rgba(93, 184, 255, 0.46),
+          0 0 58px rgba(93, 184, 255, 0.18),
+          inset 0 1px 2px rgba(232, 247, 255, 0.68),
+          inset 0 -2px 9px rgba(0, 0, 0, 0.45);
+      }
+      68% {
+        box-shadow:
+          0 9px 22px rgba(0, 0, 0, 0.62),
+          0 0 13px rgba(214, 169, 74, 0.24),
+          0 0 18px rgba(93, 184, 255, 0.18),
+          inset 0 1px 1px rgba(255, 238, 160, 0.55),
+          inset 0 -2px 7px rgba(0, 0, 0, 0.38);
+      }
+    }
+
+    @keyframes buttonBlueSweep {
+      0%, 18% {
+        background-position:
+          -185% center,
+          center,
+          center;
+      }
+      58% {
+        background-position:
+          185% center,
+          center,
+          center;
       }
       100% {
-        box-shadow:
-          0 8px 18px rgba(0, 0, 0, 0.55),
-          0 0 10px rgba(214, 169, 74, 0.28),
-          0 0 16px rgba(93, 184, 255, 0.08),
-          inset 0 1px 1px rgba(255, 238, 160, 0.55),
-          inset 0 -2px 6px rgba(0, 0, 0, 0.35);
+        background-position:
+          185% center,
+          center,
+          center;
+      }
+    }
+
+    @keyframes buttonTextBlueSweep {
+      0%, 18% {
+        background-position: -185% center;
+        filter: none;
+      }
+      45% {
+        filter:
+          drop-shadow(0 0 3px rgba(93, 184, 255, 0.20));
+      }
+      55% {
+        background-position: 50% center;
+        filter:
+          drop-shadow(0 0 6px rgba(159, 220, 255, 0.55))
+          drop-shadow(0 0 12px rgba(93, 184, 255, 0.28));
+      }
+      72% {
+        filter:
+          drop-shadow(0 0 3px rgba(93, 184, 255, 0.18));
+      }
+      100% {
+        background-position: 185% center;
+        filter: none;
       }
     }
 
@@ -577,12 +641,14 @@
       background-image:
         linear-gradient(
           110deg,
-          rgba(255, 244, 195, 0) 0%,
-          rgba(255, 244, 195, 0) 35%,
-          rgba(255, 238, 160, 0.45) 48%,
-          rgba(255, 238, 160, 0.18) 54%,
-          rgba(255, 244, 195, 0) 68%,
-          rgba(255, 244, 195, 0) 100%
+          rgba(93, 184, 255, 0) 0%,
+          rgba(93, 184, 255, 0) 34%,
+          rgba(93, 184, 255, 0.22) 43%,
+          rgba(159, 220, 255, 0.62) 50%,
+          rgba(232, 247, 255, 0.34) 54%,
+          rgba(93, 184, 255, 0.14) 61%,
+          rgba(93, 184, 255, 0) 70%,
+          rgba(93, 184, 255, 0) 100%
         ),
         linear-gradient(
           rgba(255, 211, 106, 0.22),
@@ -620,7 +686,43 @@
         box-shadow 0.25s ease,
         filter 0.25s ease,
         background-position 0.45s ease;
-      animation: buttonGoldPulse 4.8s ease-in-out infinite;
+      animation:
+        buttonBluePulse 4.8s ease-in-out infinite,
+        buttonBlueSweep 4.8s ease-in-out infinite;
+      animation-delay:
+        var(--button-delay, 0s),
+        var(--button-delay, 0s);
+    }
+
+    .button-label {
+      position: relative;
+      z-index: 2;
+      display: inline-block;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      background-image:
+        linear-gradient(
+          90deg,
+          #050505 0%,
+          #050505 35%,
+          var(--blue-primary) 45%,
+          var(--blue-white) 50%,
+          var(--blue-bright) 55%,
+          #050505 66%,
+          #050505 100%
+        );
+      background-size: 260% 100%;
+      background-position: -185% center;
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow:
+        0 1px 0 rgba(255, 235, 170, 0.30);
+      animation: buttonTextBlueSweep 4.8s ease-in-out infinite;
+      animation-delay: var(--button-delay, 0s);
+    }
+
+    .button .button-label {
+      animation-delay: var(--button-delay, 0s);
     }
 
     .link-row.secondary .button {
@@ -631,30 +733,36 @@
       border-radius: 12px;
     }
 
-    .link-row.primary .button:nth-child(1) { animation-delay: 0s; }
-    .link-row.primary .button:nth-child(2) { animation-delay: 0.4s; }
-    .link-row.primary .button:nth-child(3) { animation-delay: 0.8s; }
-    .link-row.primary .button:nth-child(4) { animation-delay: 1.2s; }
+    .link-row.primary .button:nth-child(1) { --button-delay: 0s; }
+    .link-row.primary .button:nth-child(2) { --button-delay: 0.4s; }
+    .link-row.primary .button:nth-child(3) { --button-delay: 0.8s; }
+    .link-row.primary .button:nth-child(4) { --button-delay: 1.2s; }
 
-    .link-row.secondary .button:nth-child(1) { animation-delay: 1.6s; }
-    .link-row.secondary .button:nth-child(2) { animation-delay: 2s; }
-    .link-row.secondary .button:nth-child(3) { animation-delay: 2.4s; }
-    .link-row.secondary .button:nth-child(4) { animation-delay: 2.8s; }
+    .link-row.secondary .button:nth-child(1) { --button-delay: 1.6s; }
+    .link-row.secondary .button:nth-child(2) { --button-delay: 2s; }
+    .link-row.secondary .button:nth-child(3) { --button-delay: 2.4s; }
+    .link-row.secondary .button:nth-child(4) { --button-delay: 2.8s; }
 
     .button:hover {
       transform: translateY(-6px) scale(1.04);
       background-position:
-        180% center,
+        185% center,
         center,
         center;
       filter: brightness(1.22) saturate(1.22) contrast(1.05);
       box-shadow:
         0 16px 34px rgba(0, 0, 0, 0.75),
-        0 0 28px rgba(255, 211, 106, 0.65),
-        0 0 34px rgba(93, 184, 255, 0.18),
-        0 0 58px rgba(214, 169, 74, 0.32),
-        inset 0 1px 2px rgba(255, 244, 195, 0.85),
+        0 0 26px rgba(255, 211, 106, 0.46),
+        0 0 34px rgba(93, 184, 255, 0.40),
+        0 0 58px rgba(93, 184, 255, 0.18),
+        inset 0 1px 2px rgba(232, 247, 255, 0.72),
         inset 0 -3px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .button:hover .button-label {
+      filter:
+        drop-shadow(0 0 5px rgba(159, 220, 255, 0.52))
+        drop-shadow(0 0 12px rgba(93, 184, 255, 0.25));
     }
 
     .button:focus-visible {
@@ -664,11 +772,6 @@
 
     .image-preview-button {
       position: relative;
-    }
-
-    .image-preview-button .button-label {
-      position: relative;
-      z-index: 2;
     }
 
     .image-preview-button::before,
@@ -1012,6 +1115,119 @@
       font-size: 0.85rem;
     }
 
+    .music-control {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 120;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      border: 1px solid rgba(93, 184, 255, 0.32);
+      border-radius: 999px;
+      background:
+        linear-gradient(145deg, rgba(8, 12, 18, 0.88), rgba(20, 20, 20, 0.78));
+      box-shadow:
+        0 10px 26px rgba(0, 0, 0, 0.55),
+        0 0 18px rgba(93, 184, 255, 0.12),
+        0 0 16px rgba(214, 169, 74, 0.08);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .music-button,
+    .music-mute-button {
+      border: 1px solid rgba(255, 211, 106, 0.34);
+      border-radius: 999px;
+      background:
+        linear-gradient(145deg, rgba(214, 169, 74, 0.22), rgba(93, 184, 255, 0.10));
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease,
+        background 0.22s ease,
+        color 0.22s ease;
+    }
+
+    .music-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 12px;
+    }
+
+    .music-mute-button {
+      padding: 8px 10px;
+      opacity: 0.82;
+    }
+
+    .music-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      color: #050505;
+      background: var(--gold-bright);
+      box-shadow:
+        0 0 10px rgba(255, 211, 106, 0.34),
+        0 0 12px rgba(93, 184, 255, 0.12);
+    }
+
+    .music-button:hover,
+    .music-mute-button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(159, 220, 255, 0.58);
+      box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.48),
+        0 0 18px rgba(93, 184, 255, 0.22),
+        0 0 14px rgba(214, 169, 74, 0.12);
+    }
+
+    .music-control.is-playing {
+      border-color: rgba(159, 220, 255, 0.58);
+      box-shadow:
+        0 10px 26px rgba(0, 0, 0, 0.55),
+        0 0 24px rgba(93, 184, 255, 0.24),
+        0 0 18px rgba(214, 169, 74, 0.10);
+    }
+
+    .music-control.is-playing .music-icon {
+      animation: musicPulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes musicPulse {
+      0%, 100% {
+        box-shadow:
+          0 0 10px rgba(255, 211, 106, 0.28),
+          0 0 12px rgba(93, 184, 255, 0.12);
+      }
+      50% {
+        box-shadow:
+          0 0 16px rgba(255, 211, 106, 0.42),
+          0 0 24px rgba(93, 184, 255, 0.28);
+      }
+    }
+
+    .youtube-music-player {
+      position: fixed;
+      width: 1px;
+      height: 1px;
+      left: -9999px;
+      top: -9999px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
     @media (max-width: 900px) {
       .link-row.primary,
       .link-row.secondary {
@@ -1043,6 +1259,9 @@
       /* Disable tooltips on mobile to prevent clipping */
       .button::after, .button::before { display: none; }
       .site-preview { display: none; }
+      .button-label {
+        animation-duration: 6s;
+      }
     }
 
     @media (max-width: 1200px) {
@@ -1090,12 +1309,33 @@
       .floating-assets {
         display: none;
       }
+
+      .music-control {
+        top: 10px;
+        right: 10px;
+        gap: 6px;
+        padding: 6px;
+      }
+
+      .music-button,
+      .music-mute-button {
+        font-size: 0.68rem;
+        padding: 7px 9px;
+      }
+
+      .music-text {
+        display: none;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .float-node,
       .side-stars::before,
       .side-stars::after {
+        animation: none !important;
+      }
+
+      .music-control.is-playing .music-icon {
         animation: none !important;
       }
     }
@@ -1124,6 +1364,19 @@
       <img class="float-node lane-large ship-node flow-d" data-pool="ship" data-side="right" alt="">
     </div>
   </div>
+
+  <div class="music-control" aria-label="Optional background music player">
+    <button id="musicToggle" class="music-button" type="button" aria-pressed="false">
+      <span class="music-icon">♪</span>
+      <span class="music-text">Play Theme</span>
+    </button>
+
+    <button id="musicMute" class="music-mute-button" type="button" aria-pressed="false" aria-label="Mute music">
+      Mute
+    </button>
+  </div>
+
+  <div id="youtubeMusicPlayer" class="youtube-music-player" aria-hidden="true"></div>
 
   <main>
     <section class="hero">
@@ -1177,10 +1430,21 @@
         </div>
 
         <div class="link-row secondary">
-          <a class="button" href="https://homebrewery.naturalcrit.com/share/LtF88dEE8z1S" target="_blank" rel="noopener noreferrer" data-preview="Read Homebrewery Books">Homebrew Books</a>
-          <a class="button" href="https://github.com/CtrlAltDefeatAM" target="_blank" rel="noopener noreferrer" data-preview="View GitHub Repositories">GitHub Profile</a>
-          <a class="button" href="https://ctrlaltdefeat.carrd.co/" target="_blank" rel="noopener noreferrer" data-preview="Open Secondary Quick-Link Hub">Card Hub</a>
-          <a class="button" href="https://linktr.ee/Ctrl.Alt.Defeat" target="_blank" rel="noopener noreferrer" data-preview="Open Linktree Quick-Link Hub">Linktree</a>
+          <a class="button" href="https://homebrewery.naturalcrit.com/share/LtF88dEE8z1S" target="_blank" rel="noopener noreferrer" data-preview="Read Homebrewery Books">
+            <span class="button-label">Homebrew Books</span>
+          </a>
+
+          <a class="button" href="https://github.com/CtrlAltDefeatAM" target="_blank" rel="noopener noreferrer" data-preview="View GitHub Repositories">
+            <span class="button-label">GitHub Profile</span>
+          </a>
+
+          <a class="button" href="https://ctrlaltdefeat.carrd.co/" target="_blank" rel="noopener noreferrer" data-preview="Open Secondary Quick-Link Hub">
+            <span class="button-label">Card Hub</span>
+          </a>
+
+          <a class="button" href="https://linktr.ee/Ctrl.Alt.Defeat" target="_blank" rel="noopener noreferrer" data-preview="Open Linktree Quick-Link Hub">
+            <span class="button-label">Linktree</span>
+          </a>
         </div>
       </div>
     </section>
@@ -1438,28 +1702,43 @@
       ]
     };
 
-    function randomFromPool(pool, previous) {
-      if (!pool || pool.length === 0) return "";
-      if (pool.length === 1) return pool[0];
+    function getActiveSourcesForPool(type, excludeNode = null) {
+      return new Set(
+        [...document.querySelectorAll(`.float-node[data-pool="${type}"]`)]
+          .filter((node) => node !== excludeNode)
+          .map((node) => node.dataset.currentSrc)
+          .filter(Boolean)
+      );
+    }
 
-      let next = pool[Math.floor(Math.random() * pool.length)];
-      let attempts = 0;
+    function pickUniqueFromPool(type, previous = "", excludeNode = null) {
+      const pool = assetPools[type] || [];
+      if (pool.length === 0) return "";
 
-      while (next === previous && attempts < 20) {
-        next = pool[Math.floor(Math.random() * pool.length)];
-        attempts++;
+      const activeSources = getActiveSourcesForPool(type, excludeNode);
+
+      const available = pool.filter((src) => {
+        return src !== previous && !activeSources.has(src);
+      });
+
+      if (available.length > 0) {
+        return available[Math.floor(Math.random() * available.length)];
       }
 
-      return next;
+      const fallback = pool.filter((src) => src !== previous);
+      if (fallback.length > 0) {
+        return fallback[Math.floor(Math.random() * fallback.length)];
+      }
+
+      return pool[0];
     }
 
     function assignInitialFloatingAssets() {
-      const nodes = document.querySelectorAll(".float-node");
+      const nodes = [...document.querySelectorAll(".float-node")];
 
       nodes.forEach((node) => {
         const type = node.dataset.pool;
-        const pool = assetPools[type] || [];
-        const next = randomFromPool(pool, "");
+        const next = pickUniqueFromPool(type, "", node);
         node.src = next;
         node.dataset.currentSrc = next;
       });
@@ -1473,8 +1752,9 @@
           if (event.animationName !== "riseBobble") return;
 
           const type = node.dataset.pool;
-          const pool = assetPools[type] || [];
-          const next = randomFromPool(pool, node.dataset.currentSrc || "");
+          const previous = node.dataset.currentSrc || "";
+          const next = pickUniqueFromPool(type, previous, node);
+
           node.src = next;
           node.dataset.currentSrc = next;
         });
@@ -1484,6 +1764,145 @@
     document.addEventListener("DOMContentLoaded", () => {
       assignInitialFloatingAssets();
       setupFloatingRotation();
+    });
+  </script>
+
+  <script>
+    const musicConfig = {
+      videoId: "yVVMUPx2vlQ",
+      playlistId: "PLW_omwEM1aifT0HUCwxZzKoUa2aq-d5CO",
+      volume: 20
+    };
+
+    let musicPlayer = null;
+    let musicReady = false;
+    let musicStarted = false;
+    let musicMuted = false;
+
+    function loadYouTubeIframeApi() {
+      if (window.YT && window.YT.Player) return;
+
+      const existingScript = document.querySelector('script[src="https://www.youtube.com/iframe_api"]');
+      if (existingScript) return;
+
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
+
+    window.onYouTubeIframeAPIReady = function () {
+      musicPlayer = new YT.Player("youtubeMusicPlayer", {
+        height: "1",
+        width: "1",
+        videoId: musicConfig.videoId,
+        playerVars: {
+          listType: "playlist",
+          list: musicConfig.playlistId,
+          index: 4,
+          loop: 1,
+          autoplay: 0,
+          controls: 0,
+          modestbranding: 1,
+          rel: 0,
+          playsinline: 1
+        },
+        events: {
+          onReady: function (event) {
+            musicReady = true;
+            event.target.setVolume(musicConfig.volume);
+          },
+          onStateChange: function (event) {
+            const control = document.querySelector(".music-control");
+            const toggle = document.getElementById("musicToggle");
+            const text = toggle ? toggle.querySelector(".music-text") : null;
+
+            if (!control || !toggle || !text) return;
+
+            if (event.data === YT.PlayerState.PLAYING) {
+              control.classList.add("is-playing");
+              toggle.setAttribute("aria-pressed", "true");
+              text.textContent = "Pause Theme";
+            }
+
+            if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+              control.classList.remove("is-playing");
+              toggle.setAttribute("aria-pressed", "false");
+              text.textContent = "Play Theme";
+            }
+          }
+        }
+      });
+    };
+
+    function playMusic() {
+      if (!musicPlayer || !musicReady) return;
+
+      musicPlayer.setVolume(musicConfig.volume);
+
+      if (musicMuted) {
+        musicPlayer.mute();
+      } else {
+        musicPlayer.unMute();
+      }
+
+      musicPlayer.playVideo();
+      musicStarted = true;
+    }
+
+    function pauseMusic() {
+      if (!musicPlayer || !musicReady) return;
+      musicPlayer.pauseVideo();
+    }
+
+    function toggleMusic() {
+      if (!musicPlayer || !musicReady) return;
+
+      const state = musicPlayer.getPlayerState();
+
+      if (state === YT.PlayerState.PLAYING) {
+        pauseMusic();
+      } else {
+        playMusic();
+      }
+    }
+
+    function toggleMute() {
+      if (!musicPlayer || !musicReady) return;
+
+      const muteButton = document.getElementById("musicMute");
+
+      musicMuted = !musicMuted;
+
+      if (musicMuted) {
+        musicPlayer.mute();
+        if (muteButton) {
+          muteButton.textContent = "Unmute";
+          muteButton.setAttribute("aria-pressed", "true");
+        }
+      } else {
+        musicPlayer.unMute();
+        musicPlayer.setVolume(musicConfig.volume);
+        if (muteButton) {
+          muteButton.textContent = "Mute";
+          muteButton.setAttribute("aria-pressed", "false");
+        }
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadYouTubeIframeApi();
+
+      const toggleButton = document.getElementById("musicToggle");
+      const muteButton = document.getElementById("musicMute");
+
+      if (toggleButton) {
+        toggleButton.addEventListener("click", toggleMusic);
+      }
+
+      if (muteButton) {
+        muteButton.addEventListener("click", toggleMute);
+      }
     });
   </script>
 </body>
