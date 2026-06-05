@@ -132,21 +132,28 @@
       100% { filter: drop-shadow(0 0 16px rgba(214, 169, 74, 0.8)) drop-shadow(0 0 6px rgba(255, 211, 106, 0.6)); }
     }
 
-    @keyframes buttonGlowPulse {
+    @keyframes buttonGoldPulse {
       0% {
         box-shadow:
-          0 6px 15px rgba(0, 0, 0, 0.4),
-          0 0 8px rgba(214, 169, 74, 0.18);
+          0 8px 18px rgba(0, 0, 0, 0.55),
+          0 0 10px rgba(214, 169, 74, 0.28),
+          inset 0 1px 1px rgba(255, 238, 160, 0.55),
+          inset 0 -2px 6px rgba(0, 0, 0, 0.35);
       }
       50% {
         box-shadow:
-          0 8px 22px rgba(0, 0, 0, 0.55),
-          0 0 18px rgba(255, 211, 106, 0.32);
+          0 10px 24px rgba(0, 0, 0, 0.65),
+          0 0 22px rgba(255, 211, 106, 0.48),
+          0 0 42px rgba(214, 169, 74, 0.22),
+          inset 0 1px 2px rgba(255, 244, 195, 0.75),
+          inset 0 -2px 8px rgba(0, 0, 0, 0.45);
       }
       100% {
         box-shadow:
-          0 6px 15px rgba(0, 0, 0, 0.4),
-          0 0 8px rgba(214, 169, 74, 0.18);
+          0 8px 18px rgba(0, 0, 0, 0.55),
+          0 0 10px rgba(214, 169, 74, 0.28),
+          inset 0 1px 1px rgba(255, 238, 160, 0.55),
+          inset 0 -2px 6px rgba(0, 0, 0, 0.35);
       }
     }
 
@@ -223,37 +230,70 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 14px 20px;
-      border-radius: 12px;
-      background:
-        linear-gradient(145deg, var(--gold-bright), var(--gold-primary) 45%, var(--gold-dark));
-      background-size: 180% 180%;
-      color: #000;
+      min-height: 76px;
+      padding: 14px 22px;
+      border-radius: 14px;
+      background-image:
+        linear-gradient(
+          110deg,
+          rgba(255, 244, 195, 0) 0%,
+          rgba(255, 244, 195, 0) 35%,
+          rgba(255, 238, 160, 0.45) 48%,
+          rgba(255, 238, 160, 0.18) 54%,
+          rgba(255, 244, 195, 0) 68%,
+          rgba(255, 244, 195, 0) 100%
+        ),
+        linear-gradient(
+          rgba(255, 211, 106, 0.22),
+          rgba(143, 103, 32, 0.18)
+        ),
+        url("https://i.postimg.cc/FmzxjHgP/task-01kn5h3e3zfsxt9b2c47wt8ngg-1775080976-img-1.webp");
+      background-size:
+        240% 100%,
+        100% 100%,
+        100% 100%;
+      background-position:
+        -180% center,
+        center,
+        center;
+      background-repeat: no-repeat;
+      color: #050505;
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.9rem;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
-      border: 1px solid rgba(255, 232, 160, 0.35);
+      text-shadow:
+        0 1px 0 rgba(255, 235, 170, 0.45),
+        0 0 8px rgba(255, 211, 106, 0.2);
+      border: 1px solid rgba(255, 220, 130, 0.55);
       box-shadow:
-        0 6px 15px rgba(0, 0, 0, 0.4),
-        0 0 8px rgba(214, 169, 74, 0.18);
+        0 8px 18px rgba(0, 0, 0, 0.55),
+        0 0 10px rgba(214, 169, 74, 0.28),
+        inset 0 1px 1px rgba(255, 238, 160, 0.55),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.35);
+      filter: brightness(1.04) saturate(1.08);
       transition:
         transform 0.25s ease,
         box-shadow 0.25s ease,
-        background-position 0.35s ease,
-        filter 0.25s ease;
-      animation: buttonGlowPulse 3.5s ease-in-out infinite;
+        filter 0.25s ease,
+        background-position 0.45s ease;
+      animation: buttonGoldPulse 3.8s ease-in-out infinite;
     }
 
     .button:hover {
-      transform: translateY(-5px) scale(1.035);
-      background-position: 100% 0;
-      filter: brightness(1.12) saturate(1.12);
+      transform: translateY(-6px) scale(1.04);
+      background-position:
+        180% center,
+        center,
+        center;
+      filter: brightness(1.22) saturate(1.22) contrast(1.05);
       box-shadow:
-        0 14px 30px rgba(0, 0, 0, 0.65),
-        0 0 22px rgba(255, 211, 106, 0.5),
-        0 0 42px rgba(214, 169, 74, 0.22);
+        0 16px 34px rgba(0, 0, 0, 0.75),
+        0 0 28px rgba(255, 211, 106, 0.65),
+        0 0 58px rgba(214, 169, 74, 0.32),
+        inset 0 1px 2px rgba(255, 244, 195, 0.85),
+        inset 0 -3px 10px rgba(0, 0, 0, 0.5);
     }
 
     .button:focus-visible {
@@ -483,17 +523,17 @@
 
         <!-- Reordered buttons and added data-preview tags for hover effects -->
         <div class="link-row primary">
-          <a class="button" href="https://startplaying.games/gm/ctrl-alt-defeat" data-preview="View StartPlaying Campaign Schedule">StartPlaying Games</a>
-          <a class="button" href="https://www.patreon.com/Ctrl_Alt_Defeat" data-preview="Access Patreon Exclusive Content">Patreon</a>
-          <a class="button" href="https://discord.gg/fBf7xw2bmB" data-preview="Join the Discord Community">Discord</a>
-          <a class="button" href="https://www.youtube.com/@Ctrl_Alt_Defeat-GM" data-preview="Watch YouTube Showcases">YouTube Showcase</a>
+          <a class="button" href="https://startplaying.games/gm/ctrl-alt-defeat" target="_blank" rel="noopener noreferrer" data-preview="View StartPlaying Campaign Schedule">StartPlaying Games</a>
+          <a class="button" href="https://www.patreon.com/Ctrl_Alt_Defeat" target="_blank" rel="noopener noreferrer" data-preview="Access Patreon Exclusive Content">Patreon</a>
+          <a class="button" href="https://discord.gg/fBf7xw2bmB" target="_blank" rel="noopener noreferrer" data-preview="Join the Discord Community">Discord</a>
+          <a class="button" href="https://www.youtube.com/@Ctrl_Alt_Defeat-GM" target="_blank" rel="noopener noreferrer" data-preview="Watch YouTube Showcases">YouTube Showcase</a>
         </div>
 
         <div class="link-row secondary">
-          <a class="button" href="https://homebrewery.naturalcrit.com/share/LtF88dEE8z1S" data-preview="Read Homebrewery Books">Homebrew Books</a>
-          <a class="button" href="https://github.com/CtrlAltDefeatAM" data-preview="View GitHub Repositories">GitHub Profile</a>
-          <a class="button" href="https://ctrlaltdefeat.carrd.co/" data-preview="Open Secondary Quick-Link Hub">Card Hub</a>
-          <a class="button" href="https://linktr.ee/Ctrl.Alt.Defeat" data-preview="Open Linktree Quick-Link Hub">Linktree</a>
+          <a class="button" href="https://homebrewery.naturalcrit.com/share/LtF88dEE8z1S" target="_blank" rel="noopener noreferrer" data-preview="Read Homebrewery Books">Homebrew Books</a>
+          <a class="button" href="https://github.com/CtrlAltDefeatAM" target="_blank" rel="noopener noreferrer" data-preview="View GitHub Repositories">GitHub Profile</a>
+          <a class="button" href="https://ctrlaltdefeat.carrd.co/" target="_blank" rel="noopener noreferrer" data-preview="Open Secondary Quick-Link Hub">Card Hub</a>
+          <a class="button" href="https://linktr.ee/Ctrl.Alt.Defeat" target="_blank" rel="noopener noreferrer" data-preview="Open Linktree Quick-Link Hub">Linktree</a>
         </div>
       </div>
     </section>
@@ -508,13 +548,13 @@
         <div class="card-img-wrapper">
           <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTV0bmxpYjFxc3A2YmYwd2l0bXF3azZ4bGxpbDMzbTA4bDdhaXpubiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bSLg3ev3owFDM10WtX/giphy.gif" alt="Gold Manager D&D 5e Preview">
         </div>
-        <h3>Gold Manager D&D 5e</h3>
+        <h3>Gold Management UI</h3>
         <p>
           A free Foundry VTT module for managing currency, exchanges, gold rewards,
           party payouts, and GM ledger tracking in D&D 5e games.
         </p>
         <p>
-          <a href="https://www.patreon.com/posts/148610450?collection=1941207">View on Patreon →</a>
+          <a href="https://www.patreon.com/posts/148610450?collection=1941207" target="_blank" rel="noopener noreferrer">View on Patreon →</a>
         </p>
       </div>
 
@@ -529,7 +569,7 @@
           bounties, and anime-inspired campaign progression.
         </p>
         <p>
-          <a href="https://www.patreon.com/posts/153743909?collection=1941207">View on Patreon →</a>
+          <a href="https://www.patreon.com/posts/153743909?collection=1941207" target="_blank" rel="noopener noreferrer">View on Patreon →</a>
         </p>
       </div>
 
@@ -543,7 +583,7 @@
           managing performance, and syncing world data into unlocked compendiums.
         </p>
         <p>
-          <a href="https://www.patreon.com/posts/free-performance-160241130">View on Patreon →</a>
+          <a href="https://www.patreon.com/posts/free-performance-160241130" target="_blank" rel="noopener noreferrer">View on Patreon →</a>
         </p>
       </div>
     </section>
@@ -565,7 +605,7 @@
           using Foundry VTT, custom modules, cinematic tools, and player-focused systems.
         </p>
         <p>
-          <a href="https://startplaying.games/gm/ctrl-alt-defeat">Book a Game →</a>
+          <a href="https://startplaying.games/gm/ctrl-alt-defeat" target="_blank" rel="noopener noreferrer">Book a Game →</a>
         </p>
       </div>
 
@@ -580,7 +620,7 @@
           campaign discussion, and community links.
         </p>
         <p>
-          <a href="https://discord.gg/fBf7xw2bmB">Join Discord →</a>
+          <a href="https://discord.gg/fBf7xw2bmB" target="_blank" rel="noopener noreferrer">Join Discord →</a>
         </p>
       </div>
 
@@ -595,7 +635,7 @@
           campaign resources, and One Piece-inspired Homebrewery books.
         </p>
         <p>
-          <a href="https://homebrewery.naturalcrit.com/share/LtF88dEE8z1S">Read Resources →</a>
+          <a href="https://homebrewery.naturalcrit.com/share/LtF88dEE8z1S" target="_blank" rel="noopener noreferrer">Read Resources →</a>
         </p>
       </div>
     </section>
@@ -608,12 +648,15 @@
     <section class="cards">
       <div class="card">
         <div class="card-img-wrapper">
-          <img src="https://media.giphy.com/media/KOfsSNhyg5d0cnkkYU/giphy.gif" alt="Bruiser UI Foundry VTT module preview">
+          <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmZ2dTNtdmswazRlM21waDZyc2N6aW1samxkYm9xYWM4d2VmNzhrYSZlcD12MV9pbnRlcmFsfGdpZl9ieV9pZCZjdD1n/Fn9GZjqvYv0sXjXP19/giphy.gif" alt="Scene Transition Cinematic Toolkit Preview">
         </div>
-        <h3>Bruiser UI</h3>
+        <h3>Scene Transition Cinematic Toolkit</h3>
         <p>
-          A Foundry VTT module built to support Bruiser class gameplay, class automation,
-          challenge cards, and One Piece-inspired D&D mechanics.
+          A cinematic Foundry VTT toolkit for scene transitions, music swaps,
+          overlay text, GIFs, macro cut-ins, and dramatic table presentation.
+        </p>
+        <p>
+          <a href="https://www.patreon.com/posts/152893204?collection=1941207" target="_blank" rel="noopener noreferrer">View on Patreon →</a>
         </p>
       </div>
 
@@ -626,16 +669,22 @@
           A Foundry VTT tool for Devil Fruit-style powers, Zoan weapon users,
           anime-inspired abilities, and pirate campaign gameplay.
         </p>
+        <p>
+          <a href="https://www.patreon.com/posts/148145961?collection=1941207" target="_blank" rel="noopener noreferrer">View on Patreon →</a>
+        </p>
       </div>
 
       <div class="card">
         <div class="card-img-wrapper">
-          <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmZ2dTNtdmswazRlM21waDZyc2N6aW1samxkYm9xYWM4d2VmNzhrYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Fn9GZjqvYv0sXjXP19/giphy.gif" alt="Scene Transition Cinematic Toolkit Preview">
+          <img src="https://media.giphy.com/media/KOfsSNhyg5d0cnkkYU/giphy.gif" alt="Bruiser UI Foundry VTT module preview">
         </div>
-        <h3>Scene Transition Cinematic Toolkit</h3>
+        <h3>Bruiser UI</h3>
         <p>
-          A cinematic Foundry VTT toolkit for scene transitions, music swaps,
-          overlay text, GIFs, macro cut-ins, and dramatic table presentation.
+          A Foundry VTT module built to support Bruiser class gameplay, class
+          automation, challenge cards, and One Piece-inspired D&D mechanics.
+        </p>
+        <p>
+          <a href="https://www.patreon.com/posts/156072885?collection=1941207" target="_blank" rel="noopener noreferrer">View on Patreon →</a>
         </p>
       </div>
     </section>
@@ -656,7 +705,7 @@
           through the CtrlAltDefeat Patreon for D&D 5e and anime-inspired tabletop games.
         </p>
         <p>
-          <a href="https://www.patreon.com/posts/149194541?collection=1879454">View Maps →</a>
+          <a href="https://www.patreon.com/posts/149194541?collection=1879454" target="_blank" rel="noopener noreferrer">View Maps →</a>
         </p>
       </div>
 
@@ -670,7 +719,7 @@
           Foundry-ready resources for cinematic tabletop presentation.
         </p>
         <p>
-          <a href="https://www.patreon.com/collection/2144840?view=expanded">View Assets →</a>
+          <a href="https://www.patreon.com/collection/2144840?view=expanded" target="_blank" rel="noopener noreferrer">View Assets →</a>
         </p>
       </div>
 
@@ -684,7 +733,7 @@
           and extra content for players and GMs using CtrlAltDefeat projects.
         </p>
         <p>
-          <a href="https://www.patreon.com/collection/2151435?view=expanded">View Resources →</a>
+          <a href="https://www.patreon.com/collection/2151435?view=expanded" target="_blank" rel="noopener noreferrer">View Resources →</a>
         </p>
       </div>
     </section>
