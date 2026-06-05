@@ -112,7 +112,7 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to right, rgba(24, 40, 100, 0.08), transparent 12%, transparent 88%, rgba(24, 40, 100, 0.08)),
+        linear-gradient(to right, rgba(24, 40, 100, 0.07), transparent 12%, transparent 88%, rgba(24, 40, 100, 0.07)),
         linear-gradient(to bottom, rgba(5, 5, 5, 0.03), transparent 16%, transparent 84%, rgba(5, 5, 5, 0.05));
       pointer-events: none;
       z-index: 1;
@@ -127,7 +127,7 @@
       max-width: 300px;
       pointer-events: none;
       filter: blur(26px);
-      opacity: 0.34;
+      opacity: 0.28;
     }
 
     .side-aura-left {
@@ -135,7 +135,7 @@
       background:
         radial-gradient(circle at 35% 18%, rgba(70, 145, 255, 0.18), transparent 28%),
         radial-gradient(circle at 50% 42%, rgba(76, 120, 255, 0.12), transparent 34%),
-        radial-gradient(circle at 44% 76%, rgba(40, 85, 205, 0.12), transparent 30%);
+        radial-gradient(circle at 44% 76%, rgba(40, 85, 205, 0.10), transparent 30%);
     }
 
     .side-aura-right {
@@ -143,7 +143,7 @@
       background:
         radial-gradient(circle at 60% 18%, rgba(70, 145, 255, 0.18), transparent 28%),
         radial-gradient(circle at 48% 42%, rgba(76, 120, 255, 0.12), transparent 34%),
-        radial-gradient(circle at 54% 76%, rgba(40, 85, 205, 0.12), transparent 30%);
+        radial-gradient(circle at 54% 76%, rgba(40, 85, 205, 0.10), transparent 30%);
     }
 
     .side-stars {
@@ -154,14 +154,32 @@
       min-width: 180px;
       max-width: 300px;
       pointer-events: none;
-      opacity: 0.42;
+      opacity: 0.34;
       background-repeat: repeat-y;
-      background-size: 100% 540px;
-      animation: sideStarDrift 24s linear infinite;
+      background-size: 100% 520px;
     }
 
     .side-stars-left {
       left: 0;
+    }
+
+    .side-stars-right {
+      right: 0;
+    }
+
+    .side-stars-left::before,
+    .side-stars-left::after,
+    .side-stars-right::before,
+    .side-stars-right::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-repeat: repeat-y;
+      background-size: 100% 520px;
+      pointer-events: none;
+    }
+
+    .side-stars-left::before {
       background-image:
         radial-gradient(circle at 24% 12%, rgba(170, 220, 255, 0.95) 0 1px, transparent 2px),
         radial-gradient(circle at 62% 26%, rgba(110, 175, 255, 0.75) 0 1px, transparent 2px),
@@ -169,10 +187,19 @@
         radial-gradient(circle at 70% 58%, rgba(95, 150, 255, 0.68) 0 1px, transparent 2px),
         radial-gradient(circle at 34% 74%, rgba(180, 225, 255, 0.85) 0 1px, transparent 2px),
         radial-gradient(circle at 58% 88%, rgba(110, 175, 255, 0.72) 0 1.5px, transparent 2.5px);
+      animation: sideStarDrift 28s linear infinite, starTwinkleA 5.5s ease-in-out infinite;
     }
 
-    .side-stars-right {
-      right: 0;
+    .side-stars-left::after {
+      background-image:
+        radial-gradient(circle at 48% 16%, rgba(190, 230, 255, 0.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 20% 38%, rgba(120, 185, 255, 0.74) 0 1px, transparent 2px),
+        radial-gradient(circle at 66% 62%, rgba(225, 245, 255, 0.82) 0 1.5px, transparent 2.5px),
+        radial-gradient(circle at 42% 84%, rgba(105, 165, 255, 0.7) 0 1px, transparent 2px);
+      animation: sideStarDrift 36s linear infinite, starTwinkleB 7s ease-in-out infinite;
+    }
+
+    .side-stars-right::before {
       background-image:
         radial-gradient(circle at 74% 12%, rgba(170, 220, 255, 0.95) 0 1px, transparent 2px),
         radial-gradient(circle at 38% 26%, rgba(110, 175, 255, 0.75) 0 1px, transparent 2px),
@@ -180,20 +207,36 @@
         radial-gradient(circle at 30% 58%, rgba(95, 150, 255, 0.68) 0 1px, transparent 2px),
         radial-gradient(circle at 66% 74%, rgba(180, 225, 255, 0.85) 0 1px, transparent 2px),
         radial-gradient(circle at 42% 88%, rgba(110, 175, 255, 0.72) 0 1.5px, transparent 2.5px);
+      animation: sideStarDrift 28s linear infinite, starTwinkleA 6s ease-in-out infinite;
+    }
+
+    .side-stars-right::after {
+      background-image:
+        radial-gradient(circle at 50% 18%, rgba(190, 230, 255, 0.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 72% 36%, rgba(120, 185, 255, 0.74) 0 1px, transparent 2px),
+        radial-gradient(circle at 34% 64%, rgba(225, 245, 255, 0.82) 0 1.5px, transparent 2.5px),
+        radial-gradient(circle at 58% 82%, rgba(105, 165, 255, 0.7) 0 1px, transparent 2px);
+      animation: sideStarDrift 36s linear infinite, starTwinkleB 8s ease-in-out infinite;
     }
 
     @keyframes sideStarDrift {
-      0% {
-        transform: translateY(0);
-        opacity: 0.34;
-      }
-      50% {
-        opacity: 0.46;
-      }
-      100% {
-        transform: translateY(-120px);
-        opacity: 0.34;
-      }
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-120px); }
+    }
+
+    @keyframes starTwinkleA {
+      0%, 100% { opacity: 0.22; }
+      25% { opacity: 0.48; }
+      50% { opacity: 0.30; }
+      75% { opacity: 0.58; }
+    }
+
+    @keyframes starTwinkleB {
+      0%, 100% { opacity: 0.18; }
+      20% { opacity: 0.34; }
+      45% { opacity: 0.56; }
+      70% { opacity: 0.24; }
+      90% { opacity: 0.46; }
     }
 
     .float-column {
@@ -204,20 +247,22 @@
       min-width: 150px;
       max-width: 240px;
       pointer-events: none;
+      overflow: hidden;
     }
 
     .float-column-left {
-      left: 3.8%;
+      left: 4.5%;
     }
 
     .float-column-right {
-      right: 3.8%;
+      right: 4.5%;
     }
 
     .float-node {
       --asset-opacity: 0.24;
       position: absolute;
       left: 50%;
+      bottom: -18vh;
       transform: translateX(-50%);
       display: block;
       object-fit: contain;
@@ -228,6 +273,9 @@
         drop-shadow(0 0 10px rgba(255, 211, 106, 0.16))
         drop-shadow(0 0 18px rgba(110, 175, 255, 0.10));
       will-change: transform, opacity, filter;
+      animation:
+        riseBobble 36s linear infinite,
+        floatGlowPulse 7s ease-in-out infinite;
     }
 
     .lane-small {
@@ -251,115 +299,45 @@
         drop-shadow(0 0 22px rgba(110, 175, 255, 0.08));
     }
 
-    .node-left-1,
-    .node-right-1 {
-      top: 78%;
-    }
-
-    .node-left-2,
-    .node-right-2 {
-      top: 54%;
-    }
-
-    .node-left-3,
-    .node-right-3 {
-      top: 30%;
-    }
-
-    .node-left-4,
-    .node-right-4 {
-      top: 88%;
-    }
-
-    @keyframes riseFloatA {
+    @keyframes riseBobble {
       0% {
-        transform: translateX(-50%) translateY(0) rotate(-4deg) scale(0.98);
+        transform: translateX(-50%) translateY(0) rotate(-3deg) scale(0.98);
         opacity: 0;
       }
       8% {
         opacity: var(--asset-opacity);
       }
-      32% {
-        transform: translateX(calc(-50% + 7px)) translateY(-18vh) rotate(1deg) scale(1.02);
+      20% {
+        transform: translateX(calc(-50% + 5px)) translateY(-12vh) rotate(1deg) scale(1.01);
         opacity: var(--asset-opacity);
       }
-      58% {
-        transform: translateX(calc(-50% - 6px)) translateY(-40vh) rotate(-2deg) scale(1);
-        opacity: calc(var(--asset-opacity) * 0.96);
-      }
-      82% {
-        transform: translateX(calc(-50% + 5px)) translateY(-65vh) rotate(2deg) scale(0.98);
-        opacity: calc(var(--asset-opacity) * 0.82);
-      }
-      94% {
-        opacity: 0.06;
-      }
-      100% {
-        transform: translateX(calc(-50% - 4px)) translateY(-82vh) rotate(4deg) scale(0.96);
-        opacity: 0;
-      }
-    }
-
-    @keyframes riseFloatB {
-      0% {
-        transform: translateX(-50%) translateY(0) rotate(4deg) scale(1);
-        opacity: 0;
-      }
-      8% {
+      36% {
+        transform: translateX(calc(-50% - 6px)) translateY(-26vh) rotate(-2deg) scale(1.02);
         opacity: var(--asset-opacity);
       }
-      34% {
-        transform: translateX(calc(-50% - 8px)) translateY(-20vh) rotate(2deg) scale(1.02);
-        opacity: var(--asset-opacity);
+      52% {
+        transform: translateX(calc(-50% + 7px)) translateY(-42vh) rotate(2deg) scale(1.00);
+        opacity: calc(var(--asset-opacity) * 0.98);
       }
-      60% {
-        transform: translateX(calc(-50% + 6px)) translateY(-42vh) rotate(-2deg) scale(1);
-        opacity: calc(var(--asset-opacity) * 0.96);
+      68% {
+        transform: translateX(calc(-50% - 5px)) translateY(-58vh) rotate(-1deg) scale(0.99);
+        opacity: calc(var(--asset-opacity) * 0.90);
       }
       84% {
-        transform: translateX(calc(-50% - 5px)) translateY(-68vh) rotate(1deg) scale(0.98);
-        opacity: calc(var(--asset-opacity) * 0.82);
+        transform: translateX(calc(-50% + 4px)) translateY(-74vh) rotate(2deg) scale(0.97);
+        opacity: calc(var(--asset-opacity) * 0.72);
       }
       94% {
-        opacity: 0.06;
+        opacity: 0.08;
       }
       100% {
-        transform: translateX(calc(-50% + 3px)) translateY(-84vh) rotate(-4deg) scale(0.96);
-        opacity: 0;
-      }
-    }
-
-    @keyframes riseFloatC {
-      0% {
-        transform: translateX(-50%) translateY(0) rotate(-2deg) scale(0.99);
-        opacity: 0;
-      }
-      8% {
-        opacity: var(--asset-opacity);
-      }
-      35% {
-        transform: translateX(calc(-50% + 6px)) translateY(-22vh) rotate(2deg) scale(1.01);
-        opacity: var(--asset-opacity);
-      }
-      62% {
-        transform: translateX(calc(-50% - 4px)) translateY(-44vh) rotate(-1deg) scale(1);
-        opacity: calc(var(--asset-opacity) * 0.95);
-      }
-      86% {
-        transform: translateX(calc(-50% + 4px)) translateY(-70vh) rotate(3deg) scale(0.98);
-        opacity: calc(var(--asset-opacity) * 0.80);
-      }
-      94% {
-        opacity: 0.05;
-      }
-      100% {
-        transform: translateX(calc(-50% - 3px)) translateY(-86vh) rotate(-3deg) scale(0.96);
+        transform: translateX(calc(-50% - 3px)) translateY(-90vh) rotate(-2deg) scale(0.95);
         opacity: 0;
       }
     }
 
     @keyframes floatGlowPulse {
-      0% {
+      0%, 100% {
         filter:
           brightness(1.04)
           saturate(1.06)
@@ -373,44 +351,27 @@
           drop-shadow(0 0 14px rgba(255, 211, 106, 0.18))
           drop-shadow(0 0 24px rgba(110, 175, 255, 0.12));
       }
-      100% {
-        filter:
-          brightness(1.04)
-          saturate(1.06)
-          drop-shadow(0 0 10px rgba(255, 211, 106, 0.14))
-          drop-shadow(0 0 18px rgba(110, 175, 255, 0.08));
-      }
     }
 
-    .node-left-1,
-    .node-right-2 {
-      animation: riseFloatA 36s linear infinite, floatGlowPulse 7s ease-in-out infinite;
+    .float-column-left .flow-a,
+    .float-column-right .flow-a {
+      animation-delay: 0s, 0s;
     }
 
-    .node-left-2,
-    .node-right-1 {
-      animation: riseFloatB 40s linear infinite, floatGlowPulse 7s ease-in-out infinite;
+    .float-column-left .flow-b,
+    .float-column-right .flow-b {
+      animation-delay: -9s, -2s;
     }
 
-    .node-left-3,
-    .node-right-4 {
-      animation: riseFloatC 44s linear infinite, floatGlowPulse 7s ease-in-out infinite;
+    .float-column-left .flow-c,
+    .float-column-right .flow-c {
+      animation-delay: -18s, -4s;
     }
 
-    .node-left-4,
-    .node-right-3 {
-      animation: riseFloatA 48s linear infinite, floatGlowPulse 7s ease-in-out infinite;
+    .float-column-left .flow-d,
+    .float-column-right .flow-d {
+      animation-delay: -27s, -6s;
     }
-
-    .node-left-1 { animation-delay: -4s, 0s; }
-    .node-left-2 { animation-delay: -15s, -1s; }
-    .node-left-3 { animation-delay: -24s, -2s; }
-    .node-left-4 { animation-delay: -9s, -3s; }
-
-    .node-right-1 { animation-delay: -11s, -0.5s; }
-    .node-right-2 { animation-delay: -20s, -1.5s; }
-    .node-right-3 { animation-delay: -6s, -2.5s; }
-    .node-right-4 { animation-delay: -28s, -3.5s; }
 
     .hero,
     .card,
@@ -1094,21 +1055,18 @@
         width: 165px;
       }
 
-      .side-aura,
+      .side-aura {
+        opacity: 0.22;
+      }
+
       .side-stars {
-        opacity: 0.26;
+        opacity: 0.24;
       }
     }
 
     @media (max-width: 900px) {
-      .node-left-4,
-      .node-right-4 {
+      .ship-node {
         display: none;
-      }
-
-      .side-aura,
-      .side-stars {
-        opacity: 0.18;
       }
 
       .lane-small {
@@ -1117,6 +1075,14 @@
 
       .lane-medium {
         width: 96px;
+      }
+
+      .side-aura {
+        opacity: 0.15;
+      }
+
+      .side-stars {
+        opacity: 0.16;
       }
     }
 
@@ -1128,7 +1094,8 @@
 
     @media (prefers-reduced-motion: reduce) {
       .float-node,
-      .side-stars {
+      .side-stars::before,
+      .side-stars::after {
         animation: none !important;
       }
     }
@@ -1144,17 +1111,17 @@
     <div class="side-stars side-stars-right"></div>
 
     <div class="float-column float-column-left">
-      <img class="float-node node-left-1 lane-small" data-pool="fruit" alt="">
-      <img class="float-node node-left-2 lane-small" data-pool="fruit" alt="">
-      <img class="float-node node-left-3 lane-medium" data-pool="item" alt="">
-      <img class="float-node node-left-4 lane-large ship-node" data-pool="ship" alt="">
+      <img class="float-node lane-small flow-a" data-pool="fruit" data-side="left" alt="">
+      <img class="float-node lane-small flow-b" data-pool="fruit" data-side="left" alt="">
+      <img class="float-node lane-medium flow-c" data-pool="item" data-side="left" alt="">
+      <img class="float-node lane-large ship-node flow-d" data-pool="ship" data-side="left" alt="">
     </div>
 
     <div class="float-column float-column-right">
-      <img class="float-node node-right-1 lane-small" data-pool="fruit" alt="">
-      <img class="float-node node-right-2 lane-small" data-pool="fruit" alt="">
-      <img class="float-node node-right-3 lane-medium" data-pool="item" alt="">
-      <img class="float-node node-right-4 lane-large ship-node" data-pool="ship" alt="">
+      <img class="float-node lane-small flow-a" data-pool="fruit" data-side="right" alt="">
+      <img class="float-node lane-small flow-b" data-pool="fruit" data-side="right" alt="">
+      <img class="float-node lane-medium flow-c" data-pool="item" data-side="right" alt="">
+      <img class="float-node lane-large ship-node flow-d" data-pool="ship" data-side="right" alt="">
     </div>
   </div>
 
@@ -1503,7 +1470,7 @@
 
       nodes.forEach((node) => {
         node.addEventListener("animationiteration", (event) => {
-          if (!/^riseFloat/.test(event.animationName)) return;
+          if (event.animationName !== "riseBobble") return;
 
           const type = node.dataset.pool;
           const pool = assetPools[type] || [];
