@@ -188,6 +188,8 @@
       font-size: 1.05rem;
       color: var(--text-muted);
       font-weight: 300;
+      line-height: 1.75;
+      letter-spacing: 0.005em;
     }
 
     .tagline {
@@ -201,10 +203,13 @@
     }
 
     .intro {
-      max-width: 800px;
+      max-width: 860px;
       margin: 0 auto 40px;
       font-size: 1.15rem;
       color: var(--text-main);
+      line-height: 1.75;
+      letter-spacing: 0.01em;
+      text-wrap: pretty;
     }
 
     .link-row {
@@ -222,7 +227,8 @@
     .link-row.secondary {
       grid-template-columns: repeat(4, minmax(0, 1fr));
       margin-top: 16px;
-      max-width: 980px;
+      max-width: 820px;
+      gap: 14px;
     }
 
     .button {
@@ -278,8 +284,26 @@
         box-shadow 0.25s ease,
         filter 0.25s ease,
         background-position 0.45s ease;
-      animation: buttonGoldPulse 3.8s ease-in-out infinite;
+      animation: buttonGoldPulse 4.8s ease-in-out infinite;
     }
+
+    .link-row.secondary .button {
+      min-height: 58px;
+      padding: 10px 16px;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      border-radius: 12px;
+    }
+
+    .link-row.primary .button:nth-child(1) { animation-delay: 0s; }
+    .link-row.primary .button:nth-child(2) { animation-delay: 0.4s; }
+    .link-row.primary .button:nth-child(3) { animation-delay: 0.8s; }
+    .link-row.primary .button:nth-child(4) { animation-delay: 1.2s; }
+
+    .link-row.secondary .button:nth-child(1) { animation-delay: 1.6s; }
+    .link-row.secondary .button:nth-child(2) { animation-delay: 2s; }
+    .link-row.secondary .button:nth-child(3) { animation-delay: 2.4s; }
+    .link-row.secondary .button:nth-child(4) { animation-delay: 2.8s; }
 
     .button:hover {
       transform: translateY(-6px) scale(1.04);
@@ -352,6 +376,8 @@
       max-width: 860px;
       margin: -5px auto 40px;
       color: var(--text-muted);
+      line-height: 1.7;
+      letter-spacing: 0.01em;
     }
 
     .cards {
@@ -367,12 +393,12 @@
     }
 
     .cards.free-modules {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       max-width: 100%;
       margin: 0 auto;
     }
 
-    @media (max-width: 1000px) {
+    @media (max-width: 1200px) {
       .cards.free-modules {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -406,6 +432,8 @@
     .card p {
       flex-grow: 1;
       margin-bottom: 20px;
+      line-height: 1.72;
+      letter-spacing: 0.005em;
     }
 
     .card a {
@@ -454,6 +482,13 @@
       padding: 15px;
     }
 
+    .card img.wide-banner-fit {
+      object-fit: contain;
+      object-position: center center;
+      background: #000;
+      padding: 0;
+    }
+
     .note {
       max-width: 850px;
       margin: 60px auto 0;
@@ -491,6 +526,13 @@
       .hero { padding: 40px 20px; }
       .link-row.primary,
       .link-row.secondary { grid-template-columns: 1fr; }
+      .link-row.secondary {
+        max-width: 100%;
+      }
+      .link-row.secondary .button {
+        min-height: 56px;
+        font-size: 0.78rem;
+      }
       .cards { grid-template-columns: 1fr; }
       .card-img-wrapper { height: 180px; }
 
@@ -538,9 +580,9 @@
       </div>
     </section>
 
-    <h2>Free Public Foundry VTT Modules</h2>
+    <h2>Free Public Foundry VTT Modules and Maps</h2>
     <p class="section-intro">
-      Free Foundry VTT tools released through Patreon and supported by public module pages.
+      Free Foundry VTT tools and free public maps released through Patreon and supported by public module pages.
     </p>
 
     <section class="cards free-modules">
@@ -586,6 +628,20 @@
           <a href="https://www.patreon.com/posts/free-performance-160241130" target="_blank" rel="noopener noreferrer">View on Patreon →</a>
         </p>
       </div>
+
+      <div class="card">
+        <div class="card-img-wrapper">
+          <img src="https://i.postimg.cc/SKzgJGX8/Add-Sky-Maps.webp" alt="Free Public Maps Preview">
+        </div>
+        <h3>Free Public Maps</h3>
+        <p>
+          Free VTT-ready battle maps, scene maps, and tabletop locations for Foundry VTT,
+          D&D 5e, and anime-inspired campaigns.
+        </p>
+        <p>
+          <a href="https://www.patreon.com/collection/1877470?view=expanded" target="_blank" rel="noopener noreferrer">View Free Maps →</a>
+        </p>
+      </div>
     </section>
 
     <h2>Books, Games, and Community</h2>
@@ -597,7 +653,7 @@
       <!-- Card 1: Professional GM Games -->
       <div class="card">
         <div class="card-img-wrapper">
-          <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWJmbng0eWM4aThwZzljbmN2eW5qZ2Z3amJnemlvdjlxdGcweGJrMSZlcD12MV9pbnRlcmFsfGdpZl9ieV9pZCZjdD1n/O3ZoZCvPHgPSZUKK0Q/giphy.gif" alt="Professional GM games and campaign preview">
+          <img class="wide-banner-fit" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWJmbng0eWM4aThwZzljbmN2eW5qZ2Z3amJnemlvdjlxdGcweGJrMSZlcD12MV9pbnRlcmFsfGdpZl9ieV9pZCZjdD1n/O3ZoZCvPHgPSZUKK0Q/giphy.gif" alt="Professional GM games and campaign preview">
         </div>
         <h3>Professional GM Games</h3>
         <p>
@@ -612,7 +668,7 @@
       <!-- Card 2: Discord Community -->
       <div class="card">
         <div class="card-img-wrapper">
-          <img class="contain" src="https://i.postimg.cc/9ft42H2b/b98d0ffc-0386-4421-b3b7-c2fe97f4ab63-removebg-preview-(1).png" alt="CtrlAltDefeat Discord community preview">
+          <img class="contain" src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZW1ydWlsbGVwbjZkbmxjdDhpMnJrdDNnc3Fpc2hrY2t1eGlidjJzaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/FOyTq0jnS6FMfZMPfU/giphy.gif" alt="CtrlAltDefeat Discord community preview">
         </div>
         <h3>Discord Community</h3>
         <p>
