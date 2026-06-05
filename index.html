@@ -710,19 +710,19 @@
         transform: translateX(0) skewX(-12deg);
       }
 
-      3% {
-        opacity: 0.34;
+      2% {
+        opacity: 0.28;
       }
 
-      10% {
+      6% {
         opacity: 0.60;
       }
 
-      16% {
+      9% {
         opacity: 0.34;
       }
 
-      22% {
+      11% {
         opacity: 0;
         transform: translateX(360%) skewX(-12deg);
       }
@@ -739,19 +739,19 @@
         background-position: -220% center;
       }
 
-      3% {
-        opacity: 0.28;
+      2% {
+        opacity: 0.24;
       }
 
-      10% {
+      6% {
         opacity: 0.78;
       }
 
-      16% {
+      9% {
         opacity: 0.32;
       }
 
-      22% {
+      11% {
         opacity: 0;
         background-position: 220% center;
       }
@@ -763,7 +763,7 @@
     }
 
     @keyframes buttonAuraBreath {
-      0%, 22%, 100% {
+      0%, 11%, 100% {
         box-shadow:
           0 8px 18px rgba(0, 0, 0, 0.55),
           0 0 10px rgba(214, 169, 74, 0.22),
@@ -772,7 +772,7 @@
           inset 0 -2px 6px rgba(0, 0, 0, 0.35);
       }
 
-      10% {
+      6% {
         box-shadow:
           0 10px 22px rgba(0, 0, 0, 0.62),
           0 0 12px rgba(214, 169, 74, 0.22),
@@ -866,7 +866,7 @@
     }
 
     .button {
-      --button-cycle: 20s;
+      --button-cycle: 22.4s;
       --button-delay: 0s;
 
       position: relative;
@@ -876,7 +876,7 @@
       min-height: 76px;
       padding: 14px 22px;
       border-radius: 14px;
-      overflow: hidden;
+      overflow: visible;
 
       background-image:
         linear-gradient(
@@ -916,6 +916,15 @@
 
       animation: buttonAuraBreath var(--button-cycle) ease-in-out infinite;
       animation-delay: var(--button-delay);
+    }
+
+    .button-light-frame {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border-radius: inherit;
+      overflow: hidden;
+      pointer-events: none;
     }
 
     .button-moonlight {
@@ -1000,14 +1009,14 @@
     }
 
     .link-row.primary .button:nth-child(1) { --button-delay: 0s; }
-    .link-row.primary .button:nth-child(2) { --button-delay: 2.5s; }
-    .link-row.primary .button:nth-child(3) { --button-delay: 5s; }
-    .link-row.primary .button:nth-child(4) { --button-delay: 7.5s; }
+    .link-row.primary .button:nth-child(2) { --button-delay: 2.6s; }
+    .link-row.primary .button:nth-child(3) { --button-delay: 5.2s; }
+    .link-row.primary .button:nth-child(4) { --button-delay: 7.8s; }
 
-    .link-row.secondary .button:nth-child(1) { --button-delay: 10s; }
-    .link-row.secondary .button:nth-child(2) { --button-delay: 12.5s; }
-    .link-row.secondary .button:nth-child(3) { --button-delay: 15s; }
-    .link-row.secondary .button:nth-child(4) { --button-delay: 17.5s; }
+    .link-row.secondary .button:nth-child(1) { --button-delay: 10.4s; }
+    .link-row.secondary .button:nth-child(2) { --button-delay: 13s; }
+    .link-row.secondary .button:nth-child(3) { --button-delay: 15.6s; }
+    .link-row.secondary .button:nth-child(4) { --button-delay: 18.2s; }
 
     .button:hover {
       transform: translateY(-6px) scale(1.04);
@@ -1685,7 +1694,9 @@
         <!-- Reordered buttons and added data-preview tags for hover effects -->
         <div class="link-row primary">
           <a class="button image-preview-button" href="https://startplaying.games/gm/ctrl-alt-defeat" target="_blank" rel="noopener noreferrer" aria-label="View StartPlaying Campaign Schedule">
-            <span class="button-moonlight" aria-hidden="true"></span>
+            <span class="button-light-frame" aria-hidden="true">
+              <span class="button-moonlight"></span>
+            </span>
             <span class="button-label" data-text="StartPlaying Games">StartPlaying Games</span>
             <span class="site-preview">
               <img src="https://i.postimg.cc/3RPwBY9r/Screenshot-2026-06-05-105757.png" alt="StartPlaying Games preview">
@@ -1693,7 +1704,9 @@
           </a>
 
           <a class="button image-preview-button" href="https://www.patreon.com/Ctrl_Alt_Defeat" target="_blank" rel="noopener noreferrer" aria-label="Access Patreon Exclusive Content">
-            <span class="button-moonlight" aria-hidden="true"></span>
+            <span class="button-light-frame" aria-hidden="true">
+              <span class="button-moonlight"></span>
+            </span>
             <span class="button-label" data-text="Patreon">Patreon</span>
             <span class="site-preview">
               <img src="https://i.postimg.cc/WtcPD480/Screenshot-2026-06-05-110030.png" alt="Patreon preview">
@@ -1701,7 +1714,9 @@
           </a>
 
           <a class="button image-preview-button" href="https://discord.gg/fBf7xw2bmB" target="_blank" rel="noopener noreferrer" aria-label="Join the Discord Community">
-            <span class="button-moonlight" aria-hidden="true"></span>
+            <span class="button-light-frame" aria-hidden="true">
+              <span class="button-moonlight"></span>
+            </span>
             <span class="button-label" data-text="Discord">Discord</span>
             <span class="site-preview">
               <img src="https://i.postimg.cc/50jJTTjS/Screenshot-2026-06-05-110111.png" alt="Discord Community preview">
@@ -1709,7 +1724,9 @@
           </a>
 
           <a class="button image-preview-button" href="https://www.youtube.com/@Ctrl_Alt_Defeat-GM" target="_blank" rel="noopener noreferrer" aria-label="Watch YouTube Showcases">
-            <span class="button-moonlight" aria-hidden="true"></span>
+            <span class="button-light-frame" aria-hidden="true">
+              <span class="button-moonlight"></span>
+            </span>
             <span class="button-label" data-text="YouTube Showcase">YouTube Showcase</span>
             <span class="site-preview">
               <img src="https://i.postimg.cc/CxHwqbWR/Screenshot-2026-06-05-110144.png" alt="YouTube Showcase preview">
@@ -1719,22 +1736,30 @@
 
         <div class="link-row secondary">
           <a class="button" href="https://homebrewery.naturalcrit.com/share/LtF88dEE8z1S" target="_blank" rel="noopener noreferrer" data-preview="Read Homebrewery Books">
-            <span class="button-moonlight" aria-hidden="true"></span>
+            <span class="button-light-frame" aria-hidden="true">
+              <span class="button-moonlight"></span>
+            </span>
             <span class="button-label" data-text="Homebrew Books">Homebrew Books</span>
           </a>
 
           <a class="button" href="https://github.com/CtrlAltDefeatAM" target="_blank" rel="noopener noreferrer" data-preview="View GitHub Repositories">
-            <span class="button-moonlight" aria-hidden="true"></span>
+            <span class="button-light-frame" aria-hidden="true">
+              <span class="button-moonlight"></span>
+            </span>
             <span class="button-label" data-text="GitHub Profile">GitHub Profile</span>
           </a>
 
           <a class="button" href="https://ctrlaltdefeat.carrd.co/" target="_blank" rel="noopener noreferrer" data-preview="Open Secondary Quick-Link Hub">
-            <span class="button-moonlight" aria-hidden="true"></span>
+            <span class="button-light-frame" aria-hidden="true">
+              <span class="button-moonlight"></span>
+            </span>
             <span class="button-label" data-text="Card Hub">Card Hub</span>
           </a>
 
           <a class="button" href="https://linktr.ee/Ctrl.Alt.Defeat" target="_blank" rel="noopener noreferrer" data-preview="Open Linktree Quick-Link Hub">
-            <span class="button-moonlight" aria-hidden="true"></span>
+            <span class="button-light-frame" aria-hidden="true">
+              <span class="button-moonlight"></span>
+            </span>
             <span class="button-label" data-text="Linktree">Linktree</span>
           </a>
         </div>
