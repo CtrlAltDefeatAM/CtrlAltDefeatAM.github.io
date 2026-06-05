@@ -100,13 +100,13 @@
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       animation: panelGlow 4s ease-in-out infinite alternate;
-      overflow: hidden;
+      overflow: visible;
       margin-bottom: 60px;
     }
 
     .hero-content {
       position: relative;
-      z-index: 1;
+      z-index: 5;
     }
 
     .hero-banner {
@@ -203,13 +203,19 @@
     }
 
     .intro {
-      max-width: 860px;
-      margin: 0 auto 40px;
-      font-size: 1.15rem;
+      max-width: 760px;
+      margin: 0 auto 38px;
+      font-size: 1.08rem;
       color: var(--text-main);
-      line-height: 1.75;
-      letter-spacing: 0.01em;
-      text-wrap: pretty;
+      line-height: 1.68;
+      letter-spacing: 0.005em;
+      text-wrap: balance;
+    }
+
+    @supports not (text-wrap: balance) {
+      .intro {
+        max-width: 740px;
+      }
     }
 
     .link-row {
@@ -325,6 +331,60 @@
       outline-offset: 4px;
     }
 
+    .image-preview-button {
+      position: relative;
+    }
+
+    .image-preview-button .button-label {
+      position: relative;
+      z-index: 2;
+    }
+
+    .image-preview-button::before,
+    .image-preview-button::after {
+      display: none;
+    }
+
+    .site-preview {
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 20px);
+      width: 390px;
+      aspect-ratio: 16 / 9;
+      transform: translateX(-50%) translateY(12px) scale(0.96);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      z-index: 80;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 211, 106, 0.65);
+      background: #050505;
+      box-shadow:
+        0 18px 42px rgba(0, 0, 0, 0.85),
+        0 0 26px rgba(255, 211, 106, 0.38),
+        0 0 54px rgba(214, 169, 74, 0.18);
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+    }
+
+    .site-preview img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .image-preview-button:hover .site-preview,
+    .image-preview-button:focus-visible .site-preview {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+
     /* Hover Preview Window Tooltip */
     .button::after {
       content: attr(data-preview);
@@ -394,19 +454,85 @@
 
     .cards.free-modules {
       grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
       max-width: 100%;
       margin: 0 auto;
+      align-items: stretch;
+    }
+
+    .cards.free-modules .card {
+      padding: 20px;
+      min-height: 620px;
+    }
+
+    .cards.free-modules .card-img-wrapper {
+      height: 170px;
+      margin-bottom: 18px;
+    }
+
+    .cards.free-modules .card h3 {
+      min-height: 92px;
+      margin-bottom: 14px;
+      font-size: 1.18rem;
+      line-height: 1.35;
+      letter-spacing: 0.04em;
+    }
+
+    .cards.free-modules .card p {
+      font-size: 0.98rem;
+      line-height: 1.62;
+      margin-bottom: 18px;
+    }
+
+    .cards.free-modules .card p:last-child {
+      flex-grow: 0;
+      margin-top: auto;
+      margin-bottom: 0;
+    }
+
+    .cards.free-modules .card img {
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    .cards.free-modules .card:nth-child(3) img,
+    .cards.free-modules .card:nth-child(4) img {
+      object-fit: contain;
+      padding: 8px;
+      background: #000;
     }
 
     @media (max-width: 1200px) {
       .cards.free-modules {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 860px;
+      }
+
+      .cards.free-modules .card {
+        min-height: 560px;
+      }
+
+      .cards.free-modules .card h3 {
+        min-height: auto;
       }
     }
 
     @media (max-width: 700px) {
       .cards.free-modules {
         grid-template-columns: 1fr;
+        max-width: 420px;
+      }
+
+      .cards.free-modules .card {
+        min-height: auto;
+      }
+
+      .cards.free-modules .card-img-wrapper {
+        height: 180px;
+      }
+
+      .cards.free-modules .card h3 {
+        min-height: auto;
       }
     }
 
@@ -431,9 +557,9 @@
 
     .card p {
       flex-grow: 1;
-      margin-bottom: 20px;
-      line-height: 1.72;
-      letter-spacing: 0.005em;
+      margin-bottom: 18px;
+      line-height: 1.68;
+      letter-spacing: 0.003em;
     }
 
     .card a {
@@ -489,6 +615,26 @@
       padding: 0;
     }
 
+    .card img.discord-gif-fit {
+      width: auto;
+      height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      object-position: center center;
+      margin: 0 auto;
+      padding: 0;
+      background: #000;
+    }
+
+    .discord-image-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at center, rgba(255, 211, 106, 0.08), transparent 55%),
+        #000;
+    }
+
     .note {
       max-width: 850px;
       margin: 60px auto 0;
@@ -538,6 +684,7 @@
 
       /* Disable tooltips on mobile to prevent clipping */
       .button::after, .button::before { display: none; }
+      .site-preview { display: none; }
     }
   </style>
 </head>
@@ -565,10 +712,33 @@
 
         <!-- Reordered buttons and added data-preview tags for hover effects -->
         <div class="link-row primary">
-          <a class="button" href="https://startplaying.games/gm/ctrl-alt-defeat" target="_blank" rel="noopener noreferrer" data-preview="View StartPlaying Campaign Schedule">StartPlaying Games</a>
-          <a class="button" href="https://www.patreon.com/Ctrl_Alt_Defeat" target="_blank" rel="noopener noreferrer" data-preview="Access Patreon Exclusive Content">Patreon</a>
-          <a class="button" href="https://discord.gg/fBf7xw2bmB" target="_blank" rel="noopener noreferrer" data-preview="Join the Discord Community">Discord</a>
-          <a class="button" href="https://www.youtube.com/@Ctrl_Alt_Defeat-GM" target="_blank" rel="noopener noreferrer" data-preview="Watch YouTube Showcases">YouTube Showcase</a>
+          <a class="button image-preview-button" href="https://startplaying.games/gm/ctrl-alt-defeat" target="_blank" rel="noopener noreferrer" aria-label="View StartPlaying Campaign Schedule">
+            <span class="button-label">StartPlaying Games</span>
+            <span class="site-preview">
+              <img src="https://i.postimg.cc/3RPwBY9r/Screenshot-2026-06-05-105757.png" alt="StartPlaying Games preview">
+            </span>
+          </a>
+
+          <a class="button image-preview-button" href="https://www.patreon.com/Ctrl_Alt_Defeat" target="_blank" rel="noopener noreferrer" aria-label="Access Patreon Exclusive Content">
+            <span class="button-label">Patreon</span>
+            <span class="site-preview">
+              <img src="https://i.postimg.cc/WtcPD480/Screenshot-2026-06-05-110030.png" alt="Patreon preview">
+            </span>
+          </a>
+
+          <a class="button image-preview-button" href="https://discord.gg/fBf7xw2bmB" target="_blank" rel="noopener noreferrer" aria-label="Join the Discord Community">
+            <span class="button-label">Discord</span>
+            <span class="site-preview">
+              <img src="https://i.postimg.cc/50jJTTjS/Screenshot-2026-06-05-110111.png" alt="Discord Community preview">
+            </span>
+          </a>
+
+          <a class="button image-preview-button" href="https://www.youtube.com/@Ctrl_Alt_Defeat-GM" target="_blank" rel="noopener noreferrer" aria-label="Watch YouTube Showcases">
+            <span class="button-label">YouTube Showcase</span>
+            <span class="site-preview">
+              <img src="https://i.postimg.cc/CxHwqbWR/Screenshot-2026-06-05-110144.png" alt="YouTube Showcase preview">
+            </span>
+          </a>
         </div>
 
         <div class="link-row secondary">
@@ -667,8 +837,8 @@
 
       <!-- Card 2: Discord Community -->
       <div class="card">
-        <div class="card-img-wrapper">
-          <img class="contain" src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZW1ydWlsbGVwbjZkbmxjdDhpMnJrdDNnc3Fpc2hrY2t1eGlidjJzaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/FOyTq0jnS6FMfZMPfU/giphy.gif" alt="CtrlAltDefeat Discord community preview">
+        <div class="card-img-wrapper discord-image-wrapper">
+          <img class="discord-gif-fit" src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZW1ydWlsbGVwbjZkbmxjdDhpMnJrdDNnc3Fpc2hrY2t1eGlidjJzaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/FOyTq0jnS6FMfZMPfU/giphy.gif" alt="CtrlAltDefeat Discord community preview">
         </div>
         <h3>Discord Community</h3>
         <p>
