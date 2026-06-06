@@ -1532,44 +1532,159 @@
       height: 100%;
     }
 
-    .professional-gm-wrapper {
+    @keyframes cardBackdropDrift {
+      0% {
+        background-position: 48% 50%;
+        transform: scale(1.10) translate3d(-2%, 0, 0);
+        opacity: 0.78;
+      }
+
+      50% {
+        background-position: 52% 48%;
+        transform: scale(1.13) translate3d(2%, -1.5%, 0);
+        opacity: 0.92;
+      }
+
+      100% {
+        background-position: 50% 53%;
+        transform: scale(1.11) translate3d(-1%, 1.5%, 0);
+        opacity: 0.84;
+      }
+    }
+
+    @keyframes cardSmokeDrift {
+      0% {
+        transform: translate3d(-5%, 2%, 0) scale(1);
+        opacity: 0.42;
+      }
+
+      45% {
+        transform: translate3d(4%, -3%, 0) scale(1.06);
+        opacity: 0.66;
+      }
+
+      100% {
+        transform: translate3d(7%, 2%, 0) scale(1.03);
+        opacity: 0.50;
+      }
+    }
+
+    .professional-gm-wrapper,
+    .discord-image-wrapper,
+    .performance-manager-wrapper,
+    .free-maps-wrapper {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      isolation: isolate;
       background:
-        radial-gradient(circle at center, rgba(93, 184, 255, 0.08), transparent 60%),
+        radial-gradient(circle at center, rgba(93, 184, 255, 0.08), transparent 58%),
         #000;
+      border-radius: 12px;
+    }
+
+    .professional-gm-wrapper::before,
+    .discord-image-wrapper::before,
+    .performance-manager-wrapper::before,
+    .free-maps-wrapper::before {
+      content: "";
+      position: absolute;
+      inset: -12%;
+      z-index: 0;
+      background-size: cover;
+      background-position: center center;
+      filter: blur(16px) brightness(0.36) saturate(1.08);
+      transform: scale(1.10);
+      opacity: 0.88;
+      animation: cardBackdropDrift 18s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    .professional-gm-wrapper::after,
+    .discord-image-wrapper::after,
+    .performance-manager-wrapper::after,
+    .free-maps-wrapper::after {
+      content: "";
+      position: absolute;
+      inset: -18%;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 22% 30%, rgba(93, 184, 255, 0.12), transparent 30%),
+        radial-gradient(circle at 74% 62%, rgba(214, 169, 74, 0.08), transparent 32%),
+        radial-gradient(circle at 48% 48%, rgba(232, 247, 255, 0.055), transparent 38%),
+        linear-gradient(
+          115deg,
+          transparent 0%,
+          rgba(93, 184, 255, 0.045) 34%,
+          rgba(232, 247, 255, 0.06) 50%,
+          rgba(214, 169, 74, 0.035) 66%,
+          transparent 100%
+        );
+      filter: blur(14px);
+      opacity: 0.62;
+      mix-blend-mode: screen;
+      animation: cardSmokeDrift 22s ease-in-out infinite alternate;
     }
 
     .professional-gm-wrapper::before {
-      content: "";
-      position: absolute;
-      inset: 0;
       background-image: url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWJmbng0eWM4aThwZzljbmN2eW5qZ2Z3amJnemlvdjlxdGcweGJrMSZlcD12MV9pbnRlcmFsfGdpZl9ieV9pZCZjdD1n/O3ZoZCvPHgPSZUKK0Q/giphy.gif");
-      background-size: cover;
-      background-position: center center;
-      filter: blur(14px) brightness(0.36) saturate(1.08);
-      transform: scale(1.10);
-      opacity: 0.88;
-      z-index: 0;
+    }
+
+    .discord-image-wrapper::before {
+      background-image: url("https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZW1ydWlsbGVwbjZkbmxjdDhpMnJrdDNnc3Fpc2hrY2t1eGlidjJzaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/FOyTq0jnS6FMfZMPfU/giphy.gif");
+    }
+
+    .performance-manager-wrapper::before {
+      background-image: url("https://i.postimg.cc/tCM4rv8F/Performance-Manager-World-Cleaner-Compendium-Sync.png");
+    }
+
+    .free-maps-wrapper::before {
+      background-image: url("https://i.postimg.cc/SKzgJGX8/Add-Sky-Maps.webp");
+    }
+
+    .professional-gm-wrapper::before,
+    .professional-gm-wrapper::after {
+      animation-delay: -1s;
+    }
+
+    .discord-image-wrapper::before,
+    .discord-image-wrapper::after {
+      animation-delay: -4s;
+    }
+
+    .performance-manager-wrapper::before,
+    .performance-manager-wrapper::after {
+      animation-delay: -7s;
+    }
+
+    .free-maps-wrapper::before,
+    .free-maps-wrapper::after {
+      animation-delay: -10s;
+    }
+
+    .professional-gm-wrapper img,
+    .discord-image-wrapper img,
+    .performance-manager-wrapper img,
+    .free-maps-wrapper img {
+      position: relative;
+      z-index: 2;
+      background: transparent;
     }
 
     .professional-gm-wrapper img.wide-banner-fit {
-      position: relative;
-      z-index: 1;
       width: 100%;
       height: 100%;
       object-fit: contain;
       object-position: center center;
-      background: transparent;
       padding: 0;
     }
 
     .card img.discord-gif-fit {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       width: auto;
       height: 100%;
       max-width: 54%;
@@ -1580,106 +1695,21 @@
       background: transparent;
     }
 
-    .discord-image-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at center, rgba(255, 211, 106, 0.08), transparent 55%),
-        #000;
-    }
-
-    .discord-image-wrapper::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: url("https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZW1ydWlsbGVwbjZkbmxjdDhpMnJrdDNnc3Fpc2hrY2t1eGlidjJzaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/FOyTq0jnS6FMfZMPfU/giphy.gif");
-      background-size: cover;
-      background-position: center center;
-      filter: blur(18px) brightness(0.38) saturate(1.05);
-      transform: scale(1.12);
-      opacity: 0.95;
-      z-index: 0;
-    }
-
-    .performance-manager-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at center, rgba(93, 184, 255, 0.08), transparent 58%),
-        #000;
-    }
-
-    .performance-manager-wrapper::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: url("https://i.postimg.cc/tCM4rv8F/Performance-Manager-World-Cleaner-Compendium-Sync.png");
-      background-size: cover;
-      background-position: center center;
-      filter: blur(16px) brightness(0.34) saturate(1.0);
-      transform: scale(1.08);
-      opacity: 0.92;
-      z-index: 0;
-    }
-
-    .free-maps-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at center, rgba(93, 184, 255, 0.08), transparent 58%),
-        #000;
-    }
-
-    .free-maps-wrapper::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: url("https://i.postimg.cc/SKzgJGX8/Add-Sky-Maps.webp");
-      background-size: cover;
-      background-position: center center;
-      filter: blur(16px) brightness(0.36) saturate(1.03);
-      transform: scale(1.08);
-      opacity: 0.92;
-      z-index: 0;
-    }
-
     .cards.free-modules .card-img-wrapper.performance-manager-wrapper img {
-      position: relative;
-      z-index: 1;
       width: 90%;
       height: 90%;
       object-fit: contain;
       object-position: center center;
       padding: 0;
-      background: transparent;
     }
 
     .cards.free-modules .card-img-wrapper.free-maps-wrapper img {
-      position: relative;
-      z-index: 1;
       width: auto;
       height: 100%;
       max-width: 76%;
       object-fit: contain;
       object-position: center center;
       padding: 0;
-      background: transparent;
-    }
-
-    .professional-gm-wrapper,
-    .discord-image-wrapper,
-    .performance-manager-wrapper,
-    .free-maps-wrapper {
-      border-radius: 12px;
     }
 
     .note {
@@ -1975,6 +2005,17 @@
       .hero-banner,
       .hero-banner::before,
       .hero::after {
+        animation: none !important;
+      }
+
+      .professional-gm-wrapper::before,
+      .professional-gm-wrapper::after,
+      .discord-image-wrapper::before,
+      .discord-image-wrapper::after,
+      .performance-manager-wrapper::before,
+      .performance-manager-wrapper::after,
+      .free-maps-wrapper::before,
+      .free-maps-wrapper::after {
         animation: none !important;
       }
 
