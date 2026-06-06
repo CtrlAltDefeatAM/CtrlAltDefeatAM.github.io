@@ -543,6 +543,38 @@
       z-index: 2;
     }
 
+    @property --hero-border-angle {
+      syntax: "<angle>";
+      inherits: false;
+      initial-value: 0deg;
+    }
+
+    @keyframes heroBorderShimmer {
+      0% {
+        --hero-border-angle: 0deg;
+      }
+
+      100% {
+        --hero-border-angle: 360deg;
+      }
+    }
+
+    @keyframes heroBorderBreath {
+      0% {
+        opacity: 0.50;
+        filter:
+          drop-shadow(0 0 8px rgba(93, 184, 255, 0.14))
+          drop-shadow(0 0 14px rgba(159, 220, 255, 0.07));
+      }
+
+      100% {
+        opacity: 0.86;
+        filter:
+          drop-shadow(0 0 13px rgba(93, 184, 255, 0.24))
+          drop-shadow(0 0 22px rgba(159, 220, 255, 0.12));
+      }
+    }
+
     @keyframes panelGlow {
       0% {
         box-shadow:
@@ -570,9 +602,28 @@
         var(--bg-panel);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
+      isolation: isolate;
+      box-shadow:
+        0 24px 50px rgba(0, 0, 0, 0.65),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05),
+        0 0 24px rgba(93, 184, 255, 0.12),
+        0 0 42px rgba(214, 169, 74, 0.06);
       animation: panelGlow 4s ease-in-out infinite alternate;
       overflow: visible;
       margin-bottom: 60px;
+      transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+    }
+
+    .hero:hover {
+      border-color: rgba(159, 220, 255, 0.48);
+      box-shadow:
+        0 26px 56px rgba(0, 0, 0, 0.70),
+        inset 0 1px 1px rgba(255, 255, 255, 0.06),
+        0 0 34px rgba(93, 184, 255, 0.18),
+        0 0 48px rgba(214, 169, 74, 0.08);
     }
 
     .hero::before {
@@ -582,10 +633,52 @@
       border-radius: 24px;
       pointer-events: none;
       background:
+        radial-gradient(circle at 8% 8%, rgba(232, 247, 255, 0.18) 0 1px, transparent 3px),
+        radial-gradient(circle at 92% 14%, rgba(159, 220, 255, 0.16) 0 1px, transparent 3px),
+        radial-gradient(circle at 88% 88%, rgba(232, 247, 255, 0.12) 0 1px, transparent 3px),
+        radial-gradient(circle at 12% 82%, rgba(93, 184, 255, 0.12) 0 1px, transparent 3px),
         radial-gradient(circle at 50% 12%, rgba(93, 184, 255, 0.13), transparent 32%),
         linear-gradient(135deg, rgba(159, 220, 255, 0.12), transparent 30%, transparent 72%, rgba(214, 169, 74, 0.08));
       opacity: 0.78;
       z-index: 0;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 24px;
+      padding: 1px;
+      pointer-events: none;
+      z-index: 1;
+
+      background:
+        conic-gradient(
+          from var(--hero-border-angle, 0deg),
+          rgba(93, 184, 255, 0.08),
+          rgba(159, 220, 255, 0.58),
+          rgba(232, 247, 255, 0.28),
+          rgba(214, 169, 74, 0.18),
+          rgba(93, 184, 255, 0.08),
+          rgba(95, 70, 190, 0.22),
+          rgba(159, 220, 255, 0.52),
+          rgba(93, 184, 255, 0.08)
+        );
+
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+
+      opacity: 0.78;
+      filter:
+        drop-shadow(0 0 10px rgba(93, 184, 255, 0.20))
+        drop-shadow(0 0 18px rgba(159, 220, 255, 0.10));
+
+      animation:
+        heroBorderShimmer 9s linear infinite,
+        heroBorderBreath 4.5s ease-in-out infinite alternate;
     }
 
     .hero-content {
@@ -844,6 +937,87 @@
       .intro {
         max-width: 740px;
       }
+    }
+
+    .hero-pitch {
+      max-width: 780px;
+      margin: 0 auto 38px;
+      padding: 22px 24px 20px;
+      border: 1px solid rgba(93, 184, 255, 0.24);
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(93, 184, 255, 0.10), transparent 42%),
+        linear-gradient(145deg, rgba(8, 12, 18, 0.52), rgba(18, 18, 18, 0.36));
+      box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.35),
+        0 0 18px rgba(93, 184, 255, 0.08),
+        inset 0 1px 0 rgba(232, 247, 255, 0.06);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      transition:
+        border-color 0.28s ease,
+        box-shadow 0.28s ease,
+        background 0.28s ease;
+    }
+
+    .hero-pitch:hover {
+      border-color: rgba(159, 220, 255, 0.38);
+      box-shadow:
+        0 14px 32px rgba(0, 0, 0, 0.42),
+        0 0 24px rgba(93, 184, 255, 0.12),
+        0 0 18px rgba(214, 169, 74, 0.06),
+        inset 0 1px 0 rgba(232, 247, 255, 0.08);
+    }
+
+    .hero-pitch-kicker {
+      margin-bottom: 10px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      text-shadow:
+        0 0 10px rgba(255, 211, 106, 0.18),
+        0 0 14px rgba(93, 184, 255, 0.10);
+    }
+
+    .hero-pitch .intro {
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: 1.02rem;
+      color: var(--text-main);
+      line-height: 1.68;
+      letter-spacing: 0.004em;
+      text-wrap: balance;
+    }
+
+    .hero-highlight-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .hero-highlight-row span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 28px;
+      padding: 6px 11px;
+      border: 1px solid rgba(159, 220, 255, 0.26);
+      border-radius: 999px;
+      background:
+        linear-gradient(145deg, rgba(93, 184, 255, 0.08), rgba(214, 169, 74, 0.045));
+      color: rgba(244, 239, 228, 0.88);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      box-shadow:
+        0 0 10px rgba(93, 184, 255, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
     }
 
     .link-row {
@@ -1218,13 +1392,6 @@
       object-position: center center;
     }
 
-    .cards.free-modules .card:nth-child(3) img,
-    .cards.free-modules .card:nth-child(4) img {
-      object-fit: contain;
-      padding: 8px;
-      background: #000;
-    }
-
     @media (max-width: 1200px) {
       .cards.free-modules {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1345,30 +1512,133 @@
     }
 
     .card img.wide-banner-fit {
-      object-fit: contain;
+      object-fit: cover;
       object-position: center center;
-      background: #000;
+      background: transparent;
       padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .professional-gm-wrapper {
+      background:
+        radial-gradient(circle at center, rgba(93, 184, 255, 0.08), transparent 60%),
+        #000;
     }
 
     .card img.discord-gif-fit {
+      position: relative;
+      z-index: 1;
       width: auto;
       height: 100%;
-      max-width: 100%;
+      max-width: 54%;
       object-fit: contain;
       object-position: center center;
       margin: 0 auto;
       padding: 0;
-      background: #000;
+      background: transparent;
     }
 
     .discord-image-wrapper {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
       background:
         radial-gradient(circle at center, rgba(255, 211, 106, 0.08), transparent 55%),
         #000;
+    }
+
+    .discord-image-wrapper::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZW1ydWlsbGVwbjZkbmxjdDhpMnJrdDNnc3Fpc2hrY2t1eGlidjJzaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/FOyTq0jnS6FMfZMPfU/giphy.gif");
+      background-size: cover;
+      background-position: center center;
+      filter: blur(18px) brightness(0.38) saturate(1.05);
+      transform: scale(1.12);
+      opacity: 0.95;
+      z-index: 0;
+    }
+
+    .performance-manager-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at center, rgba(93, 184, 255, 0.08), transparent 58%),
+        #000;
+    }
+
+    .performance-manager-wrapper::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("https://i.postimg.cc/tCM4rv8F/Performance-Manager-World-Cleaner-Compendium-Sync.png");
+      background-size: cover;
+      background-position: center center;
+      filter: blur(16px) brightness(0.34) saturate(1.0);
+      transform: scale(1.08);
+      opacity: 0.92;
+      z-index: 0;
+    }
+
+    .free-maps-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at center, rgba(93, 184, 255, 0.08), transparent 58%),
+        #000;
+    }
+
+    .free-maps-wrapper::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("https://i.postimg.cc/SKzgJGX8/Add-Sky-Maps.webp");
+      background-size: cover;
+      background-position: center center;
+      filter: blur(16px) brightness(0.36) saturate(1.03);
+      transform: scale(1.08);
+      opacity: 0.92;
+      z-index: 0;
+    }
+
+    .cards.free-modules .card-img-wrapper.performance-manager-wrapper img {
+      position: relative;
+      z-index: 1;
+      width: 90%;
+      height: 90%;
+      object-fit: contain;
+      object-position: center center;
+      padding: 0;
+      background: transparent;
+    }
+
+    .cards.free-modules .card-img-wrapper.free-maps-wrapper img {
+      position: relative;
+      z-index: 1;
+      width: auto;
+      height: 100%;
+      max-width: 76%;
+      object-fit: contain;
+      object-position: center center;
+      padding: 0;
+      background: transparent;
+    }
+
+    .professional-gm-wrapper,
+    .discord-image-wrapper,
+    .performance-manager-wrapper,
+    .free-maps-wrapper {
+      border-radius: 12px;
     }
 
     .note {
@@ -1530,6 +1800,38 @@
 
       main { padding: 40px 16px 60px; }
       .hero { padding: 40px 20px; }
+
+      .hero::after {
+        opacity: 0.48;
+        filter:
+          drop-shadow(0 0 7px rgba(93, 184, 255, 0.14))
+          drop-shadow(0 0 12px rgba(159, 220, 255, 0.08));
+      }
+
+      .hero-pitch {
+        padding: 18px 16px;
+        margin-bottom: 30px;
+      }
+
+      .hero-pitch-kicker {
+        font-size: 0.78rem;
+        letter-spacing: 0.09em;
+      }
+
+      .hero-pitch .intro {
+        font-size: 0.96rem;
+        line-height: 1.62;
+      }
+
+      .hero-highlight-row {
+        gap: 6px;
+      }
+
+      .hero-highlight-row span {
+        font-size: 0.66rem;
+        padding: 5px 9px;
+      }
+
       .link-row.primary,
       .link-row.secondary { grid-template-columns: 1fr; }
       .link-row.secondary {
@@ -1620,7 +1922,8 @@
       .button-moonlight,
       .button-label::after,
       .hero-banner,
-      .hero-banner::before {
+      .hero-banner::before,
+      .hero::after {
         animation: none !important;
       }
 
@@ -1684,12 +1987,22 @@
           Foundry VTT Modules • D&D 5e Tools • Maps • VTT Assets • Professional GM Games
         </div>
 
-        <p class="intro">
-          CtrlAltDefeat creates Foundry VTT modules, D&D 5e tools, anime-inspired TTRPG assets,
-          maps, tokens, animated WebM VTT assets, Homebrewery resources, and professional GM games.
-          This public index collects my free modules, Patreon content, YouTube showcases,
-          StartPlaying games, and tabletop resources.
-        </p>
+        <div class="hero-pitch">
+          <div class="hero-pitch-kicker">Cinematic tabletop tools built for live games.</div>
+
+          <p class="intro">
+            Foundry VTT modules, D&D 5e tools, animated assets, maps, and campaign resources
+            built to make sessions cleaner, faster, and more cinematic. This hub connects my
+            free modules, Patreon releases, YouTube showcases, StartPlaying games, and community links.
+          </p>
+
+          <div class="hero-highlight-row" aria-label="CtrlAltDefeat project highlights">
+            <span>Foundry Modules</span>
+            <span>VTT Assets</span>
+            <span>Maps</span>
+            <span>Pro GM Games</span>
+          </div>
+        </div>
 
         <!-- Reordered buttons and added data-preview tags for hover effects -->
         <div class="link-row primary">
@@ -1797,12 +2110,12 @@
           bounties, and anime-inspired campaign progression.
         </p>
         <p>
-          <a href="https://www.patreon.com/posts/153743909?collection=1941207" target="_blank" rel="noopener noreferrer">View on Patreon →</a>
+          <a href="https://www.patreon.com/posts/153743909?collection=1941207" target="_blank" rel="noopener noreferrer">Open Tracker Page →</a>
         </p>
       </div>
 
       <div class="card">
-        <div class="card-img-wrapper">
+        <div class="card-img-wrapper performance-manager-wrapper">
           <img src="https://i.postimg.cc/tCM4rv8F/Performance-Manager-World-Cleaner-Compendium-Sync.png" alt="Performance Manager World Cleaner Compendium Sync Preview">
         </div>
         <h3>Performance Manager World Cleaner Compendium Sync</h3>
@@ -1811,12 +2124,12 @@
           managing performance, and syncing world data into unlocked compendiums.
         </p>
         <p>
-          <a href="https://www.patreon.com/posts/free-performance-160241130" target="_blank" rel="noopener noreferrer">View on Patreon →</a>
+          <a href="https://www.patreon.com/posts/free-performance-160241130" target="_blank" rel="noopener noreferrer">Get Performance Manager →</a>
         </p>
       </div>
 
       <div class="card">
-        <div class="card-img-wrapper">
+        <div class="card-img-wrapper free-maps-wrapper">
           <img src="https://i.postimg.cc/SKzgJGX8/Add-Sky-Maps.webp" alt="Free Public Maps Preview">
         </div>
         <h3>Free Public Maps</h3>
@@ -1825,7 +2138,7 @@
           D&D 5e, and anime-inspired campaigns.
         </p>
         <p>
-          <a href="https://www.patreon.com/collection/1877470?view=expanded" target="_blank" rel="noopener noreferrer">View Free Maps →</a>
+          <a href="https://www.patreon.com/collection/1877470?view=expanded" target="_blank" rel="noopener noreferrer">Browse Free Maps →</a>
         </p>
       </div>
     </section>
@@ -1838,7 +2151,7 @@
     <section class="cards">
       <!-- Card 1: Professional GM Games -->
       <div class="card">
-        <div class="card-img-wrapper">
+        <div class="card-img-wrapper professional-gm-wrapper">
           <img class="wide-banner-fit" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWJmbng0eWM4aThwZzljbmN2eW5qZ2Z3amJnemlvdjlxdGcweGJrMSZlcD12MV9pbnRlcmFsfGdpZl9ieV9pZCZjdD1n/O3ZoZCvPHgPSZUKK0Q/giphy.gif" alt="Professional GM games and campaign preview">
         </div>
         <h3>Professional GM Games</h3>
@@ -1898,7 +2211,7 @@
           overlay text, GIFs, macro cut-ins, and dramatic table presentation.
         </p>
         <p>
-          <a href="https://www.patreon.com/posts/152893204?collection=1941207" target="_blank" rel="noopener noreferrer">View on Patreon →</a>
+          <a href="https://www.patreon.com/posts/152893204?collection=1941207" target="_blank" rel="noopener noreferrer">Open Cinematic Toolkit →</a>
         </p>
       </div>
 
@@ -1912,7 +2225,7 @@
           anime-inspired abilities, and pirate campaign gameplay.
         </p>
         <p>
-          <a href="https://www.patreon.com/posts/148145961?collection=1941207" target="_blank" rel="noopener noreferrer">View on Patreon →</a>
+          <a href="https://www.patreon.com/posts/148145961?collection=1941207" target="_blank" rel="noopener noreferrer">Open Devil Fruit Tool →</a>
         </p>
       </div>
 
@@ -1926,7 +2239,7 @@
           automation, challenge cards, and One Piece-inspired D&D mechanics.
         </p>
         <p>
-          <a href="https://www.patreon.com/posts/156072885?collection=1941207" target="_blank" rel="noopener noreferrer">View on Patreon →</a>
+          <a href="https://www.patreon.com/posts/156072885?collection=1941207" target="_blank" rel="noopener noreferrer">Open Bruiser UI →</a>
         </p>
       </div>
     </section>
@@ -1947,7 +2260,7 @@
           through the CtrlAltDefeat Patreon for D&D 5e and anime-inspired tabletop games.
         </p>
         <p>
-          <a href="https://www.patreon.com/posts/149194541?collection=1879454" target="_blank" rel="noopener noreferrer">View Maps →</a>
+          <a href="https://www.patreon.com/posts/149194541?collection=1879454" target="_blank" rel="noopener noreferrer">Browse Map Packs →</a>
         </p>
       </div>
 
@@ -1961,7 +2274,7 @@
           Foundry-ready resources for cinematic tabletop presentation.
         </p>
         <p>
-          <a href="https://www.patreon.com/collection/2144840?view=expanded" target="_blank" rel="noopener noreferrer">View Assets →</a>
+          <a href="https://www.patreon.com/collection/2144840?view=expanded" target="_blank" rel="noopener noreferrer">Browse Animated Assets →</a>
         </p>
       </div>
 
@@ -1975,7 +2288,7 @@
           and extra content for players and GMs using CtrlAltDefeat projects.
         </p>
         <p>
-          <a href="https://www.patreon.com/collection/2151435?view=expanded" target="_blank" rel="noopener noreferrer">View Resources →</a>
+          <a href="https://www.patreon.com/collection/2151435?view=expanded" target="_blank" rel="noopener noreferrer">Open Resource Vault →</a>
         </p>
       </div>
     </section>
