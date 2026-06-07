@@ -94,6 +94,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
+  <script data-goatcounter="https://ctrlaltdefeat.goatcounter.com/count"
+          async src="https://gc.zgo.at/count.js"></script>
+
   <style>
     :root {
       --bg-base: #050505;
@@ -2184,6 +2187,59 @@
       font-size: 0.85rem;
     }
 
+    .site-counter {
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      z-index: 115;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 9px;
+      border: 1px solid rgba(93, 184, 255, 0.22);
+      border-radius: 999px;
+      background:
+        linear-gradient(145deg, rgba(8, 12, 18, 0.78), rgba(20, 20, 20, 0.62));
+      color: rgba(244, 239, 228, 0.72);
+      font-size: 0.68rem;
+      line-height: 1;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.42),
+        0 0 10px rgba(93, 184, 255, 0.08);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      opacity: 0.58;
+      transition:
+        opacity 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease,
+        transform 0.22s ease;
+    }
+
+    .site-counter:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      border-color: rgba(159, 220, 255, 0.42);
+      box-shadow:
+        0 10px 22px rgba(0, 0, 0, 0.52),
+        0 0 14px rgba(93, 184, 255, 0.16),
+        0 0 10px rgba(214, 169, 74, 0.06);
+    }
+
+    .site-counter-label {
+      color: rgba(159, 220, 255, 0.78);
+      font-weight: 700;
+    }
+
+    .site-counter-value {
+      color: var(--gold-bright);
+      font-weight: 800;
+      min-width: 2ch;
+      text-align: right;
+    }
+
     .music-control {
       position: fixed;
       top: 18px;
@@ -2420,6 +2476,14 @@
 
       .faq-grid details p {
         padding: 0 15px 16px;
+      }
+
+      .site-counter {
+        right: 10px;
+        bottom: 10px;
+        padding: 5px 8px;
+        font-size: 0.62rem;
+        opacity: 0.48;
       }
 
       /* Disable tooltips on mobile to prevent clipping */
@@ -3011,6 +3075,36 @@
       One Piece rights holders.
     </footer>
   </main>
+
+  <div class="site-counter" aria-label="Site visitor count">
+    <span class="site-counter-label">Visits</span>
+    <span id="site-counter-value" class="site-counter-value">—</span>
+  </div>
+
+  <script>
+    async function updateSiteCounter() {
+      const counterValue = document.getElementById("site-counter-value");
+      if (!counterValue) return;
+
+      try {
+        const response = await fetch("https://ctrlaltdefeat.goatcounter.com/counter/TOTAL.json", {
+          cache: "no-store"
+        });
+
+        if (!response.ok) {
+          counterValue.textContent = "—";
+          return;
+        }
+
+        const data = await response.json();
+        counterValue.textContent = data.count || "—";
+      } catch (error) {
+        counterValue.textContent = "—";
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", updateSiteCounter);
+  </script>
 
   <script>
     const assetPools = {
