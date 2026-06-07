@@ -1351,6 +1351,66 @@
       margin: 0 auto;
     }
 
+    .play-tables .card {
+      min-height: 100%;
+    }
+
+    .game-link-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .game-link-list a {
+      display: block;
+      padding: 7px 9px;
+      border: 1px solid rgba(93, 184, 255, 0.18);
+      border-radius: 8px;
+      background:
+        linear-gradient(145deg, rgba(93, 184, 255, 0.045), rgba(214, 169, 74, 0.035));
+      color: var(--gold-bright);
+      font-size: 0.88rem;
+      line-height: 1.35;
+    }
+
+    .game-link-list a:hover {
+      color: #fff;
+      border-color: rgba(159, 220, 255, 0.42);
+      box-shadow:
+        0 0 12px rgba(93, 184, 255, 0.12),
+        0 0 10px rgba(214, 169, 74, 0.08);
+    }
+
+    .play-table-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at center, rgba(93, 184, 255, 0.08), transparent 58%),
+        #000;
+    }
+
+    .play-table-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    .one-piece-table-wrapper img {
+      object-position: center center;
+    }
+
+    .marine-table-wrapper img {
+      object-position: center center;
+    }
+
+    .private-booking-wrapper img {
+      object-position: top center;
+    }
+
     .cards.free-modules {
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 20px;
@@ -2219,6 +2279,59 @@
         </p>
         <p>
           <a href="https://homebrewery.naturalcrit.com/share/LtF88dEE8z1S" target="_blank" rel="noopener noreferrer">Read Resources →</a>
+        </p>
+      </div>
+    </section>
+
+    <h2>Play at My Tables</h2>
+    <p class="section-intro">
+      Featured long-running campaigns and booking options hosted through StartPlaying.
+    </p>
+
+    <section class="cards play-tables">
+      <div class="card">
+        <div class="card-img-wrapper play-table-wrapper one-piece-table-wrapper">
+          <img src="https://i.postimg.cc/zf2WQS44/Sat7am-Google-Docs.png" alt="One Piece pirate campaign preview">
+        </div>
+        <h3>One Piece Pirate Campaigns</h3>
+        <p>
+          Long-running pirate adventures with Devil Fruits, custom loot, cinematic Foundry tools,
+          anime-style progression, and player-driven crew stories.
+        </p>
+
+        <div class="game-link-list">
+          <a href="https://startplaying.games/adventure/cmj7qm2tc000wl804idgdrdfq" target="_blank" rel="noopener noreferrer">Tue, 7:00 AM CDT / Weekly →</a>
+          <a href="https://startplaying.games/adventure/cmecyww220080lb04kzy9yqj4" target="_blank" rel="noopener noreferrer">Fri, 2:00 PM CDT / Weekly →</a>
+          <a href="https://startplaying.games/adventure/cm38rt258008n131g1c941tj7" target="_blank" rel="noopener noreferrer">Sun, 7:00 AM CDT / Weekly →</a>
+          <a href="https://startplaying.games/adventure/cly21eq040003k4xa01hh8wyc" target="_blank" rel="noopener noreferrer">Sat, 7:00 AM CDT / Weekly →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-wrapper play-table-wrapper marine-table-wrapper">
+          <img src="https://i.postimg.cc/6qnvysTB/54154854.jpg" alt="Marine campaign preview">
+        </div>
+        <h3>Marine Campaign</h3>
+        <p>
+          A mission-based anime fantasy campaign with naval conflict, faction pressure,
+          tactical choices, cinematic scenes, and a Marine-side campaign structure.
+        </p>
+        <p>
+          <a href="https://startplaying.games/adventure/cmpqua2kr00grl804qsdtce58" target="_blank" rel="noopener noreferrer">Tue, 10:30 AM CDT / Weekly →</a>
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-img-wrapper play-table-wrapper private-booking-wrapper">
+          <img src="https://i.postimg.cc/QMCKcKVv/Screenshot-2026-06-06-214434.png" alt="Private booking and StartPlaying profile preview">
+        </div>
+        <h3>Private Booking / All Games</h3>
+        <p>
+          Want a private table, custom campaign, one-shot, or group booking? View my StartPlaying
+          profile for current campaigns, open seats, reviews, and booking options.
+        </p>
+        <p>
+          <a href="https://startplaying.games/gm/ctrl-alt-defeat" target="_blank" rel="noopener noreferrer">See All Games →</a>
         </p>
       </div>
     </section>
