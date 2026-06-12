@@ -2195,6 +2195,35 @@
         0 0 18px rgba(93, 184, 255, 0.08);
     }
 
+    .footer-secondary-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      max-width: 920px;
+      margin: 34px auto 0;
+      color: rgba(255, 255, 255, 0.34);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .footer-secondary-links a {
+      color: rgba(255, 211, 106, 0.58);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .footer-secondary-links a:hover {
+      color: var(--gold-bright);
+      border-bottom-color: rgba(255, 211, 106, 0.55);
+    }
+
+    .footer-secondary-links span {
+      color: rgba(93, 184, 255, 0.36);
+    }
+
     footer {
       max-width: 920px;
       margin: 40px auto 0;
@@ -2654,36 +2683,6 @@
             </span>
           </a>
         </div>
-
-        <div class="link-row secondary">
-          <a class="button" href="https://homebrewery.naturalcrit.com/share/LtF88dEE8z1S" target="_blank" rel="noopener noreferrer" data-preview="Read Homebrewery Books">
-            <span class="button-light-frame" aria-hidden="true">
-              <span class="button-moonlight"></span>
-            </span>
-            <span class="button-label" data-text="Homebrew Books">Homebrew Books</span>
-          </a>
-
-          <a class="button" href="https://github.com/CtrlAltDefeatAM" target="_blank" rel="noopener noreferrer" data-preview="View GitHub Repositories">
-            <span class="button-light-frame" aria-hidden="true">
-              <span class="button-moonlight"></span>
-            </span>
-            <span class="button-label" data-text="GitHub Profile">GitHub Profile</span>
-          </a>
-
-          <a class="button" href="https://ctrlaltdefeat.carrd.co/" target="_blank" rel="noopener noreferrer" data-preview="Open Secondary Quick-Link Hub">
-            <span class="button-light-frame" aria-hidden="true">
-              <span class="button-moonlight"></span>
-            </span>
-            <span class="button-label" data-text="Card Hub">Card Hub</span>
-          </a>
-
-          <a class="button" href="https://linktr.ee/Ctrl.Alt.Defeat" target="_blank" rel="noopener noreferrer" data-preview="Open Linktree Quick-Link Hub">
-            <span class="button-light-frame" aria-hidden="true">
-              <span class="button-moonlight"></span>
-            </span>
-            <span class="button-label" data-text="Linktree">Linktree</span>
-          </a>
-        </div>
       </div>
     </section>
 
@@ -3023,6 +3022,12 @@
         <a href="https://github.com/CtrlAltDefeatAM" target="_blank" rel="noopener noreferrer">View GitHub Repositories →</a>
       </div>
     </section>
+
+    <div class="footer-secondary-links" aria-label="Secondary quick links">
+      <a href="https://ctrlaltdefeat.carrd.co/" target="_blank" rel="noopener noreferrer">Card Hub</a>
+      <span aria-hidden="true">•</span>
+      <a href="https://linktr.ee/Ctrl.Alt.Defeat" target="_blank" rel="noopener noreferrer">Linktree</a>
+    </div>
 
     <footer>
       Unofficial fan-made tabletop resources. Not affiliated with, endorsed by, or sponsored by
